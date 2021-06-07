@@ -25,11 +25,11 @@ public class Producer {
 		return props;
 	}
 
-	public static void generalSend(String topic, int totalMessages, String[] keys, String[] values) {
+	public static void generalSend(String topic, int totalMessages) {
 		KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(producerProps(bootstrapServer));
 		try {
 			for (int counter = 0; counter < totalMessages; counter++) {
-				kafkaProducer.send(new ProducerRecord<String, String>(topic, keys[counter], values[counter]));
+				kafkaProducer.send(new ProducerRecord<String, String>(topic, "key" + counter, "value" + counter));
 			}
 
 		} catch (Exception e) {
@@ -42,24 +42,39 @@ public class Producer {
 	public static void singleSend() {
 		String topic = "kafkaBenchmark1";
 		int totalMessages = 1;
-		String[] keys = { "key" };
-		String[] values = { "value" };
 
-		generalSend(topic, totalMessages, keys, values);
+		generalSend(topic, totalMessages);
 	}
 
 	public static void massSend() {
 		String topic = "kafkaBenchmark2";
 		int totalMessages = 100;
-		String[] keys = new String[100];
-		String[] values = new String[100];
 
-		for (int counter = 0; counter < totalMessages; counter++) {
-			keys[counter] = "key" + counter;
-			values[counter] = "value" + counter;
-		}
+		generalSend(topic, totalMessages);
+	}
 
-		generalSend(topic, totalMessages, keys, values);
+	public static void multipleTopicSingleSend() {
+		String topic1 = "kafkaBenchmark3.1";
+		String topic2 = "kafkaBenchmark3.2";
+		String topic3 = "kafkaBenchmark3.3";
+
+		int totalMessages = 1;
+
+		generalSend(topic1, totalMessages);
+		generalSend(topic2, totalMessages);
+		generalSend(topic3, totalMessages);
+	}
+
+	public static void multipleTopicMassSend() {
+		String topic1 = "kafkaBenchmark3.1";
+		String topic2 = "kafkaBenchmark3.2";
+		String topic3 = "kafkaBenchmark3.3";
+
+		int totalMessages = 100;
+
+		generalSend(topic1, totalMessages);
+		generalSend(topic2, totalMessages);
+		generalSend(topic3, totalMessages);
 	}
 
 }

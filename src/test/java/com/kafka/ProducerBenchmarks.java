@@ -53,6 +53,28 @@ public class ProducerBenchmarks {
 		Producer.massSend();
 	}
 
+	@Benchmark
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
+	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
+	public void multipleTopicSingleSendBenchmark(Blackhole bh) {
+		Producer.multipleTopicSingleSend();
+	}
+
+	@Benchmark
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
+	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
+	public void multipleTopicMassSendBenchmark(Blackhole bh) {
+		Producer.multipleTopicMassSend();
+	}
+
 	@TearDown(Level.Trial)
 	public void tearDown() {
 		// TODO Trial level: write code to be executed after each run of the benchmark
