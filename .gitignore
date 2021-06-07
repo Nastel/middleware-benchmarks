@@ -6,3 +6,6 @@
 # Maven
 log/
 target/
+
+#Cybench
+reports/
