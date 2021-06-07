@@ -38,8 +38,19 @@ public class ProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
-	public void basicSendBenchmark(Blackhole bh) {
-		Producer.basicSend();
+	public void singleSendBenchmark(Blackhole bh) {
+		Producer.singleSend();
+	}
+
+	@Benchmark
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
+	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
+	public void massSendBenchmark(Blackhole bh) {
+		Producer.massSend();
 	}
 
 	@TearDown(Level.Trial)

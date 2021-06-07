@@ -8,9 +8,11 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 public class Producer {
+	// Globals
+	final static String bootstrapServer = "localhost:9092";
 
 	public static void main(String args[]) {
-		Producer.basicSend();
+		// Producer.basicSend();
 	}
 
 	private static Properties producerProps(String bootstrapServer) {
@@ -23,16 +25,41 @@ public class Producer {
 		return props;
 	}
 
-	public static void basicSend() {
-		String bootstrapServer = "localhost:9092";
-		String topic = "MyKafkaBenchmark";
+	public static void generalSend(String topic, int totalMessages, String[] keys, String[] values) {
 		KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(producerProps(bootstrapServer));
 		try {
-			kafkaProducer.send(new ProducerRecord<String, String>(topic, "key", "value"));
+			for (int counter = 0; counter < totalMessages; counter++) {
+				kafkaProducer.send(new ProducerRecord<String, String>(topic, keys[counter], values[counter]));
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			kafkaProducer.close();
 		}
 	}
+
+	public static void singleSend() {
+		String topic = "kafkaBenchmark1";
+		int totalMessages = 1;
+		String[] keys = { "key" };
+		String[] values = { "value" };
+
+		generalSend(topic, totalMessages, keys, values);
+	}
+
+	public static void massSend() {
+		String topic = "kafkaBenchmark2";
+		int totalMessages = 100;
+		String[] keys = new String[100];
+		String[] values = new String[100];
+
+		for (int counter = 0; counter < totalMessages; counter++) {
+			keys[counter] = "key" + counter;
+			values[counter] = "value" + counter;
+		}
+
+		generalSend(topic, totalMessages, keys, values);
+	}
+
 }
