@@ -34,5 +34,4 @@ public class Consumer {
 		} finally {
 			kafkaConsumer.close();
 		}
-	}
-}
+	}}
