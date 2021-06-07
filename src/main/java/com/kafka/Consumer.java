@@ -10,15 +10,18 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 public class Consumer {
 
 	public static void main(String[] args) {
+		Consumer.receive();
+	}
+	public static void receive() {
 		Properties properties = new Properties();
-		properties.put("bootstrap.servers", "localhost:9092"); //Change IP depending on producer
+		properties.put("bootstrap.servers", "localhost:9092"); // Change IP depending on producer
 		properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		properties.put("group.id", "test-group");
-
+		
 		KafkaConsumer kafkaConsumer = new KafkaConsumer(properties);
 		List topics = new ArrayList();
-		topics.add("newKafkaTest"); //Change Topic depending on producer
+		topics.add("newKafkaTest"); // Change Topic depending on producer
 		kafkaConsumer.subscribe(topics);
 		try {
 			while (true) {
