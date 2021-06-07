@@ -19,16 +19,18 @@ import org.openjdk.jmh.infra.Blackhole;
 
 @State(Scope.Benchmark)
 public class ProducerBenchmarks {
+	private Producer myProducer;
 
 	@Setup(Level.Trial)
 	public void setup() {
-		// TODO Trial level: write code to be executed before each run of the benchmark
+		// Executed before each run of the benchmark
+
 	}
 
 	@Setup(Level.Iteration)
 	public void setupIteration() {
-		// TODO Iteration level: write code to be executed before each iteration of the
-		// benchmark.
+		// Executed before each iteration of the benchmark.
+		myProducer = new Producer();
 	}
 
 	@Benchmark
@@ -39,7 +41,7 @@ public class ProducerBenchmarks {
 	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
 	public void singleSendBenchmark(Blackhole bh) {
-		Producer.singleSend();
+		myProducer.singleSend();
 	}
 
 	@Benchmark
@@ -50,7 +52,7 @@ public class ProducerBenchmarks {
 	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
 	public void massSendBenchmark(Blackhole bh) {
-		Producer.massSend();
+		myProducer.massSend();
 	}
 
 	@Benchmark
@@ -61,7 +63,7 @@ public class ProducerBenchmarks {
 	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
 	public void multipleTopicSingleSendBenchmark(Blackhole bh) {
-		Producer.multipleTopicSingleSend();
+		myProducer.multipleTopicSingleSend();
 	}
 
 	@Benchmark
@@ -72,18 +74,19 @@ public class ProducerBenchmarks {
 	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
 	public void multipleTopicMassSendBenchmark(Blackhole bh) {
-		Producer.multipleTopicMassSend();
+		myProducer.multipleTopicMassSend();
 	}
 
 	@TearDown(Level.Trial)
 	public void tearDown() {
-		// TODO Trial level: write code to be executed after each run of the benchmark
+		// Executed after each run of the benchmark
+
 	}
 
 	@TearDown(Level.Iteration)
 	public void tearDownIteration() {
-		// TODO Iteration level: write code to be executed after each iteration of the
-		// benchmark.
+		// Executed after each iteration of the benchmark.
+		myProducer.closeProducer();
 	}
 
 }

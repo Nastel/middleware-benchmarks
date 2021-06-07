@@ -9,12 +9,10 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 public class Producer {
 	// Globals
-	final static String bootstrapServer = "localhost:9092";
+	final String bootstrapServer = "localhost:9092";
+	KafkaProducer<String, String> kafkaProducer;
 
-	public static void main(String args[]) {
-		// Producer.basicSend();
-	}
-
+	// Constructing and Creating Producer
 	private static Properties producerProps(String bootstrapServer) {
 		String serializer = StringSerializer.class.getName();
 		Properties props = new Properties();
@@ -25,56 +23,79 @@ public class Producer {
 		return props;
 	}
 
-	public static void generalSend(String topic, int totalMessages) {
-		KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(producerProps(bootstrapServer));
+	public Producer() {
+		kafkaProducer = new KafkaProducer<String, String>(producerProps(bootstrapServer));
+	}
+
+	// Closing Producer
+	public void closeProducer() {
+		kafkaProducer.close();
+	}
+
+	// Sending Messages
+	public void generalSend(String topic, int totalMessages, boolean largeMsg) {
 		try {
 			for (int counter = 0; counter < totalMessages; counter++) {
-				kafkaProducer.send(new ProducerRecord<String, String>(topic, "key" + counter, "value" + counter));
+				if (largeMsg) {
+
+				} else {
+					kafkaProducer.send(new ProducerRecord<String, String>(topic, "key" + counter, "value" + counter));
+				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			kafkaProducer.close();
 		}
 	}
 
-	public static void singleSend() {
+	public void singleSend() {
+		// single small message
 		String topic = "kafkaBenchmark1";
 		int totalMessages = 1;
 
-		generalSend(topic, totalMessages);
+		generalSend(topic, totalMessages, false);
 	}
 
-	public static void massSend() {
+	public void massSend() {
+		// mass small messages
 		String topic = "kafkaBenchmark2";
 		int totalMessages = 100;
 
-		generalSend(topic, totalMessages);
+		generalSend(topic, totalMessages, false);
 	}
 
-	public static void multipleTopicSingleSend() {
+	public void multipleTopicSingleSend() {
+		// multiple topics, single small messages
 		String topic1 = "kafkaBenchmark3.1";
 		String topic2 = "kafkaBenchmark3.2";
 		String topic3 = "kafkaBenchmark3.3";
 
 		int totalMessages = 1;
 
-		generalSend(topic1, totalMessages);
-		generalSend(topic2, totalMessages);
-		generalSend(topic3, totalMessages);
+		generalSend(topic1, totalMessages, false);
+		generalSend(topic2, totalMessages, false);
+		generalSend(topic3, totalMessages, false);
 	}
 
-	public static void multipleTopicMassSend() {
+	public void multipleTopicMassSend() {
+		// multiple topics, mass small messages
 		String topic1 = "kafkaBenchmark3.1";
 		String topic2 = "kafkaBenchmark3.2";
 		String topic3 = "kafkaBenchmark3.3";
 
 		int totalMessages = 100;
 
-		generalSend(topic1, totalMessages);
-		generalSend(topic2, totalMessages);
-		generalSend(topic3, totalMessages);
+		generalSend(topic1, totalMessages, false);
+		generalSend(topic2, totalMessages, false);
+		generalSend(topic3, totalMessages, false);
+	}
+
+	public void singleLargeSend() {
+		// single large message
+		String topic = "kafkaBenchmark4";
+		int totalMessages = 1;
+
+		generalSend(topic, totalMessages, true);
 	}
 
 }
