@@ -32,17 +32,21 @@ public class Producer {
 		kafkaProducer.close();
 	}
 
+	// Create Message of Size (msgSize)
+	public String createMessage(int msgSize) {
+		StringBuilder mySB = new StringBuilder(msgSize);
+		for (int counter = 0; counter < msgSize; counter++) {
+			mySB.append('m');
+		}
+		return mySB.toString();
+	}
+
 	// Sending Messages
-	public void generalSend(String topic, int totalMessages, boolean largeMsg) {
+	public void generalSend(String topic, int totalMessages, String message) {
 		try {
 			for (int counter = 0; counter < totalMessages; counter++) {
-				if (largeMsg) {
-
-				} else {
-					kafkaProducer.send(new ProducerRecord<String, String>(topic, "key" + counter, "value" + counter));
-				}
+				kafkaProducer.send(new ProducerRecord<String, String>(topic, "key" + counter, message));
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -50,52 +54,94 @@ public class Producer {
 
 	public void singleSend() {
 		// single small message
-		String topic = "kafkaBenchmark1";
+		String topic = "trial1";
 		int totalMessages = 1;
+		String message = createMessage(1);
 
-		generalSend(topic, totalMessages, false);
+		generalSend(topic, totalMessages, message);
 	}
 
 	public void massSend() {
 		// mass small messages
-		String topic = "kafkaBenchmark2";
+		String topic = "trial2";
 		int totalMessages = 100;
+		String message = createMessage(1);
 
-		generalSend(topic, totalMessages, false);
+		generalSend(topic, totalMessages, message);
 	}
 
 	public void multipleTopicSingleSend() {
-		// multiple topics, single small messages
-		String topic1 = "kafkaBenchmark3.1";
-		String topic2 = "kafkaBenchmark3.2";
-		String topic3 = "kafkaBenchmark3.3";
+		// multiple topics, single small message
+		String topic1 = "trial3.1";
+		String topic2 = "trial3.2";
+		String topic3 = "trial3.3";
 
 		int totalMessages = 1;
+		String message = createMessage(1);
 
-		generalSend(topic1, totalMessages, false);
-		generalSend(topic2, totalMessages, false);
-		generalSend(topic3, totalMessages, false);
+		generalSend(topic1, totalMessages, message);
+		generalSend(topic2, totalMessages, message);
+		generalSend(topic3, totalMessages, message);
 	}
 
 	public void multipleTopicMassSend() {
 		// multiple topics, mass small messages
-		String topic1 = "kafkaBenchmark3.1";
-		String topic2 = "kafkaBenchmark3.2";
-		String topic3 = "kafkaBenchmark3.3";
+		String topic1 = "trial4.1";
+		String topic2 = "trial4.2";
+		String topic3 = "trial4.3";
 
 		int totalMessages = 100;
+		String message = createMessage(1);
 
-		generalSend(topic1, totalMessages, false);
-		generalSend(topic2, totalMessages, false);
-		generalSend(topic3, totalMessages, false);
+		generalSend(topic1, totalMessages, message);
+		generalSend(topic2, totalMessages, message);
+		generalSend(topic3, totalMessages, message);
 	}
 
 	public void singleLargeSend() {
 		// single large message
-		String topic = "kafkaBenchmark4";
+		String topic = "trial5";
 		int totalMessages = 1;
+		String message = createMessage(100);
 
-		generalSend(topic, totalMessages, true);
+		generalSend(topic, totalMessages, message);
+	}
+
+	public void massLargeSend() {
+		// mass large messages
+		String topic = "trial6";
+		int totalMessages = 100;
+		String message = createMessage(100);
+
+		generalSend(topic, totalMessages, message);
+	}
+
+	public void multipleTopicSingleLargeSend() {
+		// multiple topics, single large message
+		String topic1 = "trial7.1";
+		String topic2 = "trial7.2";
+		String topic3 = "trial7.3";
+
+		int totalMessages = 1;
+		String message = createMessage(100);
+
+		generalSend(topic1, totalMessages, message);
+		generalSend(topic2, totalMessages, message);
+		generalSend(topic3, totalMessages, message);
+	}
+
+	public void multipleTopicMassLargeSend() {
+		// multiple topics, mass large messages
+		String topic1 = "trial8.1";
+		String topic2 = "trial8.2";
+		String topic3 = "trial8.3";
+
+		int totalMessages = 100;
+		String message = createMessage(100);
+
+		generalSend(topic1, totalMessages, message);
+		generalSend(topic2, totalMessages, message);
+		generalSend(topic3, totalMessages, message);
 	}
 
 }
