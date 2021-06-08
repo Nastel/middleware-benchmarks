@@ -1,4 +1,4 @@
-package kafkatester;
+package com.kafka;
 
 import java.util.ArrayList;
 import java.util.List;
