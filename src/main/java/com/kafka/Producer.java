@@ -1,5 +1,6 @@
 package com.kafka;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -9,11 +10,14 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 public class Producer {
 	// Globals
-	final String bootstrapServer = "localhost:9092";
-	KafkaProducer<String, String> kafkaProducer;
+	private final String bootstrapServer = "localhost:9092";
+	private KafkaProducer<String, String> kafkaProducer;
+	private ArrayList<String> topics;
+	private int totalMessages;
+	private String message;
 
 	// Constructing and Creating Producer
-	private static Properties producerProps(String bootstrapServer) {
+	private Properties producerProps() {
 		String serializer = StringSerializer.class.getName();
 		Properties props = new Properties();
 		props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
@@ -24,16 +28,20 @@ public class Producer {
 	}
 
 	public Producer() {
-		kafkaProducer = new KafkaProducer<String, String>(producerProps(bootstrapServer));
+		kafkaProducer = new KafkaProducer<String, String>(producerProps());
 	}
 
 	// Closing Producer
 	public void closeProducer() {
+		message = "end";
+		for (String topic : topics) {
+			send(topic);
+		}
 		kafkaProducer.close();
 	}
 
 	// Create Message of Size (msgSize)
-	public String createMessage(int msgSize) {
+	private String createMessage(int msgSize) {
 		StringBuilder mySB = new StringBuilder(msgSize);
 		for (int counter = 0; counter < msgSize; counter++) {
 			mySB.append('m');
@@ -42,7 +50,17 @@ public class Producer {
 	}
 
 	// Sending Messages
-	public void generalSend(String topic, int totalMessages, String message) {
+	private void setParamsAndSend(ArrayList<String> topicsToAdd, int totalMsgs, int msgSize) {
+		topics = topicsToAdd;
+		totalMessages = totalMsgs;
+		message = createMessage(msgSize);
+
+		for (String topic : topics) {
+			send(topic);
+		}
+	}
+
+	public void send(String topic) {
 		try {
 			for (int counter = 0; counter < totalMessages; counter++) {
 				kafkaProducer.send(new ProducerRecord<String, String>(topic, "key" + counter, message));
@@ -52,96 +70,77 @@ public class Producer {
 		}
 	}
 
+	// Specific Benchmarks
 	public void singleSend() {
 		// single small message
-		String topic = "trial1";
-		int totalMessages = 1;
-		String message = createMessage(1);
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial1");
 
-		generalSend(topic, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 1, 1);
 	}
 
 	public void massSend() {
 		// mass small messages
-		String topic = "trial2";
-		int totalMessages = 100;
-		String message = createMessage(1);
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial2");
 
-		generalSend(topic, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 100, 1);
 	}
 
 	public void multipleTopicSingleSend() {
 		// multiple topics, single small message
-		String topic1 = "trial3.1";
-		String topic2 = "trial3.2";
-		String topic3 = "trial3.3";
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial3.1");
+		topicsToAdd.add("consumeTrial3.2");
+		topicsToAdd.add("consumeTrial3.3");
 
-		int totalMessages = 1;
-		String message = createMessage(1);
-
-		generalSend(topic1, totalMessages, message);
-		generalSend(topic2, totalMessages, message);
-		generalSend(topic3, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 1, 1);
 	}
 
 	public void multipleTopicMassSend() {
 		// multiple topics, mass small messages
-		String topic1 = "trial4.1";
-		String topic2 = "trial4.2";
-		String topic3 = "trial4.3";
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial4.1");
+		topicsToAdd.add("consumeTrial4.2");
+		topicsToAdd.add("consumeTrial4.3");
 
-		int totalMessages = 100;
-		String message = createMessage(1);
-
-		generalSend(topic1, totalMessages, message);
-		generalSend(topic2, totalMessages, message);
-		generalSend(topic3, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 100, 1);
 	}
 
 	public void singleLargeSend() {
 		// single large message
-		String topic = "trial5";
-		int totalMessages = 1;
-		String message = createMessage(100);
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial5");
 
-		generalSend(topic, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 1, 100);
 	}
 
 	public void massLargeSend() {
 		// mass large messages
-		String topic = "trial6";
-		int totalMessages = 100;
-		String message = createMessage(100);
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial6");
 
-		generalSend(topic, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 100, 100);
 	}
 
 	public void multipleTopicSingleLargeSend() {
 		// multiple topics, single large message
-		String topic1 = "trial7.1";
-		String topic2 = "trial7.2";
-		String topic3 = "trial7.3";
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial7.1");
+		topicsToAdd.add("consumeTrial7.2");
+		topicsToAdd.add("consumeTrial7.3");
 
-		int totalMessages = 1;
-		String message = createMessage(100);
-
-		generalSend(topic1, totalMessages, message);
-		generalSend(topic2, totalMessages, message);
-		generalSend(topic3, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 1, 100);
 	}
 
 	public void multipleTopicMassLargeSend() {
 		// multiple topics, mass large messages
-		String topic1 = "trial8.1";
-		String topic2 = "trial8.2";
-		String topic3 = "trial8.3";
+		ArrayList<String> topicsToAdd = new ArrayList<String>();
+		topicsToAdd.add("consumeTrial8.1");
+		topicsToAdd.add("consumeTrial8.2");
+		topicsToAdd.add("consumeTrial8.3");
 
-		int totalMessages = 100;
-		String message = createMessage(100);
-
-		generalSend(topic1, totalMessages, message);
-		generalSend(topic2, totalMessages, message);
-		generalSend(topic3, totalMessages, message);
+		setParamsAndSend(topicsToAdd, 100, 100);
 	}
 
 }

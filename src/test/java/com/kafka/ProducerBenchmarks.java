@@ -38,7 +38,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void singleSendBenchmark(Blackhole bh) {
 		myProducer.singleSend();
@@ -49,7 +49,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void massSendBenchmark(Blackhole bh) {
 		myProducer.massSend();
@@ -60,7 +60,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void multipleTopicSingleSendBenchmark(Blackhole bh) {
 		myProducer.multipleTopicSingleSend();
@@ -71,7 +71,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void multipleTopicMassSendBenchmark(Blackhole bh) {
 		myProducer.multipleTopicMassSend();
@@ -82,7 +82,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void singleLargeSendBenchmark(Blackhole bh) {
 		myProducer.singleLargeSend();
@@ -93,7 +93,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void massLargeSendBenchmark(Blackhole bh) {
 		myProducer.massLargeSend();
@@ -104,7 +104,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void multipleTopicSingleLargeSendBenchmark(Blackhole bh) {
 		myProducer.multipleTopicSingleLargeSend();
@@ -115,7 +115,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void multipleTopicMassLargeSendBenchmark(Blackhole bh) {
 		myProducer.multipleTopicMassLargeSend();
