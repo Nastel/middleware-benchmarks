@@ -19,37 +19,35 @@ import org.openjdk.jmh.infra.Blackhole;
 
 @State(Scope.Benchmark)
 public class ConsumerBenchmarks {
+	private Consumer myConsumer;
 
+	@Setup(Level.Trial)
+	public void setup() {
+	}
 
-    @Setup(Level.Trial)
-    public void setup() {
-        //TODO Trial level: write code to be executed before each run of the benchmark
-    }
+	@Setup(Level.Iteration)
+	public void setupIteration() {
+		myConsumer = new Consumer();
+	}
 
-    @Setup(Level.Iteration)
-    public void setupIteration() {
-        //TODO Iteration level: write code to be executed before each iteration of the benchmark.
-    }
+	@Benchmark
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	public void receiveBenchmark(Blackhole bh) {
+		myConsumer.receiveBenchmark("topicName", 10000);
+	}
 
-    @Benchmark
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
-    @Fork(1)
-    @Threads(1)
-    @Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
-    @Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
-    public void receiveBenchmark(Blackhole bh) {
-        //TODO fill up benchmark method with logic
-    }
+	@TearDown(Level.Trial)
+	public void tearDown() {
+	}
 
-    @TearDown(Level.Trial)
-    public void tearDown() {
-        //TODO Trial level: write code to be executed after each run of the benchmark
-    }
-
-    @TearDown(Level.Iteration)
-    public void tearDownIteration() {
-        //TODO Iteration level: write code to be executed after each iteration of the benchmark.
-    }
+	@TearDown(Level.Iteration)
+	public void tearDownIteration() {
+		myConsumer.closeConsumer();
+	}
 
 }
