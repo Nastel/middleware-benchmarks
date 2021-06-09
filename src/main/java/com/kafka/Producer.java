@@ -55,8 +55,6 @@ public class Producer {
 		totalMessages = totalMsgs;
 		message = new byte[msgSize];
 
-		System.out.println(message.length);
-
 		for (String topic : topicsToAdd) {
 			topics.add(topic);
 			produce(topic);
