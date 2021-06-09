@@ -26,6 +26,7 @@ public class ProducerBenchmarks {
 	@Setup(Level.Trial)
 	public void setup() {
 		// Executed before each run of the benchmark
+		myProducer = new Producer();
 		topics = new ArrayList<String>();
 
 		// ADD TOPICS HERE
@@ -35,7 +36,6 @@ public class ProducerBenchmarks {
 	@Setup(Level.Iteration)
 	public void setupIteration() {
 		// Executed before each iteration of the benchmark.
-		myProducer = new Producer();
 	}
 
 	@Benchmark
@@ -43,7 +43,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void sendBenchmark(Blackhole bh) {
 		// Send topics, totalMessages, and messageSize in bytes
@@ -53,13 +53,12 @@ public class ProducerBenchmarks {
 	@TearDown(Level.Trial)
 	public void tearDown() {
 		// Executed after each run of the benchmark
-
+		myProducer.closeProducer();
 	}
 
 	@TearDown(Level.Iteration)
 	public void tearDownIteration() {
 		// Executed after each iteration of the benchmark.
-		myProducer.closeProducer();
 	}
 
 }
