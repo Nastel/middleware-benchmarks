@@ -39,14 +39,14 @@ public class ConsumerBenchmarks {
 
 	@Benchmark
 	@BenchmarkMode(Mode.Throughput)
-	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void receiveBenchmark(Blackhole bh) {
 		// Consume topics, total expected messages
-		myConsumer.receiveBenchmark(topics, 10000);
+		myConsumer.receive(topics, 100);
 	}
 
 	@TearDown(Level.Trial)
