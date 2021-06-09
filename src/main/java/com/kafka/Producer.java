@@ -29,6 +29,7 @@ public class Producer {
 
 	public Producer() {
 		kafkaProducer = new KafkaProducer<String, String>(producerProps());
+		topics = new ArrayList<String>();
 	}
 
 	// Closing Producer
