@@ -29,7 +29,7 @@ public class ProducerBenchmarks {
 		topics = new ArrayList<String>();
 
 		// ADD TOPICS HERE
-		topics.add("produce1.1");
+		topics.add("topicName");
 	}
 
 	@Setup(Level.Iteration)
