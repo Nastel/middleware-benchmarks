@@ -49,17 +49,7 @@ public class Producer {
 		return mySB.toString();
 	}
 
-	// Sending Messages
-	private void setParamsAndSend(ArrayList<String> topicsToAdd, int totalMsgs, int msgSize) {
-		topics = topicsToAdd;
-		totalMessages = totalMsgs;
-		message = createMessage(msgSize);
-
-		for (String topic : topics) {
-			send(topic);
-		}
-	}
-
+	// Send Method
 	public void send(String topic) {
 		try {
 			for (int counter = 0; counter < totalMessages; counter++) {
@@ -71,76 +61,14 @@ public class Producer {
 	}
 
 	// Specific Benchmarks
-	public void singleSend() {
-		// single small message
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial1");
+	public void sendBenchmark(ArrayList<String> topicsToAdd, int totalMsgs, int msgSize) {
+		totalMessages = totalMsgs;
+		message = createMessage(msgSize);
 
-		setParamsAndSend(topicsToAdd, 1, 1);
-	}
-
-	public void massSend() {
-		// mass small messages
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial2");
-
-		setParamsAndSend(topicsToAdd, 100, 1);
-	}
-
-	public void multipleTopicSingleSend() {
-		// multiple topics, single small message
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial3.1");
-		topicsToAdd.add("consumeTrial3.2");
-		topicsToAdd.add("consumeTrial3.3");
-
-		setParamsAndSend(topicsToAdd, 1, 1);
-	}
-
-	public void multipleTopicMassSend() {
-		// multiple topics, mass small messages
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial4.1");
-		topicsToAdd.add("consumeTrial4.2");
-		topicsToAdd.add("consumeTrial4.3");
-
-		setParamsAndSend(topicsToAdd, 100, 1);
-	}
-
-	public void singleLargeSend() {
-		// single large message
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial5");
-
-		setParamsAndSend(topicsToAdd, 1, 100);
-	}
-
-	public void massLargeSend() {
-		// mass large messages
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial6");
-
-		setParamsAndSend(topicsToAdd, 100, 100);
-	}
-
-	public void multipleTopicSingleLargeSend() {
-		// multiple topics, single large message
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial7.1");
-		topicsToAdd.add("consumeTrial7.2");
-		topicsToAdd.add("consumeTrial7.3");
-
-		setParamsAndSend(topicsToAdd, 1, 100);
-	}
-
-	public void multipleTopicMassLargeSend() {
-		// multiple topics, mass large messages
-		ArrayList<String> topicsToAdd = new ArrayList<String>();
-		topicsToAdd.add("consumeTrial8.1");
-		topicsToAdd.add("consumeTrial8.2");
-		topicsToAdd.add("consumeTrial8.3");
-
-		setParamsAndSend(topicsToAdd, 100, 100);
+		for (String topic : topicsToAdd) {
+			topics.add(topic);
+			send(topic);
+		}
 	}
 
 }
