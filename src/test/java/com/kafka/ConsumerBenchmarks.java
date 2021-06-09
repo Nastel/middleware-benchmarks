@@ -43,7 +43,7 @@ public class ConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void receiveBenchmark(Blackhole bh) {
 		// Consume topics, total expected messages
 		myConsumer.receiveBenchmark(topics, 10000);

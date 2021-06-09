@@ -49,7 +49,6 @@ public class Consumer {
 					totalReadMessages++;
 					if (totalReadMessages == messagesToRead) {
 						// final message will be "end"
-						// closeConsumer();
 						break listeningLoop;
 					}
 				}

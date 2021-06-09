@@ -29,7 +29,7 @@ public class ProducerBenchmarks {
 		topics = new ArrayList<String>();
 
 		// ADD TOPICS HERE
-		topics.add("topicName");
+		topics.add("pb1");
 	}
 
 	@Setup(Level.Iteration)
@@ -43,7 +43,7 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 20, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void sendBenchmark(Blackhole bh) {
 		// Send topics, totalMessages, and messageSize (amt of chars)
