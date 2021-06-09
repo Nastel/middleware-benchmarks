@@ -1,6 +1,7 @@
 
 package com.kafka;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -20,9 +21,15 @@ import org.openjdk.jmh.infra.Blackhole;
 @State(Scope.Benchmark)
 public class ConsumerBenchmarks {
 	private Consumer myConsumer;
+	ArrayList<String> topics;
 
 	@Setup(Level.Trial)
 	public void setup() {
+		// Executed before each run of the benchmark
+		topics = new ArrayList<String>();
+
+		// ADD TOPICS HERE
+		topics.add("topicName");
 	}
 
 	@Setup(Level.Iteration)
@@ -38,7 +45,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void receiveBenchmark(Blackhole bh) {
-		myConsumer.receiveBenchmark("topicName", 10000);
+		myConsumer.receiveBenchmark(topics, 10000);
 	}
 
 	@TearDown(Level.Trial)

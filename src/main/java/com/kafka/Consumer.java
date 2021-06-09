@@ -1,7 +1,6 @@
 package com.kafka;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -37,12 +36,7 @@ public class Consumer {
 		kafkaConsumer.close();
 	}
 
-	public void receiveBenchmark(String topic, int messagesToRead) {
-		List<String> topics = new ArrayList<>();
-
-		// Topic to read from
-		topics.add(topic);
-
+	public void receiveBenchmark(ArrayList<String> topics, int messagesToRead) {
 		kafkaConsumer.subscribe(topics);
 		totalReadMessages = 0;
 
