@@ -10,14 +10,15 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 public class Consumer {
 	// Globals
-	private KafkaConsumer<String, String> kafkaConsumer;
+	private final String bootstrapServer = "localhost:9092";
+	private KafkaConsumer<String, byte[]> kafkaConsumer;
 	private int totalReadMessages;
 
 	private Properties consumerProps() {
 		Properties properties = new Properties();
-		properties.put("bootstrap.servers", "localhost:9092"); // Change IP depending on producer
+		properties.put("bootstrap.servers", bootstrapServer);
 		properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-		properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+		properties.put("value.deserializer", "org.apache.kafka.common.serialization.ByteArrayDeserializer");
 		properties.put("group.id", "new-group");
 		properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
 		properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
@@ -36,19 +37,18 @@ public class Consumer {
 		kafkaConsumer.close();
 	}
 
-	public void receiveBenchmark(ArrayList<String> topics, int messagesToRead) {
+	public void receive(ArrayList<String> topics, int messagesToRead) {
 		kafkaConsumer.subscribe(topics);
 		totalReadMessages = 0;
 
 		try {
 			listeningLoop: while (true) {
-				ConsumerRecords<String, String> records = kafkaConsumer.poll(100);
-				for (ConsumerRecord<String, String> record : records) {
-					String message = record.value();
+				ConsumerRecords<String, byte[]> records = kafkaConsumer.poll(100);
+				for (ConsumerRecord<String, byte[]> record : records) {
+					String message = "Msg size: " + record.value().length;
 					System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), message);
 					totalReadMessages++;
 					if (totalReadMessages == messagesToRead) {
-						// final message will be "end"
 						break listeningLoop;
 					}
 				}
