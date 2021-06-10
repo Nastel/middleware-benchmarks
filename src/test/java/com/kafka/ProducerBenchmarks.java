@@ -10,6 +10,7 @@ import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
@@ -21,7 +22,13 @@ import org.openjdk.jmh.infra.Blackhole;
 @State(Scope.Benchmark)
 public class ProducerBenchmarks {
 	private Producer myProducer;
-	ArrayList<String> topics;
+	private ArrayList<String> topics;
+
+	@Param({ "100", "1000" })
+	private int totalProducedMessages;
+
+	@Param({ "512", "1024", "10240", "32768", "65536", "1024000" })
+	private int messageByteSize;
 
 	@Setup(Level.Trial)
 	public void setup() {
@@ -30,7 +37,7 @@ public class ProducerBenchmarks {
 		topics = new ArrayList<String>();
 
 		// ADD TOPICS HERE
-		topics.add("pb1");
+		topics.add("myTopic");
 	}
 
 	@Setup(Level.Iteration)
@@ -45,9 +52,9 @@ public class ProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	public void sendBenchmark(Blackhole bh) {
+	public void produce(Blackhole bh) {
 		// Send topics, totalMessages, and messageSize in bytes
-		myProducer.send(topics, 100, 512);
+		myProducer.send(topics, totalProducedMessages, messageByteSize);
 	}
 
 	@TearDown(Level.Trial)
