@@ -10,6 +10,7 @@ import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
@@ -21,19 +22,23 @@ import org.openjdk.jmh.infra.Blackhole;
 @State(Scope.Benchmark)
 public class ConsumerBenchmarks {
 	private Consumer myConsumer;
-	ArrayList<String> topics;
+	private ArrayList<String> topics;
+
+	// These are the topic names (named by the byte size of the messages in them)
+	@Param({ "512", "1024", "10240", "32768", "65536", "1024000" })
+	private String messageSize;
+
+	@Param({ "10000", "100000", "1000000" })
+	private int totalConsumedMessages;
 
 	@Setup(Level.Trial)
 	public void setup() {
 		// Executed before each run of the benchmark
-		topics = new ArrayList<String>();
-
-		// ADD TOPICS HERE
-		topics.add("topicName");
 	}
 
 	@Setup(Level.Iteration)
 	public void setupIteration() {
+		topics = new ArrayList<String>();
 		myConsumer = new Consumer();
 	}
 
@@ -44,9 +49,10 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	public void receiveBenchmark(Blackhole bh) {
+	public void consume(Blackhole bh) {
 		// Consume topics, total expected messages
-		myConsumer.receive(topics, 100);
+		topics.add(messageSize);
+		myConsumer.receive(topics, totalConsumedMessages);
 	}
 
 	@TearDown(Level.Trial)
