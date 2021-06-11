@@ -18,7 +18,6 @@ import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
-import com.gocypher.cybench.core.annotation.BenchmarkTag;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
@@ -62,7 +61,7 @@ public class ConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void consume(Blackhole bh) {
 		// Consume topics, total expected messages
 		topics.add(messageSize);
