@@ -24,6 +24,19 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.1</version>
 			</plugin>
+			<plugin>
+				<groupId>com.gocypher.cybench.launcher.plugin</groupId>
+				<artifactId>cybench-launcher-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>cybench</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -43,6 +56,11 @@
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.12</artifactId>
 			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gocypher.cybench.client</groupId>
+			<artifactId>gocypher-cybench-annotations</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 

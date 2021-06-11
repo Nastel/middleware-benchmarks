@@ -22,10 +22,10 @@ import com.gocypher.cybench.core.annotation.BenchmarkTag;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "Consumer Benchmarks Dan")
+@BenchmarkMetaData(key = "context", value = "ReceiveMsg")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
-@BenchmarkMetaData(key = "description", value = "Testing params of Consumer (512 B)")
+@BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
 public class ConsumerBenchmarks {
 	private Consumer myConsumer;
 	private ArrayList<String> topics;
@@ -49,17 +49,14 @@ public class ConsumerBenchmarks {
 	}
 
 	@Benchmark
-	@BenchmarkTag(tag = "a6af45c6-ca2c-11eb-b8bc-0242ac130003")
-	@BenchmarkMetaData(key = "api", value = "middleware-benchmarks")
-	@BenchmarkMetaData(key = "libVendor", value = "com.middleware.benchmarks")
-	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/spencerspitz/middleware-benchmarks")
-	@BenchmarkMetaData(key = "libVersion", value = "1.0.1")
-	@BenchmarkMetaData(key = "libDescription", value = "Benchmarks for Kafka MQ")
-	@BenchmarkMetaData(key = "actionName", value = "read")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "com.middleware.benchmarks")
-	@BenchmarkMetaData(key = "libDescription", value = "Just testing benchmark annotations.")
-	@BenchmarkMetaData(key = "title", value = "Consuming Kafka Messages")
-	@BenchmarkMetaData(key="dataSize", value="512")
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Receiving middleware messages")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
