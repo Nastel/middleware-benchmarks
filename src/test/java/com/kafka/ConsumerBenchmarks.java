@@ -30,7 +30,7 @@ public class ConsumerBenchmarks {
 	private ArrayList<String> topics;
 
 	// These are the topic names (named by the byte size of the messages in them)
-	@Param({ "512Size", "1024Size", "10240Size", "32768Size", "65536Size", "1024000Size" })
+	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private String messageSize;
 
 	@Param({ "10000", "100000", "1000000" })
@@ -55,7 +55,7 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "title", value = "Receiving middleware messages")
+	@BenchmarkMetaData(key = "title", value = "Receiving messages")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)

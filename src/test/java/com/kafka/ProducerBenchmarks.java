@@ -19,7 +19,14 @@ import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 
+import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
+
 @State(Scope.Benchmark)
+@BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
+@BenchmarkMetaData(key = "context", value = "SendMsg")
+@BenchmarkMetaData(key = "domain", value = "java")
+@BenchmarkMetaData(key = "version", value = "1.0.0")
+@BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
 public class ProducerBenchmarks {
 	private Producer myProducer;
 	private ArrayList<String> topics;
@@ -27,7 +34,7 @@ public class ProducerBenchmarks {
 	@Param({ "100", "1000" })
 	private int totalProducedMessages;
 
-	@Param({ "512", "1024", "10240", "32768", "65536", "1024000" })
+	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private int messageByteSize;
 
 	@Setup(Level.Trial)
@@ -46,6 +53,14 @@ public class ProducerBenchmarks {
 	}
 
 	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Sending messages")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
