@@ -44,6 +44,7 @@ public class ConsumerBenchmarks {
 	@Setup(Level.Iteration)
 	public void setupIteration() {
 		topics = new ArrayList<String>();
+		topics.add(messageSize);
 		myConsumer = new Consumer();
 	}
 
@@ -61,10 +62,9 @@ public class ConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void consume(Blackhole bh) {
 		// Consume topics, total expected messages
-		topics.add(messageSize);
 		myConsumer.receive(topics, totalConsumedMessages);
 	}
 

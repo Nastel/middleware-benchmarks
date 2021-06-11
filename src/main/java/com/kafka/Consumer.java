@@ -48,7 +48,7 @@ public class Consumer {
 					String message = "Msg size: " + record.value().length;
 					System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), message);
 					totalReadMessages++;
-					if (totalReadMessages == messagesToRead) {
+					if (totalReadMessages >= messagesToRead) {
 						break listeningLoop;
 					}
 				}
