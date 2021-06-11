@@ -31,7 +31,7 @@ public class ConsumerBenchmarks {
 	private ArrayList<String> topics;
 
 	// These are the topic names (named by the byte size of the messages in them)
-	@Param({ "512Size" }) // , "1024Size", "10240Size", "32768Size", "65536Size", "1024000Size"
+	@Param({ "512Size", "1024Size", "10240Size", "32768Size", "65536Size", "1024000Size" })
 	private String messageSize;
 
 	@Param({ "10000", "100000", "1000000" })
