@@ -26,10 +26,10 @@ public class IBMConsumer {
 	Destination destination, destination2;
 	JMSConsumer consumer;
 
-	public static void main(String[] args) throws Exception {
-		IBMConsumer myConsumer = new IBMConsumer();
-		myConsumer.consume();
-	}
+	/*
+	 * public static void main(String[] args) throws Exception { IBMConsumer
+	 * myConsumer = new IBMConsumer(); myConsumer.consume(); }
+	 */
 
 	private JMSContext makeContext() throws Exception {
 		JmsFactoryFactory ff = JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
@@ -56,10 +56,10 @@ public class IBMConsumer {
 
 	}
 
-	public void consume() {
-		for (int counter = 0; counter < 10; counter++) {
+	public void consume(String msgSize, int messagesToRead) {
+		destination = context.createQueue("queue:///" + msgSize);
+		for (int counter = 0; counter < messagesToRead; counter++) {
 			consumer.receiveBody(String.class, 15000);
-			;
 			// consumer.receive(destination2, "HELLO SECOND WORLD!");
 			// System.out.println("Message sent to queue");
 			recordSuccess();
