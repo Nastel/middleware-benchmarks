@@ -588,6 +588,9 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
             }
             val = new IBMProducerBenchmarks_jmhType();
             Field f;
+            f = com.ibmmq.IBMProducerBenchmarks.class.getDeclaredField("messageByteSize");
+            f.setAccessible(true);
+            f.set(val, Integer.valueOf(control.getParam("messageByteSize")));
             f = com.ibmmq.IBMProducerBenchmarks.class.getDeclaredField("totalProducedMessages");
             f.setAccessible(true);
             f.set(val, Integer.valueOf(control.getParam("totalProducedMessages")));

@@ -33,8 +33,11 @@ public class IBMProducerBenchmarks {
 	@Param({ "100", "1000" })
 	private int totalProducedMessages;
 
+	@Param({ "512", "1024", "10240", "32768", "65536" })
+	private int messageByteSize;
+
 	@Setup(Level.Trial)
-	public void setup() throws Exception {
+	public void setup() {
 		myProducer = new IBMProducer();
 	}
 
@@ -57,11 +60,11 @@ public class IBMProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void produce(Blackhole bh) {
 		// Send topics, totalMessages, and messageSize in bytes
-		myProducer.produce(totalProducedMessages);
+		myProducer.produce(totalProducedMessages, messageByteSize);
 	}
 
 	@TearDown(Level.Trial)
