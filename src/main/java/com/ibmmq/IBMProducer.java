@@ -1,7 +1,6 @@
 package com.ibmmq;
 
 import javax.jms.Destination;
-import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.JMSProducer;
@@ -10,27 +9,26 @@ import com.ibm.msg.client.jms.JmsConnectionFactory;
 import com.ibm.msg.client.jms.JmsFactoryFactory;
 import com.ibm.msg.client.wmq.WMQConstants;
 
-public class Consumer {
-
+public class IBMProducer {
 	private static int status = 1;
 
-	private static final String HOST = "localhost"; 
-	private static final int PORT = 1414; 
-	private static final String CHANNEL = "DEV.APP.SVRCONN"; 
-	private static final String QMGR = "QM1"; 
-	private static final String APP_USER = "app"; 
-	private static final String APP_PASSWORD = "passw0rd"; 
-	private static final String QUEUE_NAME = "Test.ConsumerQueue";
-	private static final String QUEUE_NAME2 = "DEV.Test";
+	private static final String HOST = "localhost";
+	private static final int PORT = 1414;
+	private static final String CHANNEL = "DEV.APP.SVRCONN";
+	private static final String QMGR = "QM1";
+	private static final String APP_USER = "app";
+	private static final String APP_PASSWORD = "passw0rd";
+	private static final String QUEUE_NAME = "Test.BigQueue";
+
 	JMSContext context;
 	Destination destination, destination2;
-	JMSConsumer consumer;
-	
+	JMSProducer producer;
+
 	public static void main(String[] args) throws Exception {
-    	Consumer myConsumer = new Consumer();
-    	myConsumer.consume();
+//    	IBMProducer myProducer = new IBMProducer();
+//    	myProducer.produce();
 	}
-	
+
 	private JMSContext makeContext() throws Exception {
 		JmsFactoryFactory ff = JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
 		JmsConnectionFactory cf = ff.createConnectionFactory();
@@ -46,31 +44,27 @@ public class Consumer {
 		cf.setStringProperty(WMQConstants.PASSWORD, APP_PASSWORD);
 		context = cf.createContext();
 		return context;
-		
-	}
-	
-	public Consumer() throws Exception {
-		context = makeContext();
-		destination = context.createQueue("queue:///" + QUEUE_NAME2);
-		consumer = context.createConsumer(destination);
 
-	
 	}
-	
-	public void consume() {
-		for (int counter = 0; counter < 10; counter++) {
-			consumer.receiveBody(String.class, 15000);;
-			//consumer.receive(destination2, "HELLO SECOND WORLD!");
-			//System.out.println("Message sent to queue");
+
+	public IBMProducer() throws Exception {
+		context = makeContext();
+		destination = context.createQueue("queue:///" + QUEUE_NAME);
+		producer = context.createProducer();
+	}
+
+	public void produce(int totalMessages) {
+		for (int counter = 0; counter < totalMessages; counter++) {
+			producer.send(destination, "HELLO WORLD!");
+			System.out.println("Message sent to queue");
 			recordSuccess();
 		}
-	}		
-	
+	}
 
 	private static void recordSuccess() {
 		System.out.println("SUCCESS");
+		status = 0;
 		return;
 	}
-
 
 }

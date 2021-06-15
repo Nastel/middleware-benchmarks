@@ -8,7 +8,7 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
 @State(Scope.Benchmark)
-public class ProducerBenchmarks {
+public class IBMConsumerBenchmarks {
 
 
     @Setup(Level.Trial)
