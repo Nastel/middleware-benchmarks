@@ -38,10 +38,11 @@ public class IBMProducer {
 			cf.setStringProperty(WMQConstants.USERID, APP_USER);
 			cf.setStringProperty(WMQConstants.PASSWORD, APP_PASSWORD);
 			context = cf.createContext();
-		} catch (JMSException jsmex) {
-			if (jsmex != null) {
-				if (jsmex instanceof JMSException) {
-					System.out.println(jsmex);
+
+		} catch (JMSException jmsex) {
+			if (jmsex != null) {
+				if (jmsex instanceof JMSException) {
+					System.out.println(jmsex);
 				}
 			}
 		}
