@@ -41,6 +41,7 @@
 	</build>
 
 	<dependencies>
+		<!-- JDK (benchmarks) -->
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-core</artifactId>
@@ -52,15 +53,29 @@
 			<version>1.26</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Cybench -->
+		<dependency>
+			<groupId>com.gocypher.cybench.client</groupId>
+			<artifactId>gocypher-cybench-annotations</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- Kafka -->
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.12</artifactId>
 			<version>1.0.1</version>
 		</dependency>
+
+		<!-- JMS/IBM MQ -->
 		<dependency>
-			<groupId>com.gocypher.cybench.client</groupId>
-			<artifactId>gocypher-cybench-annotations</artifactId>
-			<version>1.0.0</version>
+			<groupId>javax.jms</groupId>
+			<artifactId>javax.jms-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>com.ibm.mq.allclient</artifactId>
+			<version>9.2.2.0</version>
 		</dependency>
 	</dependencies>
 
