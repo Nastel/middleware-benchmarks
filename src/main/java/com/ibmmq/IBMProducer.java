@@ -1,10 +1,10 @@
 package com.ibmmq;
 
+import javax.jms.BytesMessage;
 import javax.jms.Destination;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.JMSProducer;
-import javax.jms.TextMessage;
 import com.ibm.msg.client.jms.JmsConnectionFactory;
 import com.ibm.msg.client.jms.JmsFactoryFactory;
 import com.ibm.msg.client.wmq.WMQConstants;
@@ -39,10 +39,10 @@ public class IBMProducer {
 			cf.setStringProperty(WMQConstants.PASSWORD, APP_PASSWORD);
 			context = cf.createContext();
 
-		} catch (JMSException jmsex) {
-			if (jmsex != null) {
-				if (jmsex instanceof JMSException) {
-					System.out.println(jmsex);
+		} catch (JMSException e) {
+			if (e != null) {
+				if (e instanceof JMSException) {
+					e.printStackTrace();
 				}
 			}
 		}
@@ -56,7 +56,14 @@ public class IBMProducer {
 	}
 
 	public void produce(int totalMessages, int msgSize) {
-		byte[] message = new byte[msgSize];
+		byte[] byteArrMsg = new byte[msgSize];
+		BytesMessage message = context.createBytesMessage();
+		try {
+			message.writeBytes(byteArrMsg);
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+
 		for (int counter = 0; counter < totalMessages; counter++) {
 			producer.send(destination, message);
 			System.out.println("Message " + counter + " sent to queue");

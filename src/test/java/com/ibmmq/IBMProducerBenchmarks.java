@@ -1,6 +1,5 @@
 package com.ibmmq;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
