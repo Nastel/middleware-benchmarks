@@ -35,17 +35,16 @@ public class IBMConsumerBenchmarks {
 	@Param({ "10000", "100000", "1000000" })
 	private int totalConsumedMessages;
 
-    @Setup(Level.Trial)
-    public void setup() throws Exception {
-		myConsumer = new IBMConsumer();
-    }
+	@Setup(Level.Trial)
+	public void setup() {
+	}
 
-    @Setup(Level.Iteration)
-    public void setupIteration() {
-        //TODO Iteration level: write code to be executed before each iteration of the benchmark.
-    }
+	@Setup(Level.Iteration)
+	public void setupIteration() {
+		myConsumer = new IBMConsumer(messageSize);
+	}
 
-    @Benchmark
+	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "IBM MQ")
 	@BenchmarkMetaData(key = "libVendor", value = "IBM")
 	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
@@ -54,24 +53,22 @@ public class IBMConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
 	@BenchmarkMetaData(key = "title", value = "Receiving messages")
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
-    @Fork(1)
-    @Threads(1)
-    @Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
-    @Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
-    public void consumeBenchmark(Blackhole bh) {
-    	myConsumer.consume(messageSize, totalConsumedMessages);
-    }
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	public void consumeBenchmark(Blackhole bh) {
+		myConsumer.consume(totalConsumedMessages);
+	}
 
-    @TearDown(Level.Trial)
-    public void tearDown() {
-        //TODO Trial level: write code to be executed after each run of the benchmark
-    }
+	@TearDown(Level.Trial)
+	public void tearDown() {
+	}
 
-    @TearDown(Level.Iteration)
-    public void tearDownIteration() {
-        //TODO Iteration level: write code to be executed after each iteration of the benchmark.
-    }
+	@TearDown(Level.Iteration)
+	public void tearDownIteration() {
+	}
 
 }
