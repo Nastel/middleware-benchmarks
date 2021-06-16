@@ -17,7 +17,7 @@ public class IBMProducer {
 	private static final String QMGR = "QM1";
 	private static final String APP_USER = "app";
 	private static final String APP_PASSWORD = "passw0rd";
-	private static final String QUEUE_NAME = "DEV.512";
+	private static final String QUEUE_NAME = ""; // ADD QUEUE NAME
 
 	JMSContext context;
 	Destination destination, destination2;
@@ -70,7 +70,7 @@ public class IBMProducer {
 
 	public static void main(String[] args) {
 //		IBMProducer myProducer = new IBMProducer();
-//		myProducer.produce(1000, 512);
+//		myProducer.produce(1000, 1024);
 	}
 
 }
