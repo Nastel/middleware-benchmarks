@@ -29,10 +29,10 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 public class IBMProducerBenchmarks {
 	private IBMProducer myProducer;
 
-	@Param({ "100" }) // , "1000"
+	@Param({ "100", "1000" })
 	private int totalProducedMessages;
 
-	@Param({ "512", "1024", "10240", "32768", "65536" }) 
+	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private int messageByteSize;
 
 	@Setup(Level.Trial)
@@ -59,7 +59,7 @@ public class IBMProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 50, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	public void produce(Blackhole bh) {
 		myProducer.produce(totalProducedMessages, messageByteSize);
