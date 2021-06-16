@@ -17,13 +17,13 @@ public class IBMProducer {
 	private static final String QMGR = "QM1";
 	private static final String APP_USER = "app";
 	private static final String APP_PASSWORD = "passw0rd";
-	private static final String QUEUE_NAME = "Test.BigQueue";
+	private static final String QUEUE_NAME = "DEV.512";
 
 	JMSContext context;
 	Destination destination, destination2;
 	JMSProducer producer;
 
-	private JMSContext makeContext() {
+	private void makeContext() {
 		try {
 			JmsFactoryFactory ff = JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
 			JmsConnectionFactory cf = ff.createConnectionFactory();
@@ -38,7 +38,8 @@ public class IBMProducer {
 			cf.setStringProperty(WMQConstants.USERID, APP_USER);
 			cf.setStringProperty(WMQConstants.PASSWORD, APP_PASSWORD);
 			context = cf.createContext();
-
+			destination = context.createQueue("queue:///" + QUEUE_NAME);
+			producer = context.createProducer();
 		} catch (JMSException e) {
 			if (e != null) {
 				if (e instanceof JMSException) {
@@ -46,13 +47,10 @@ public class IBMProducer {
 				}
 			}
 		}
-		return context;
 	}
 
 	public IBMProducer() {
-		context = makeContext();
-		destination = context.createQueue("queue:///" + QUEUE_NAME);
-		producer = context.createProducer();
+		makeContext();
 	}
 
 	public void produce(int totalMessages, int msgSize) {
@@ -71,8 +69,8 @@ public class IBMProducer {
 	}
 
 	public static void main(String[] args) {
-//    	IBMProducer myProducer = new IBMProducer();
-//    	myProducer.produce();
+//		IBMProducer myProducer = new IBMProducer();
+//		myProducer.produce(1000, 512);
 	}
 
 }
