@@ -75,18 +75,18 @@
 			<groupId>com.ibm.mq</groupId>
 			<artifactId>com.ibm.mq.allclient</artifactId>
 			<version>9.2.2.0</version>
-    </dependency>
-    <!-- ActiveMQ/Artemis -->
+		</dependency>
+		<!-- ActiveMQ/Artemis -->
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-all</artifactId>
 			<version>5.16.0</version>
-    </dependency>
-  <dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.activemq</groupId>
-    <artifactId>artemis-jms-client-all</artifactId>
+			<artifactId>artemis-jms-client-all</artifactId>
 			<version>2.17.0</version>
-    </dependency>
+		</dependency>
 	</dependencies>
 
 </project>
