@@ -30,7 +30,7 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 public class ArtemisProducerBenchmarks {
 	private ArtemisProducer myProducer;
 
-	@Param({ "10", "1000" })
+	@Param({ "100", "1000" })
 	private int totalProducedMessages;
 
 	@Param({ "512", "1024", "10240", "32768", "65536" })
