@@ -59,7 +59,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	public void consumeBenchmark(Blackhole bh) throws Exception {
+	public void consumeBenchmark(Blackhole bh)  {
 		myConsumer.consume(totalConsumedMessages);
 	}
 
