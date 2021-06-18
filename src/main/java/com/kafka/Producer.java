@@ -11,7 +11,7 @@ public class Producer {
 	private final String bootstrapServer = "localhost:9092";
 	private KafkaProducer<String, byte[]> kafkaProducer;
 	private ArrayList<String> topics;
-	private int totalMessages;
+	private int totalMessages, messageSize;
 	private byte[] message;
 
 	// Constructing and Creating Producer
@@ -31,28 +31,26 @@ public class Producer {
 
 	// Closing Producer
 	public void closeProducer() {
-//		message = "end";
-//		for (String topic : topics) {
-//			send(topic);
-//		}
 		kafkaProducer.close();
 	}
 
-	// Send Method
+	// Produce Method
 	public void produce(String topic) {
 		try {
 			for (int counter = 0; counter < totalMessages; counter++) {
 				kafkaProducer.send(new ProducerRecord<String, byte[]>(topic, counter + "", message));
+				System.out.println("Sending msg " + counter + " of " + totalMessages + ", size: " + messageSize);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	// Specific Benchmarks
+	// Benchmark
 	// msgSize is amount of bytes
 	public void send(ArrayList<String> topicsToAdd, int totalMsgs, int msgSize) {
 		totalMessages = totalMsgs;
+		messageSize = msgSize;
 		message = new byte[msgSize];
 
 		for (String topic : topicsToAdd) {
