@@ -4,4 +4,6 @@ Benchmarking Middleware Platforms
 
 -IBM MQ
 
--Active MQ (Artemis)
+-ActiveMQ Artemis
+
+-ActiveMQ Classic
