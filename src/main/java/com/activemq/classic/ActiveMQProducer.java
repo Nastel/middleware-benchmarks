@@ -11,7 +11,7 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQProducer {
-	private final String QUEUE_NAME = "Test.Classic.Benchmark";
+	private final String QUEUE_NAME = "testEE";
 	private Connection connection;
 	private Session session;
 	private MessageProducer producer;
@@ -38,7 +38,7 @@ public class ActiveMQProducer {
 		makeConnection();
 		
 	}
-	public void produce(int totalMessages, int msgSize) throws JMSException {
+	public void produce(int totalMessages, int msgSize){
 		byte[] byteArrMsg = new byte[msgSize];
 		try {
 			BytesMessage message = session.createBytesMessage();
@@ -61,7 +61,9 @@ public class ActiveMQProducer {
 		}
 	}
 	public static void main(String[] args) throws JMSException {
-
+		ActiveMQProducer producer = new ActiveMQProducer();
+		producer.produce(1000, 1024);
+		producer.closeConnection();
 	}
 
 }
