@@ -2,8 +2,6 @@ package com.activemq.classic;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.jms.JMSException;
-
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -59,7 +57,7 @@ public class ActiveMQProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS) // altered timeunit to limit repetitive benchmarks and maintain uniform msg production across benchmarks
 	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void produce(Blackhole bh){
 		myProducer.produce(totalProducedMessages, messageByteSize);

@@ -31,7 +31,8 @@ public class ActiveMQConsumerBenchmarks {
 	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private String messageSize;
 
-	@Param({ "10000", "100000", "1000000" })
+	@Param({ "1000", "10000", "100000" }) // ran 10x less consumed msgs than other benchmarks because of memory
+											// restrictions
 	private int totalConsumedMessages;
 
 	@Setup(Level.Trial)
@@ -58,7 +59,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	public void consumeBenchmark(Blackhole bh) throws Exception {
+	public void consumeBenchmark(Blackhole bh)  {
 		myConsumer.consume(totalConsumedMessages);
 	}
 
