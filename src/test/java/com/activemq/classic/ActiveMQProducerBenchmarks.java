@@ -31,10 +31,10 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 public class ActiveMQProducerBenchmarks {
 	private ActiveMQProducer myProducer;
 
-	@Param({ "10", "1000"  })// "1000"
+	@Param({ "10", "1000" })
 	private int totalProducedMessages;
 
-	@Param({ "512", "1024", "10240", "32768", "65536" }) // "1024", "10240", "32768", "65536" 
+	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private int messageByteSize;
 
 	@Setup(Level.Trial)
