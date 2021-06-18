@@ -31,10 +31,10 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 public class ActiveMQProducerBenchmarks {
 	private ActiveMQProducer myProducer;
 
-	@Param({ "10", "1000" })
+	@Param({ "10", "1000"  })// "1000"
 	private int totalProducedMessages;
 
-	@Param({ "512", "1024", "10240", "32768", "65536" })
+	@Param({ "512", "1024", "10240", "32768", "65536" }) // "1024", "10240", "32768", "65536" 
 	private int messageByteSize;
 
 	@Setup(Level.Trial)
@@ -59,19 +59,21 @@ public class ActiveMQProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	public void produce(Blackhole bh) throws JMSException {
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	public void produce(Blackhole bh){
 		myProducer.produce(totalProducedMessages, messageByteSize);
 	}
 
 	@TearDown(Level.Trial)
 	public void tearDown() {
 		myProducer.closeConnection();
+
 	}
 
 	@TearDown(Level.Iteration)
 	public void tearDownIteration() {
+
 	}
 
 }
