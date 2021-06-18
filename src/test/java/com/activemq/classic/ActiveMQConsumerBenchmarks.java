@@ -48,7 +48,7 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libVersion", value = "5.16.2")
-	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.all")
 	@BenchmarkMetaData(key = "title", value = "Receiving messages")
