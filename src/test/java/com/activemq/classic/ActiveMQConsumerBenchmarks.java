@@ -31,7 +31,8 @@ public class ActiveMQConsumerBenchmarks {
 	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private String messageSize;
 
-	@Param({ "10000", "100000", "1000000" })
+	@Param({ "1000", "10000", "100000" }) // ran 10x less consumed msgs than other benchmarks because of memory
+											// restrictions
 	private int totalConsumedMessages;
 
 	@Setup(Level.Trial)
