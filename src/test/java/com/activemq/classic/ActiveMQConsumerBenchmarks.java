@@ -57,8 +57,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void consumeBenchmark(Blackhole bh)  {
 		myConsumer.consume(totalConsumedMessages);
 	}

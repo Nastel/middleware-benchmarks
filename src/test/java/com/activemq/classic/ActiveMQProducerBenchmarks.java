@@ -57,7 +57,7 @@ public class ActiveMQProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS) // altered timeunit to limit repetitive benchmarks and maintain uniform msg production across benchmarks
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void produce(Blackhole bh){
 		myProducer.produce(totalProducedMessages, messageByteSize);

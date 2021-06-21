@@ -65,8 +65,8 @@ public class ProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void produce(Blackhole bh) {
 		// Send topics, totalMessages, and messageSize in bytes
 		myProducer.send(topics, totalProducedMessages, messageByteSize);
