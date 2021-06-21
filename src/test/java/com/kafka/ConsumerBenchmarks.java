@@ -33,7 +33,7 @@ public class ConsumerBenchmarks {
 	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private String messageSize;
 
-	@Param({ "10000", "100000", "1000000" })
+	@Param({ "1000", "10000", "100000" })
 	private int totalConsumedMessages;
 
 	@Setup(Level.Trial)
@@ -61,7 +61,7 @@ public class ConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void consume(Blackhole bh) {
 		// Consume topics, total expected messages
