@@ -32,7 +32,7 @@ public class ArtemisConsumerBenchmarks {
 	@Param({ "512", "1024", "10240", "32768", "65536" })
 	private String messageSize;
 
-	@Param({ "1000", "10000" }) // ran 10x less consumed msgs than other benchmarks because of memory restrictions (and msg production poor speed to fill queues to ready for consumption)
+	@Param({ "1000", "10000" }) // can't consume with 100k param because takes too long to fill queues with messages to ready for consumption
 	private int totalConsumedMessages;
 
 	@Setup(Level.Trial)
