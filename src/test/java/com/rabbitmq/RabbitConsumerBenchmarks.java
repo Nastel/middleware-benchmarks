@@ -59,8 +59,8 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 2, time = 5, timeUnit = TimeUnit.SECONDS)
-	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.SECONDS)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.SECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.SECONDS)
 	public void consumeBenchmark(Blackhole bh) {
 		myConsumer.consume(totalConsumedMessages);
 
