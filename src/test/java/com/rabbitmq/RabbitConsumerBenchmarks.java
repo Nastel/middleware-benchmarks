@@ -72,7 +72,7 @@ public class RabbitConsumerBenchmarks {
 
 	@TearDown(Level.Iteration)
 	public void tearDownIteration() {
-
+		myConsumer.closeConnection();
 	}
 
 }

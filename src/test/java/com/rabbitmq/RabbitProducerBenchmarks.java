@@ -67,6 +67,7 @@ public class RabbitProducerBenchmarks {
 
 	@TearDown(Level.Trial)
 	public void tearDown() {
+		myProducer.closeConnection();
 	}
 
 	@TearDown(Level.Iteration)
