@@ -7,3 +7,5 @@ Benchmarking Middleware Platforms
 -ActiveMQ Artemis
 
 -ActiveMQ Classic
+
+-RabbitMQ
