@@ -50,8 +50,6 @@ public class RabbitProducer {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		RabbitProducer p = new RabbitProducer();
-//	}
+//	public static void main(String[] args) {}
 
 }
