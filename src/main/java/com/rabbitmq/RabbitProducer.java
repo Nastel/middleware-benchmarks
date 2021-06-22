@@ -6,18 +6,18 @@ import com.rabbitmq.client.Channel;
 
 public class RabbitProducer {
 	private static final String QUEUE_NAME = "TestQueue";
+	private Connection myConnection;
+	private Channel myChannel;
 
 	private void makeConnection() {
 		ConnectionFactory myFactory = new ConnectionFactory();
 		myFactory.setHost("localhost");
 
-		// try-with-resources to auto close the connection and channel after try block
-		// is completed
-		try (Connection myConnection = myFactory.newConnection(); Channel myChannel = myConnection.createChannel();) {
+		try {
+			myConnection = myFactory.newConnection();
+			myChannel = myConnection.createChannel();
+			// create durable queue (lasts on broker restart)
 			myChannel.queueDeclare(QUEUE_NAME, true, false, false, null);
-			String message = "Hello world";
-			myChannel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-			System.out.println("sent msg");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,9 +27,31 @@ public class RabbitProducer {
 		makeConnection();
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		RabbitProducer p = new RabbitProducer();
+	public void produce(int totalMessages, int msgSize) {
+		byte[] byteArrMsg = new byte[msgSize];
+		try {
+
+			for (int counter = 0; counter < totalMessages; counter++) {
+				// use default exchange
+				myChannel.basicPublish("", QUEUE_NAME, null, byteArrMsg);
+				System.out.println("Message " + counter + " sent to queue");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+
+	public void closeConnection() {
+		try {
+			myChannel.close();
+			myConnection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+//	public static void main(String[] args) {
+//		RabbitProducer p = new RabbitProducer();
+//	}
 
 }
