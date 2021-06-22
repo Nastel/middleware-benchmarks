@@ -69,6 +69,7 @@ public class IBMConsumerBenchmarks {
 
 	@TearDown(Level.Iteration)
 	public void tearDownIteration() {
+		myConsumer.closeConnection();
 	}
 
 }
