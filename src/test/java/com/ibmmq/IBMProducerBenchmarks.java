@@ -67,7 +67,7 @@ public class IBMProducerBenchmarks {
 
 	@TearDown(Level.Trial)
 	public void tearDown() {
-		// TODO Trial level: write code to be executed after each run of the benchmark
+		myProducer.closeConnection();
 	}
 
 	@TearDown(Level.Iteration)
