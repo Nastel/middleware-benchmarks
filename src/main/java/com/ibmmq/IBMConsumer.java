@@ -57,6 +57,10 @@ public class IBMConsumer {
 			BytesMessage message = (BytesMessage) consumer.receive();
 		}
 	}
+	
+	public void closeConnection(){
+		context.close();	
+	}
 
 	public static void main(String[] args) throws Exception {
 //		IBMConsumer myConsumer = new IBMConsumer();
