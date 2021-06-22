@@ -67,6 +67,10 @@ public class IBMProducer {
 			System.out.println("Message " + counter + " sent to queue");
 		}
 	}
+	
+	public void closeConnection(){
+		context.close();	
+	}
 
 	public static void main(String[] args) {
 //		IBMProducer myProducer = new IBMProducer();
