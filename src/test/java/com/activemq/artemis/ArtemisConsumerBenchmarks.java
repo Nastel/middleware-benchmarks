@@ -22,26 +22,22 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "ReceiveMsg")
+@BenchmarkMetaData(key = "context", value = "Consume")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
 @BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
 public class ArtemisConsumerBenchmarks {
 	private ArtemisConsumer myConsumer;
 
-	@Param({ "512", "1024", "10240", "32768", "65536" })
-	private String messageSize;
-
-	@Param({ "1000", "10000" }) // can't consume with 100k param because takes too long to fill queues with messages to ready for consumption
-	private int totalConsumedMessages;
-
 	@Setup(Level.Trial)
 	public void setup() {
+		//myConsumer = new ArtemisConsumer(messageSize); 
+		// have to push queue name in the actual consume method now that we aren't using params
 	}
 
-	@Setup(Level.Iteration)
-	public void setupIteration() {
-		myConsumer = new ArtemisConsumer(messageSize);
+	@TearDown(Level.Trial)
+	public void tearDown() {
+		myConsumer.closeConnection();
 	}
 
 	@Benchmark
@@ -52,24 +48,197 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
-	@BenchmarkMetaData(key = "title", value = "Receiving messages")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	public void consumeBenchmark(Blackhole bh) {
-		myConsumer.consume(totalConsumedMessages);
+	public void artemisConsume1(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 512 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume2(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume3(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume4(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume5(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume6(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume7(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume8(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume9(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/artemis/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.17.0")
+	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void artemisConsume10(Blackhole bh) {
+		myConsumer.consume(10000);
 	}
 
-	@TearDown(Level.Trial)
-	public void tearDown() {
-	}
-
-	@TearDown(Level.Iteration)
-	public void tearDownIteration() {
-		myConsumer.closeConnection();
-	}
 
 }

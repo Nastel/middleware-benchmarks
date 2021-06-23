@@ -23,7 +23,7 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "SendMsg")
+@BenchmarkMetaData(key = "context", value = "Produce")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
 @BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
@@ -49,7 +49,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "libDescription", value = "High-performance, non-blocking architecture for the next generation of messaging applications.")
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-jms-client-all")
-	@BenchmarkMetaData(key = "title", value = "Sending Messages")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
 	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
