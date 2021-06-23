@@ -22,28 +22,21 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "SendMsg")
+@BenchmarkMetaData(key = "context", value = "Produce")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
 @BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
 public class IBMProducerBenchmarks {
 	private IBMProducer myProducer;
-
-	@Param({ "100", "1000" })
-	private int totalProducedMessages;
-
-	@Param({ "512", "1024", "10240", "32768", "65536" })
-	private int messageByteSize;
-
+	
 	@Setup(Level.Trial)
 	public void setup() {
 		myProducer = new IBMProducer();
 	}
 
-	@Setup(Level.Iteration)
-	public void setupIteration() {
-		// TODO Iteration level: write code to be executed before each iteration of the
-		// benchmark.
+	@TearDown(Level.Trial)
+	public void tearDown() {
+		myProducer.closeConnection();
 	}
 
 	@Benchmark
@@ -54,26 +47,197 @@ public class IBMProducerBenchmarks {
 	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
-	@BenchmarkMetaData(key = "title", value = "Sending messages")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	public void produce(Blackhole bh) {
-		myProducer.produce(totalProducedMessages, messageByteSize);
+	public void ibmProduce1(Blackhole bh) {
+		myProducer.produce(100, 512);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 512 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce2(Blackhole bh) {
+		myProducer.produce(1000, 512);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce3(Blackhole bh) {
+		myProducer.produce(100, 1024);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce4(Blackhole bh) {
+		myProducer.produce(1000, 1024);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce5(Blackhole bh) {
+		myProducer.produce(100, 10240);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce6(Blackhole bh) {
+		myProducer.produce(1000, 10240);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce7(Blackhole bh) {
+		myProducer.produce(100, 32768);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce8(Blackhole bh) {
+		myProducer.produce(1000, 32768);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce9(Blackhole bh) {
+		myProducer.produce(100, 65536);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmProduce10(Blackhole bh) {
+		myProducer.produce(1000, 65536);
 	}
 
-	@TearDown(Level.Trial)
-	public void tearDown() {
-		myProducer.closeConnection();
-	}
-
-	@TearDown(Level.Iteration)
-	public void tearDownIteration() {
-		// TODO Iteration level: write code to be executed after each iteration of the
-		// benchmark.
-	}
 
 }

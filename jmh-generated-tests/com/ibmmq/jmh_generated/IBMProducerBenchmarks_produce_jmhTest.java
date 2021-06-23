@@ -71,25 +71,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
             IBMProducerBenchmarks_jmhType l_ibmproducerbenchmarks0_G = _jmh_tryInit_f_ibmproducerbenchmarks0_G(control);
 
             control.preSetup();
-            if (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.setupIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
@@ -110,25 +91,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
                 control.preTearDown();
             } catch (InterruptedException ie) {
                 control.preTearDownForce();
-            }
-            if (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.tearDownIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
             }
 
             if (control.isLastIteration()) {
@@ -200,25 +162,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
             IBMProducerBenchmarks_jmhType l_ibmproducerbenchmarks0_G = _jmh_tryInit_f_ibmproducerbenchmarks0_G(control);
 
             control.preSetup();
-            if (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.setupIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
@@ -239,25 +182,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
                 control.preTearDown();
             } catch (InterruptedException ie) {
                 control.preTearDownForce();
-            }
-            if (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.tearDownIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
             }
 
             if (control.isLastIteration()) {
@@ -329,25 +253,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
             IBMProducerBenchmarks_jmhType l_ibmproducerbenchmarks0_G = _jmh_tryInit_f_ibmproducerbenchmarks0_G(control);
 
             control.preSetup();
-            if (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.setupIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
@@ -372,25 +277,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
                 control.preTearDown();
             } catch (InterruptedException ie) {
                 control.preTearDownForce();
-            }
-            if (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.tearDownIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
             }
 
             if (control.isLastIteration()) {
@@ -477,25 +363,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
             IBMProducerBenchmarks_jmhType l_ibmproducerbenchmarks0_G = _jmh_tryInit_f_ibmproducerbenchmarks0_G(control);
 
             control.preSetup();
-            if (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.setupIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             notifyControl.startMeasurement = true;
@@ -503,25 +370,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
             int batchSize = iterationParams.getBatchSize();
             produce_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_ibmproducerbenchmarks0_G);
             control.preTearDown();
-            if (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_ibmproducerbenchmarks0_G.readyIteration) {
-                        l_ibmproducerbenchmarks0_G.tearDownIteration();
-                        l_ibmproducerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_ibmproducerbenchmarks0_G, 0);
-                }
-            } else {
-                while (IBMProducerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_ibmproducerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
             if (control.isLastIteration()) {
                 if (IBMProducerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_ibmproducerbenchmarks0_G, 0, 1)) {
@@ -587,13 +435,6 @@ public final class IBMProducerBenchmarks_produce_jmhTest {
                 return val;
             }
             val = new IBMProducerBenchmarks_jmhType();
-            Field f;
-            f = com.ibmmq.IBMProducerBenchmarks.class.getDeclaredField("messageByteSize");
-            f.setAccessible(true);
-            f.set(val, Integer.valueOf(control.getParam("messageByteSize")));
-            f = com.ibmmq.IBMProducerBenchmarks.class.getDeclaredField("totalProducedMessages");
-            f.setAccessible(true);
-            f.set(val, Integer.valueOf(control.getParam("totalProducedMessages")));
             val.setup();
             val.readyTrial = true;
             f_ibmproducerbenchmarks0_G = val;
