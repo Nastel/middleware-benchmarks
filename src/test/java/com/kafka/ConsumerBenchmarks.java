@@ -33,6 +33,7 @@ public class ConsumerBenchmarks {
 	public void setup() {
 		myConsumer = new Consumer();
 		topics = new ArrayList<String>();
+		topics.add(""); // MUST ADD TOPIC FOR EACH INDIVIDUAL BENCHMARK RUN: "512", "1024", "10240", "32768", "65536" 
 	}
 
 	@TearDown(Level.Trial)
@@ -57,7 +58,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume1(Blackhole bh) {
-		topics.add("512");
 		myConsumer.receive(topics, 1000);
 	}
 	
@@ -78,7 +78,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume2(Blackhole bh) {
-		topics.add("512");
 		myConsumer.receive(topics, 10000);
 	}
 	
@@ -99,7 +98,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume3(Blackhole bh) {
-		topics.add("1024");
 		myConsumer.receive(topics, 1000);
 	}
 	
@@ -120,7 +118,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume4(Blackhole bh) {
-		topics.add("1024");
 		myConsumer.receive(topics, 10000);
 	}
 	
@@ -141,7 +138,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume5(Blackhole bh) {
-		topics.add("10240");
 		myConsumer.receive(topics, 1000);
 	}
 	
@@ -162,7 +158,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume6(Blackhole bh) {
-		topics.add("10240");
 		myConsumer.receive(topics, 10000);
 	}
 	
@@ -183,7 +178,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume7(Blackhole bh) {
-		topics.add("32768");
 		myConsumer.receive(topics, 1000);
 	}
 	
@@ -204,7 +198,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume8(Blackhole bh) {
-		topics.add("32768");
 		myConsumer.receive(topics, 10000);
 	}
 	
@@ -225,7 +218,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume9(Blackhole bh) {
-		topics.add("65536");
 		myConsumer.receive(topics, 1000);
 	}
 	
@@ -246,7 +238,6 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume10(Blackhole bh) {
-		topics.add("65536");
 		myConsumer.receive(topics, 10000);
 	}
 

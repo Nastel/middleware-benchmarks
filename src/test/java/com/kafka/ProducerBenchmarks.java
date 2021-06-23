@@ -23,7 +23,7 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "SendMsg")
+@BenchmarkMetaData(key = "context", value = "Produce")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
 @BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
@@ -31,25 +31,16 @@ public class ProducerBenchmarks {
 	private Producer myProducer;
 	private ArrayList<String> topics;
 
-	@Param({ "100", "1000" })
-	private int totalProducedMessages;
-
-	@Param({ "512", "1024", "10240", "32768", "65536" })
-	private int messageByteSize;
-
 	@Setup(Level.Trial)
 	public void setup() {
-		// Executed before each run of the benchmark
 		myProducer = new Producer();
 		topics = new ArrayList<String>();
-
-		// ADD TOPICS HERE
-		topics.add("myTopic");
+		topics.add(""); // MUST ADD TOPIC FOR EACH INDIVIDUAL BENCHMARK RUN: "512", "1024", "10240", "32768", "65536" 
 	}
 
-	@Setup(Level.Iteration)
-	public void setupIteration() {
-		// Executed before each iteration of the benchmark.
+	@TearDown(Level.Trial)
+	public void tearDown() {
+		myProducer.closeProducer();
 	}
 
 	@Benchmark
@@ -60,27 +51,199 @@ public class ProducerBenchmarks {
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "title", value = "Sending messages")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	public void produce(Blackhole bh) {
-		// Send topics, totalMessages, and messageSize in bytes
-		myProducer.send(topics, totalProducedMessages, messageByteSize);
+	public void kafkaProduce1(Blackhole bh) {
+		myProducer.send(topics, 100, 512);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 512 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce2(Blackhole bh) {
+		myProducer.send(topics, 1000, 512);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce3(Blackhole bh) {
+		myProducer.send(topics, 100, 1024);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce4(Blackhole bh) {
+		myProducer.send(topics, 1000, 1024);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce5(Blackhole bh) {
+		myProducer.send(topics, 100, 10240);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce6(Blackhole bh) {
+		myProducer.send(topics, 1000, 10240);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce7(Blackhole bh) {
+		myProducer.send(topics, 100, 32768);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce8(Blackhole bh) {
+		myProducer.send(topics, 1000, 32768);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce9(Blackhole bh) {
+		myProducer.send(topics, 100, 65536);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "Kafka")
+	@BenchmarkMetaData(key = "libVendor", value = "Apache")
+	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
+	@BenchmarkMetaData(key = "libVersion", value = "2.8.0")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void kafkaProduce10(Blackhole bh) {
+		myProducer.send(topics, 1000, 65536);
 	}
 
-	@TearDown(Level.Trial)
-	public void tearDown() {
-		// Executed after each run of the benchmark
-		myProducer.closeProducer();
-	}
 
-	@TearDown(Level.Iteration)
-	public void tearDownIteration() {
-		// Executed after each iteration of the benchmark.
-	}
+
 
 }
