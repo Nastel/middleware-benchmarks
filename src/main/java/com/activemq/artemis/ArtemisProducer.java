@@ -14,7 +14,7 @@ import org.apache.activemq.artemis.api.jms.JMSFactoryType;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisProducer {
-	private final String QUEUE_NAME = ""; // set queue name
+	private final String QUEUE_NAME = "MyQueue";
 	private Connection mConnection;
 	private Session mSession;
 	private MessageProducer mProducer;

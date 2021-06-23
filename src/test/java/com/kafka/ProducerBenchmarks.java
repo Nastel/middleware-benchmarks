@@ -35,7 +35,7 @@ public class ProducerBenchmarks {
 	public void setup() {
 		myProducer = new Producer();
 		topics = new ArrayList<String>();
-		topics.add(""); // MUST ADD TOPIC FOR EACH INDIVIDUAL BENCHMARK RUN: "512", "1024", "10240", "32768", "65536" 
+		topics.add("myTopic");
 	}
 
 	@TearDown(Level.Trial)

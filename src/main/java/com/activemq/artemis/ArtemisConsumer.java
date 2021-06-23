@@ -17,8 +17,9 @@ public class ArtemisConsumer {
 	private Connection mConnection;
 	private Session mSession;
 	private MessageConsumer mConsumer;
+	private final String QUEUE_NAME = "MyQueue";
 
-	public void buildConnection(String QUEUE_NAME) {
+	public void buildConnection() {
 		try {
 			TransportConfiguration transportConfiguration = new TransportConfiguration(
 					NettyConnectorFactory.class.getName());
@@ -34,9 +35,8 @@ public class ArtemisConsumer {
 		}
 	}
 
-	public ArtemisConsumer(String msgSize) {
-		String QUEUE_NAME = "Queue." + msgSize;
-		buildConnection(QUEUE_NAME);
+	public ArtemisConsumer() {
+		buildConnection();
 	}
 
 	public void consume(int messagesToRead) {

@@ -31,8 +31,7 @@ public class ArtemisConsumerBenchmarks {
 
 	@Setup(Level.Trial)
 	public void setup() {
-		//myConsumer = new ArtemisConsumer(messageSize); 
-		// have to push queue name in the actual consume method now that we aren't using params
+		myConsumer = new ArtemisConsumer(); 
 	}
 
 	@TearDown(Level.Trial)

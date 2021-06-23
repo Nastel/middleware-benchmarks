@@ -17,7 +17,7 @@ public class IBMProducer {
 	private static final String QMGR = "QM1";
 	private static final String APP_USER = "app";
 	private static final String APP_PASSWORD = "passw0rd";
-	private static final String QUEUE_NAME = ""; // ADD QUEUE NAME
+	private static final String QUEUE_NAME = "Dev.MyQueue";
 
 	JMSContext context;
 	Destination destination, destination2;
