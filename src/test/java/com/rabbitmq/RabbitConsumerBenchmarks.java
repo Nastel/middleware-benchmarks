@@ -23,7 +23,7 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "ReceiveMsg")
+@BenchmarkMetaData(key = "context", value = "Consume")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
 @BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
@@ -31,48 +31,217 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 public class RabbitConsumerBenchmarks {
 	private RabbitConsumer myConsumer;
 
-	@Param({ "512", "1024", "10240", "32768", "65536" })
-	private String messageSize;
-
-	@Param({ "1000", "10000", "100000" })
-	private int totalConsumedMessages;
 
 	@Setup(Level.Trial)
 	public void setup() {
+		//myConsumer = new RabbitConsumer(messageSize);
+		// have to push queue name in the actual consume method now that we aren't using params
 	}
 
-	@Setup(Level.Iteration)
-	public void setupIteration() {
-		myConsumer = new RabbitConsumer(messageSize);
+	@TearDown(Level.Trial)
+	public void tearDown() {
+		myConsumer.closeConnection();
 	}
+
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
 	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
 	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
-	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
 	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
-	@BenchmarkMetaData(key = "title", value = "Receiving messages")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
-	public void consumeBenchmark(Blackhole bh) {
-		myConsumer.consume(totalConsumedMessages);
-
+	public void rabbitConsume1(Blackhole bh) {
+		myConsumer.consume(1000);
 	}
-
-	@TearDown(Level.Trial)
-	public void tearDown() {
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 512 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume2(Blackhole bh) {
+		myConsumer.consume(10000);
 	}
-
-	@TearDown(Level.Iteration)
-	public void tearDownIteration() {
-		myConsumer.closeConnection();
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume3(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume4(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume5(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume6(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume7(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume8(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume9(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1") 
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 5, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitConsume10(Blackhole bh) {
+		myConsumer.consume(10000);
 	}
 
 }
