@@ -75,7 +75,6 @@ public final class IBMConsumerBenchmarks_consumeBenchmark_jmhTest {
                 try {
                     if (control.isFailing) throw new FailureAssistException();
                     if (!l_ibmconsumerbenchmarks0_G.readyIteration) {
-                        l_ibmconsumerbenchmarks0_G.setupIteration();
                         l_ibmconsumerbenchmarks0_G.readyIteration = true;
                     }
                 } catch (Throwable t) {
@@ -204,7 +203,6 @@ public final class IBMConsumerBenchmarks_consumeBenchmark_jmhTest {
                 try {
                     if (control.isFailing) throw new FailureAssistException();
                     if (!l_ibmconsumerbenchmarks0_G.readyIteration) {
-                        l_ibmconsumerbenchmarks0_G.setupIteration();
                         l_ibmconsumerbenchmarks0_G.readyIteration = true;
                     }
                 } catch (Throwable t) {
@@ -333,7 +331,6 @@ public final class IBMConsumerBenchmarks_consumeBenchmark_jmhTest {
                 try {
                     if (control.isFailing) throw new FailureAssistException();
                     if (!l_ibmconsumerbenchmarks0_G.readyIteration) {
-                        l_ibmconsumerbenchmarks0_G.setupIteration();
                         l_ibmconsumerbenchmarks0_G.readyIteration = true;
                     }
                 } catch (Throwable t) {
@@ -481,7 +478,6 @@ public final class IBMConsumerBenchmarks_consumeBenchmark_jmhTest {
                 try {
                     if (control.isFailing) throw new FailureAssistException();
                     if (!l_ibmconsumerbenchmarks0_G.readyIteration) {
-                        l_ibmconsumerbenchmarks0_G.setupIteration();
                         l_ibmconsumerbenchmarks0_G.readyIteration = true;
                     }
                 } catch (Throwable t) {
@@ -587,13 +583,6 @@ public final class IBMConsumerBenchmarks_consumeBenchmark_jmhTest {
                 return val;
             }
             val = new IBMConsumerBenchmarks_jmhType();
-            Field f;
-            f = com.ibmmq.IBMConsumerBenchmarks.class.getDeclaredField("messageSize");
-            f.setAccessible(true);
-            f.set(val, control.getParam("messageSize"));
-            f = com.ibmmq.IBMConsumerBenchmarks.class.getDeclaredField("totalConsumedMessages");
-            f.setAccessible(true);
-            f.set(val, Integer.valueOf(control.getParam("totalConsumedMessages")));
             val.setup();
             val.readyTrial = true;
             f_ibmconsumerbenchmarks0_G = val;

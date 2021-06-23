@@ -22,26 +22,22 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "ReceiveMsg")
+@BenchmarkMetaData(key = "context", value = "Consume")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
 @BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
 public class IBMConsumerBenchmarks {
 	private IBMConsumer myConsumer;
 
-	@Param({ "512", "1024", "10240", "32768", "65536" })
-	private String messageSize;
-
-	@Param({ "1000", "10000", "100000" })
-	private int totalConsumedMessages;
-
 	@Setup(Level.Trial)
 	public void setup() {
+		//myConsumer = new IBMConsumer(messageSize);
+		// have to push queue name in the actual consume method now that we aren't using params
 	}
-
-	@Setup(Level.Iteration)
-	public void setupIteration() {
-		myConsumer = new IBMConsumer(messageSize);
+	
+	@TearDown(Level.Trial)
+	public void tearDown() {
+		myConsumer.closeConnection();
 	}
 
 	@Benchmark
@@ -52,24 +48,197 @@ public class IBMConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
-	@BenchmarkMetaData(key = "title", value = "Receiving messages")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	public void consumeBenchmark(Blackhole bh) {
-		myConsumer.consume(totalConsumedMessages);
+	public void ibmConsume1(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 512 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume2(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume3(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume4(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume5(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume6(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume7(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume8(Blackhole bh) {
+		myConsumer.consume(10000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume9(Blackhole bh) {
+		myConsumer.consume(1000);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "IBM MQ")
+	@BenchmarkMetaData(key = "libVendor", value = "IBM")
+	@BenchmarkMetaData(key = "libUrl", value = "https://www.ibm.com/products/mq")
+	@BenchmarkMetaData(key = "libVersion", value = "9.2.2.0")
+	@BenchmarkMetaData(key = "libDescription", value = "IBM MQ offers enterprise-grade messaging capabilities that skillfully and safely move information between applications.")
+	@BenchmarkMetaData(key = "actionName", value = "consume")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.ibm.mq.allclient")
+	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
+	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void ibmConsume10(Blackhole bh) {
+		myConsumer.consume(10000);
 	}
 
-	@TearDown(Level.Trial)
-	public void tearDown() {
-	}
-
-	@TearDown(Level.Iteration)
-	public void tearDownIteration() {
-		myConsumer.closeConnection();
-	}
 
 }
