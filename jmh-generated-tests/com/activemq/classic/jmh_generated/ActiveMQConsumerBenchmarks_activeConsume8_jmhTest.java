@@ -33,7 +33,7 @@ import org.openjdk.jmh.results.AggregationPolicy;
 import org.openjdk.jmh.runner.FailureAssistException;
 
 import com.activemq.classic.jmh_generated.ActiveMQConsumerBenchmarks_jmhType;
-public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
+public final class ActiveMQConsumerBenchmarks_activeConsume8_jmhTest {
 
     byte p000, p001, p002, p003, p004, p005, p006, p007, p008, p009, p010, p011, p012, p013, p014, p015;
     byte p016, p017, p018, p019, p020, p021, p022, p023, p024, p025, p026, p027, p028, p029, p030, p031;
@@ -58,7 +58,7 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
     Blackhole blackhole;
     Control notifyControl;
 
-    public BenchmarkTaskResult consumeBenchmark_Throughput(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult activeConsume8_Throughput(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -71,64 +71,26 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G = _jmh_tryInit_f_activemqconsumerbenchmarks0_G(control);
 
             control.preSetup();
-            if (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.setupIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            consumeBenchmark_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_activemqconsumerbenchmarks0_G);
+            activeConsume8_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_activemqconsumerbenchmarks0_G);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                    l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
                     res.allOps++;
                 }
                 control.preTearDown();
             } catch (InterruptedException ie) {
                 control.preTearDownForce();
-            }
-            if (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.tearDownIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
             }
 
             if (control.isLastIteration()) {
@@ -166,19 +128,19 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             res.measuredOps *= opsPerInv;
             res.measuredOps /= batchSize;
             BenchmarkTaskResult results = new BenchmarkTaskResult(res.allOps, res.measuredOps);
-            results.add(new ThroughputResult(ResultRole.PRIMARY, "consumeBenchmark", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
+            results.add(new ThroughputResult(ResultRole.PRIMARY, "activeConsume8", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
+    public static void activeConsume8_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+            l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -187,7 +149,7 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
     }
 
 
-    public BenchmarkTaskResult consumeBenchmark_AverageTime(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult activeConsume8_AverageTime(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -200,64 +162,26 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G = _jmh_tryInit_f_activemqconsumerbenchmarks0_G(control);
 
             control.preSetup();
-            if (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.setupIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            consumeBenchmark_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_activemqconsumerbenchmarks0_G);
+            activeConsume8_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_activemqconsumerbenchmarks0_G);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                    l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
                     res.allOps++;
                 }
                 control.preTearDown();
             } catch (InterruptedException ie) {
                 control.preTearDownForce();
-            }
-            if (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.tearDownIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
             }
 
             if (control.isLastIteration()) {
@@ -295,19 +219,19 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             res.measuredOps *= opsPerInv;
             res.measuredOps /= batchSize;
             BenchmarkTaskResult results = new BenchmarkTaskResult(res.allOps, res.measuredOps);
-            results.add(new AverageTimeResult(ResultRole.PRIMARY, "consumeBenchmark", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
+            results.add(new AverageTimeResult(ResultRole.PRIMARY, "activeConsume8", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
+    public static void activeConsume8_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+            l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -316,7 +240,7 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
     }
 
 
-    public BenchmarkTaskResult consumeBenchmark_SampleTime(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult activeConsume8_SampleTime(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -329,30 +253,11 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G = _jmh_tryInit_f_activemqconsumerbenchmarks0_G(control);
 
             control.preSetup();
-            if (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.setupIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
                 res.allOps++;
             }
 
@@ -361,36 +266,17 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             int batchSize = iterationParams.getBatchSize();
             int opsPerInv = benchmarkParams.getOpsPerInvocation();
             SampleBuffer buffer = new SampleBuffer();
-            consumeBenchmark_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_activemqconsumerbenchmarks0_G);
+            activeConsume8_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_activemqconsumerbenchmarks0_G);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                    l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
                     res.allOps++;
                 }
                 control.preTearDown();
             } catch (InterruptedException ie) {
                 control.preTearDownForce();
-            }
-            if (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.tearDownIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
             }
 
             if (control.isLastIteration()) {
@@ -425,14 +311,14 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             res.allOps /= batchSize;
             res.measuredOps *= opsPerInv;
             BenchmarkTaskResult results = new BenchmarkTaskResult(res.allOps, res.measuredOps);
-            results.add(new SampleTimeResult(ResultRole.PRIMARY, "consumeBenchmark", buffer, benchmarkParams.getTimeUnit()));
+            results.add(new SampleTimeResult(ResultRole.PRIMARY, "activeConsume8", buffer, benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
+    public static void activeConsume8_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
         long realTime = 0;
         long operations = 0;
         int rnd = (int)System.nanoTime();
@@ -447,7 +333,7 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             }
             for (int b = 0; b < batchSize; b++) {
                 if (control.volatileSpoiler) return;
-                l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
             }
             if (sample) {
                 buffer.add((System.nanoTime() - time) / opsPerInv);
@@ -465,7 +351,7 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
     }
 
 
-    public BenchmarkTaskResult consumeBenchmark_SingleShotTime(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult activeConsume8_SingleShotTime(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -477,51 +363,13 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G = _jmh_tryInit_f_activemqconsumerbenchmarks0_G(control);
 
             control.preSetup();
-            if (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (!l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.setupIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = true;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.setupIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
 
             notifyControl.startMeasurement = true;
             RawResults res = new RawResults();
             int batchSize = iterationParams.getBatchSize();
-            consumeBenchmark_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_activemqconsumerbenchmarks0_G);
+            activeConsume8_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_activemqconsumerbenchmarks0_G);
             control.preTearDown();
-            if (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
-                try {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (l_activemqconsumerbenchmarks0_G.readyIteration) {
-                        l_activemqconsumerbenchmarks0_G.tearDownIteration();
-                        l_activemqconsumerbenchmarks0_G.readyIteration = false;
-                    }
-                } catch (Throwable t) {
-                    control.isFailing = true;
-                    throw t;
-                } finally {
-                    ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.set(l_activemqconsumerbenchmarks0_G, 0);
-                }
-            } else {
-                while (ActiveMQConsumerBenchmarks_jmhType.tearIterationMutexUpdater.get(l_activemqconsumerbenchmarks0_G) == 1) {
-                    if (control.isFailing) throw new FailureAssistException();
-                    if (Thread.interrupted()) throw new InterruptedException();
-                }
-            }
 
             if (control.isLastIteration()) {
                 if (ActiveMQConsumerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_activemqconsumerbenchmarks0_G, 0, 1)) {
@@ -553,19 +401,19 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
             int opsPerInv = control.benchmarkParams.getOpsPerInvocation();
             long totalOps = opsPerInv;
             BenchmarkTaskResult results = new BenchmarkTaskResult(totalOps, totalOps);
-            results.add(new SingleShotResult(ResultRole.PRIMARY, "consumeBenchmark", res.getTime(), benchmarkParams.getTimeUnit()));
+            results.add(new SingleShotResult(ResultRole.PRIMARY, "activeConsume8", res.getTime(), benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
+    public static void activeConsume8_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, ActiveMQConsumerBenchmarks_jmhType l_activemqconsumerbenchmarks0_G) throws Throwable {
         long realTime = 0;
         result.startTime = System.nanoTime();
         for (int b = 0; b < batchSize; b++) {
             if (control.volatileSpoiler) return;
-            l_activemqconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+            l_activemqconsumerbenchmarks0_G.activeConsume8(blackhole);
         }
         result.stopTime = System.nanoTime();
         result.realTime = realTime;
@@ -587,13 +435,6 @@ public final class ActiveMQConsumerBenchmarks_consumeBenchmark_jmhTest {
                 return val;
             }
             val = new ActiveMQConsumerBenchmarks_jmhType();
-            Field f;
-            f = com.activemq.classic.ActiveMQConsumerBenchmarks.class.getDeclaredField("messageSize");
-            f.setAccessible(true);
-            f.set(val, control.getParam("messageSize"));
-            f = com.activemq.classic.ActiveMQConsumerBenchmarks.class.getDeclaredField("totalConsumedMessages");
-            f.setAccessible(true);
-            f.set(val, Integer.valueOf(control.getParam("totalConsumedMessages")));
             val.setup();
             val.readyTrial = true;
             f_activemqconsumerbenchmarks0_G = val;
