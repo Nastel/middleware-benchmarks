@@ -32,7 +32,6 @@ public class RabbitConsumer {
 			try {
 				// String msg = new String(myChannel.basicGet(QUEUE_NAME, true).getBody());
 				myChannel.basicGet(QUEUE_NAME, true);
-				System.out.println("Received message " + counter + " of " + messagesToRead);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -47,7 +46,5 @@ public class RabbitConsumer {
 			e.printStackTrace();
 		}
 	}
-
-//	public static void main(String[] args) {}
 
 }

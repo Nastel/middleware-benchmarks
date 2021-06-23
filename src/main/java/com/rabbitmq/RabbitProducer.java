@@ -16,7 +16,6 @@ public class RabbitProducer {
 		try {
 			myConnection = myFactory.newConnection();
 			myChannel = myConnection.createChannel();
-			// create durable queue (lasts on broker restart)
 			myChannel.queueDeclare(QUEUE_NAME, true, false, false, null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,7 +33,6 @@ public class RabbitProducer {
 			for (int counter = 0; counter < totalMessages; counter++) {
 				// use default exchange
 				myChannel.basicPublish("", QUEUE_NAME, null, byteArrMsg);
-				System.out.println("Message " + counter + " sent to queue");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +47,5 @@ public class RabbitProducer {
 			e.printStackTrace();
 		}
 	}
-
-//	public static void main(String[] args) {}
 
 }
