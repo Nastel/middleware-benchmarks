@@ -23,27 +23,21 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "SendMsg")
+@BenchmarkMetaData(key = "context", value = "Produce")
 @BenchmarkMetaData(key = "domain", value = "java")
 @BenchmarkMetaData(key = "version", value = "1.0.0")
 @BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
 public class RabbitProducerBenchmarks {
-
 	private RabbitProducer myProducer;
-
-	@Param({ "512", "1024", "10240", "32768", "65536" })
-	private int messageByteSize;
-
-	@Param({ "100", "1000" })
-	private int totalProducedMessages;
 
 	@Setup(Level.Trial)
 	public void setup() {
 		myProducer = new RabbitProducer();
 	}
-
-	@Setup(Level.Iteration)
-	public void setupIteration() {
+	
+	@TearDown(Level.Trial)
+	public void tearDown() {
+		myProducer.closeConnection();
 	}
 
 	@Benchmark
@@ -54,25 +48,196 @@ public class RabbitProducerBenchmarks {
 	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
-	@BenchmarkMetaData(key = "title", value = "Sending messages")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	public void produce(Blackhole bh) {
-		myProducer.produce(totalProducedMessages, messageByteSize);
+	public void rabbitProduce1(Blackhole bh) {
+		myProducer.produce(100, 512);
 	}
 
-	@TearDown(Level.Trial)
-	public void tearDown() {
-		myProducer.closeConnection();
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 512 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce2(Blackhole bh) {
+		myProducer.produce(1000, 512);
 	}
-
-	@TearDown(Level.Iteration)
-	public void tearDownIteration() {
-
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce3(Blackhole bh) {
+		myProducer.produce(100, 1024);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce4(Blackhole bh) {
+		myProducer.produce(1000, 1024);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce5(Blackhole bh) {
+		myProducer.produce(100, 10240);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce6(Blackhole bh) {
+		myProducer.produce(1000, 10240);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce7(Blackhole bh) {
+		myProducer.produce(100, 32768);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce8(Blackhole bh) {
+		myProducer.produce(1000, 32768);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce9(Blackhole bh) {
+		myProducer.produce(100, 65536);
+	}
+	
+	@Benchmark
+	@BenchmarkMetaData(key = "api", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libVendor", value = "RabbitMQ")
+	@BenchmarkMetaData(key = "libUrl", value = "https://github.com/rabbitmq/rabbitmq-server/releases/")
+	@BenchmarkMetaData(key = "libVersion", value = "3.9.0-beta.1")
+	@BenchmarkMetaData(key = "libDescription", value = "RabbitMQ is the most widely deployed open source message broker.")
+	@BenchmarkMetaData(key = "actionName", value = "produce")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "com.rabbitmq.amqp-client")
+	@BenchmarkMetaData(key = "title", value = "Producing Messages")
+	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 65536 bytes per iteration")
+	@BenchmarkMode(Mode.Throughput)
+	@OutputTimeUnit(TimeUnit.SECONDS)
+	@Fork(1)
+	@Threads(1)
+	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	public void rabbitProduce10(Blackhole bh) {
+		myProducer.produce(1000, 65536);
 	}
 
 }

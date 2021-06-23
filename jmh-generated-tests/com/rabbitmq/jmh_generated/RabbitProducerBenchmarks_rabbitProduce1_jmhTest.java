@@ -1,4 +1,4 @@
-package com.activemq.artemis.jmh_generated;
+package com.rabbitmq.jmh_generated;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -32,8 +32,8 @@ import org.openjdk.jmh.results.ScalarResult;
 import org.openjdk.jmh.results.AggregationPolicy;
 import org.openjdk.jmh.runner.FailureAssistException;
 
-import com.activemq.artemis.jmh_generated.ArtemisConsumerBenchmarks_jmhType;
-public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
+import com.rabbitmq.jmh_generated.RabbitProducerBenchmarks_jmhType;
+public final class RabbitProducerBenchmarks_rabbitProduce1_jmhTest {
 
     byte p000, p001, p002, p003, p004, p005, p006, p007, p008, p009, p010, p011, p012, p013, p014, p015;
     byte p016, p017, p018, p019, p020, p021, p022, p023, p024, p025, p026, p027, p028, p029, p030, p031;
@@ -58,7 +58,7 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
     Blackhole blackhole;
     Control notifyControl;
 
-    public BenchmarkTaskResult consumeBenchmark_Throughput(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult rabbitProduce1_Throughput(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -68,24 +68,24 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
         }
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
-            ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G = _jmh_tryInit_f_artemisconsumerbenchmarks0_G(control);
+            RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G = _jmh_tryInit_f_rabbitproducerbenchmarks0_G(control);
 
             control.preSetup();
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            consumeBenchmark_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_artemisconsumerbenchmarks0_G);
+            rabbitProduce1_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_rabbitproducerbenchmarks0_G);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                    l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
                     res.allOps++;
                 }
                 control.preTearDown();
@@ -94,30 +94,30 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             }
 
             if (control.isLastIteration()) {
-                if (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_artemisconsumerbenchmarks0_G, 0, 1)) {
+                if (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_rabbitproducerbenchmarks0_G, 0, 1)) {
                     try {
                         if (control.isFailing) throw new FailureAssistException();
-                        if (l_artemisconsumerbenchmarks0_G.readyTrial) {
-                            l_artemisconsumerbenchmarks0_G.tearDown();
-                            l_artemisconsumerbenchmarks0_G.readyTrial = false;
+                        if (l_rabbitproducerbenchmarks0_G.readyTrial) {
+                            l_rabbitproducerbenchmarks0_G.tearDown();
+                            l_rabbitproducerbenchmarks0_G.readyTrial = false;
                         }
                     } catch (Throwable t) {
                         control.isFailing = true;
                         throw t;
                     } finally {
-                        ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_artemisconsumerbenchmarks0_G, 0);
+                        RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_rabbitproducerbenchmarks0_G, 0);
                     }
                 } else {
-                    long l_artemisconsumerbenchmarks0_G_backoff = 1;
-                    while (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_artemisconsumerbenchmarks0_G) == 1) {
-                        TimeUnit.MILLISECONDS.sleep(l_artemisconsumerbenchmarks0_G_backoff);
-                        l_artemisconsumerbenchmarks0_G_backoff = Math.max(1024, l_artemisconsumerbenchmarks0_G_backoff * 2);
+                    long l_rabbitproducerbenchmarks0_G_backoff = 1;
+                    while (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_rabbitproducerbenchmarks0_G) == 1) {
+                        TimeUnit.MILLISECONDS.sleep(l_rabbitproducerbenchmarks0_G_backoff);
+                        l_rabbitproducerbenchmarks0_G_backoff = Math.max(1024, l_rabbitproducerbenchmarks0_G_backoff * 2);
                         if (control.isFailing) throw new FailureAssistException();
                         if (Thread.interrupted()) throw new InterruptedException();
                     }
                 }
                 synchronized(this.getClass()) {
-                    f_artemisconsumerbenchmarks0_G = null;
+                    f_rabbitproducerbenchmarks0_G = null;
                 }
             }
             res.allOps += res.measuredOps;
@@ -128,19 +128,19 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             res.measuredOps *= opsPerInv;
             res.measuredOps /= batchSize;
             BenchmarkTaskResult results = new BenchmarkTaskResult(res.allOps, res.measuredOps);
-            results.add(new ThroughputResult(ResultRole.PRIMARY, "consumeBenchmark", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
+            results.add(new ThroughputResult(ResultRole.PRIMARY, "rabbitProduce1", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G) throws Throwable {
+    public static void rabbitProduce1_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+            l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -149,7 +149,7 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
     }
 
 
-    public BenchmarkTaskResult consumeBenchmark_AverageTime(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult rabbitProduce1_AverageTime(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -159,24 +159,24 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
         }
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
-            ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G = _jmh_tryInit_f_artemisconsumerbenchmarks0_G(control);
+            RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G = _jmh_tryInit_f_rabbitproducerbenchmarks0_G(control);
 
             control.preSetup();
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            consumeBenchmark_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_artemisconsumerbenchmarks0_G);
+            rabbitProduce1_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_rabbitproducerbenchmarks0_G);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                    l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
                     res.allOps++;
                 }
                 control.preTearDown();
@@ -185,30 +185,30 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             }
 
             if (control.isLastIteration()) {
-                if (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_artemisconsumerbenchmarks0_G, 0, 1)) {
+                if (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_rabbitproducerbenchmarks0_G, 0, 1)) {
                     try {
                         if (control.isFailing) throw new FailureAssistException();
-                        if (l_artemisconsumerbenchmarks0_G.readyTrial) {
-                            l_artemisconsumerbenchmarks0_G.tearDown();
-                            l_artemisconsumerbenchmarks0_G.readyTrial = false;
+                        if (l_rabbitproducerbenchmarks0_G.readyTrial) {
+                            l_rabbitproducerbenchmarks0_G.tearDown();
+                            l_rabbitproducerbenchmarks0_G.readyTrial = false;
                         }
                     } catch (Throwable t) {
                         control.isFailing = true;
                         throw t;
                     } finally {
-                        ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_artemisconsumerbenchmarks0_G, 0);
+                        RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_rabbitproducerbenchmarks0_G, 0);
                     }
                 } else {
-                    long l_artemisconsumerbenchmarks0_G_backoff = 1;
-                    while (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_artemisconsumerbenchmarks0_G) == 1) {
-                        TimeUnit.MILLISECONDS.sleep(l_artemisconsumerbenchmarks0_G_backoff);
-                        l_artemisconsumerbenchmarks0_G_backoff = Math.max(1024, l_artemisconsumerbenchmarks0_G_backoff * 2);
+                    long l_rabbitproducerbenchmarks0_G_backoff = 1;
+                    while (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_rabbitproducerbenchmarks0_G) == 1) {
+                        TimeUnit.MILLISECONDS.sleep(l_rabbitproducerbenchmarks0_G_backoff);
+                        l_rabbitproducerbenchmarks0_G_backoff = Math.max(1024, l_rabbitproducerbenchmarks0_G_backoff * 2);
                         if (control.isFailing) throw new FailureAssistException();
                         if (Thread.interrupted()) throw new InterruptedException();
                     }
                 }
                 synchronized(this.getClass()) {
-                    f_artemisconsumerbenchmarks0_G = null;
+                    f_rabbitproducerbenchmarks0_G = null;
                 }
             }
             res.allOps += res.measuredOps;
@@ -219,19 +219,19 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             res.measuredOps *= opsPerInv;
             res.measuredOps /= batchSize;
             BenchmarkTaskResult results = new BenchmarkTaskResult(res.allOps, res.measuredOps);
-            results.add(new AverageTimeResult(ResultRole.PRIMARY, "consumeBenchmark", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
+            results.add(new AverageTimeResult(ResultRole.PRIMARY, "rabbitProduce1", res.measuredOps, res.getTime(), benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G) throws Throwable {
+    public static void rabbitProduce1_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+            l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -240,7 +240,7 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
     }
 
 
-    public BenchmarkTaskResult consumeBenchmark_SampleTime(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult rabbitProduce1_SampleTime(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -250,14 +250,14 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
         }
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
-            ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G = _jmh_tryInit_f_artemisconsumerbenchmarks0_G(control);
+            RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G = _jmh_tryInit_f_rabbitproducerbenchmarks0_G(control);
 
             control.preSetup();
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
                 res.allOps++;
             }
 
@@ -266,12 +266,12 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             int batchSize = iterationParams.getBatchSize();
             int opsPerInv = benchmarkParams.getOpsPerInvocation();
             SampleBuffer buffer = new SampleBuffer();
-            consumeBenchmark_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_artemisconsumerbenchmarks0_G);
+            rabbitProduce1_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_rabbitproducerbenchmarks0_G);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                    l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
                     res.allOps++;
                 }
                 control.preTearDown();
@@ -280,30 +280,30 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             }
 
             if (control.isLastIteration()) {
-                if (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_artemisconsumerbenchmarks0_G, 0, 1)) {
+                if (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_rabbitproducerbenchmarks0_G, 0, 1)) {
                     try {
                         if (control.isFailing) throw new FailureAssistException();
-                        if (l_artemisconsumerbenchmarks0_G.readyTrial) {
-                            l_artemisconsumerbenchmarks0_G.tearDown();
-                            l_artemisconsumerbenchmarks0_G.readyTrial = false;
+                        if (l_rabbitproducerbenchmarks0_G.readyTrial) {
+                            l_rabbitproducerbenchmarks0_G.tearDown();
+                            l_rabbitproducerbenchmarks0_G.readyTrial = false;
                         }
                     } catch (Throwable t) {
                         control.isFailing = true;
                         throw t;
                     } finally {
-                        ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_artemisconsumerbenchmarks0_G, 0);
+                        RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_rabbitproducerbenchmarks0_G, 0);
                     }
                 } else {
-                    long l_artemisconsumerbenchmarks0_G_backoff = 1;
-                    while (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_artemisconsumerbenchmarks0_G) == 1) {
-                        TimeUnit.MILLISECONDS.sleep(l_artemisconsumerbenchmarks0_G_backoff);
-                        l_artemisconsumerbenchmarks0_G_backoff = Math.max(1024, l_artemisconsumerbenchmarks0_G_backoff * 2);
+                    long l_rabbitproducerbenchmarks0_G_backoff = 1;
+                    while (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_rabbitproducerbenchmarks0_G) == 1) {
+                        TimeUnit.MILLISECONDS.sleep(l_rabbitproducerbenchmarks0_G_backoff);
+                        l_rabbitproducerbenchmarks0_G_backoff = Math.max(1024, l_rabbitproducerbenchmarks0_G_backoff * 2);
                         if (control.isFailing) throw new FailureAssistException();
                         if (Thread.interrupted()) throw new InterruptedException();
                     }
                 }
                 synchronized(this.getClass()) {
-                    f_artemisconsumerbenchmarks0_G = null;
+                    f_rabbitproducerbenchmarks0_G = null;
                 }
             }
             res.allOps += res.measuredOps * batchSize;
@@ -311,14 +311,14 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             res.allOps /= batchSize;
             res.measuredOps *= opsPerInv;
             BenchmarkTaskResult results = new BenchmarkTaskResult(res.allOps, res.measuredOps);
-            results.add(new SampleTimeResult(ResultRole.PRIMARY, "consumeBenchmark", buffer, benchmarkParams.getTimeUnit()));
+            results.add(new SampleTimeResult(ResultRole.PRIMARY, "rabbitProduce1", buffer, benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G) throws Throwable {
+    public static void rabbitProduce1_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G) throws Throwable {
         long realTime = 0;
         long operations = 0;
         int rnd = (int)System.nanoTime();
@@ -333,7 +333,7 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             }
             for (int b = 0; b < batchSize; b++) {
                 if (control.volatileSpoiler) return;
-                l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+                l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
             }
             if (sample) {
                 buffer.add((System.nanoTime() - time) / opsPerInv);
@@ -351,7 +351,7 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
     }
 
 
-    public BenchmarkTaskResult consumeBenchmark_SingleShotTime(InfraControl control, ThreadParams threadParams) throws Throwable {
+    public BenchmarkTaskResult rabbitProduce1_SingleShotTime(InfraControl control, ThreadParams threadParams) throws Throwable {
         this.benchmarkParams = control.benchmarkParams;
         this.iterationParams = control.iterationParams;
         this.threadParams    = threadParams;
@@ -360,7 +360,7 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             this.blackhole = new Blackhole("Today's password is swordfish. I understand instantiating Blackholes directly is dangerous.");
         }
         if (threadParams.getSubgroupIndex() == 0) {
-            ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G = _jmh_tryInit_f_artemisconsumerbenchmarks0_G(control);
+            RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G = _jmh_tryInit_f_rabbitproducerbenchmarks0_G(control);
 
             control.preSetup();
 
@@ -368,83 +368,76 @@ public final class ArtemisConsumerBenchmarks_consumeBenchmark_jmhTest {
             notifyControl.startMeasurement = true;
             RawResults res = new RawResults();
             int batchSize = iterationParams.getBatchSize();
-            consumeBenchmark_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_artemisconsumerbenchmarks0_G);
+            rabbitProduce1_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_rabbitproducerbenchmarks0_G);
             control.preTearDown();
 
             if (control.isLastIteration()) {
-                if (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_artemisconsumerbenchmarks0_G, 0, 1)) {
+                if (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.compareAndSet(l_rabbitproducerbenchmarks0_G, 0, 1)) {
                     try {
                         if (control.isFailing) throw new FailureAssistException();
-                        if (l_artemisconsumerbenchmarks0_G.readyTrial) {
-                            l_artemisconsumerbenchmarks0_G.tearDown();
-                            l_artemisconsumerbenchmarks0_G.readyTrial = false;
+                        if (l_rabbitproducerbenchmarks0_G.readyTrial) {
+                            l_rabbitproducerbenchmarks0_G.tearDown();
+                            l_rabbitproducerbenchmarks0_G.readyTrial = false;
                         }
                     } catch (Throwable t) {
                         control.isFailing = true;
                         throw t;
                     } finally {
-                        ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_artemisconsumerbenchmarks0_G, 0);
+                        RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.set(l_rabbitproducerbenchmarks0_G, 0);
                     }
                 } else {
-                    long l_artemisconsumerbenchmarks0_G_backoff = 1;
-                    while (ArtemisConsumerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_artemisconsumerbenchmarks0_G) == 1) {
-                        TimeUnit.MILLISECONDS.sleep(l_artemisconsumerbenchmarks0_G_backoff);
-                        l_artemisconsumerbenchmarks0_G_backoff = Math.max(1024, l_artemisconsumerbenchmarks0_G_backoff * 2);
+                    long l_rabbitproducerbenchmarks0_G_backoff = 1;
+                    while (RabbitProducerBenchmarks_jmhType.tearTrialMutexUpdater.get(l_rabbitproducerbenchmarks0_G) == 1) {
+                        TimeUnit.MILLISECONDS.sleep(l_rabbitproducerbenchmarks0_G_backoff);
+                        l_rabbitproducerbenchmarks0_G_backoff = Math.max(1024, l_rabbitproducerbenchmarks0_G_backoff * 2);
                         if (control.isFailing) throw new FailureAssistException();
                         if (Thread.interrupted()) throw new InterruptedException();
                     }
                 }
                 synchronized(this.getClass()) {
-                    f_artemisconsumerbenchmarks0_G = null;
+                    f_rabbitproducerbenchmarks0_G = null;
                 }
             }
             int opsPerInv = control.benchmarkParams.getOpsPerInvocation();
             long totalOps = opsPerInv;
             BenchmarkTaskResult results = new BenchmarkTaskResult(totalOps, totalOps);
-            results.add(new SingleShotResult(ResultRole.PRIMARY, "consumeBenchmark", res.getTime(), benchmarkParams.getTimeUnit()));
+            results.add(new SingleShotResult(ResultRole.PRIMARY, "rabbitProduce1", res.getTime(), benchmarkParams.getTimeUnit()));
             this.blackhole.evaporate("Yes, I am Stephen Hawking, and know a thing or two about black holes.");
             return results;
         } else
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void consumeBenchmark_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, ArtemisConsumerBenchmarks_jmhType l_artemisconsumerbenchmarks0_G) throws Throwable {
+    public static void rabbitProduce1_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, RabbitProducerBenchmarks_jmhType l_rabbitproducerbenchmarks0_G) throws Throwable {
         long realTime = 0;
         result.startTime = System.nanoTime();
         for (int b = 0; b < batchSize; b++) {
             if (control.volatileSpoiler) return;
-            l_artemisconsumerbenchmarks0_G.consumeBenchmark(blackhole);
+            l_rabbitproducerbenchmarks0_G.rabbitProduce1(blackhole);
         }
         result.stopTime = System.nanoTime();
         result.realTime = realTime;
     }
 
     
-    static volatile ArtemisConsumerBenchmarks_jmhType f_artemisconsumerbenchmarks0_G;
+    static volatile RabbitProducerBenchmarks_jmhType f_rabbitproducerbenchmarks0_G;
     
-    ArtemisConsumerBenchmarks_jmhType _jmh_tryInit_f_artemisconsumerbenchmarks0_G(InfraControl control) throws Throwable {
-        ArtemisConsumerBenchmarks_jmhType val = f_artemisconsumerbenchmarks0_G;
+    RabbitProducerBenchmarks_jmhType _jmh_tryInit_f_rabbitproducerbenchmarks0_G(InfraControl control) throws Throwable {
+        RabbitProducerBenchmarks_jmhType val = f_rabbitproducerbenchmarks0_G;
         if (val != null) {
             return val;
         }
         synchronized(this.getClass()) {
             try {
             if (control.isFailing) throw new FailureAssistException();
-            val = f_artemisconsumerbenchmarks0_G;
+            val = f_rabbitproducerbenchmarks0_G;
             if (val != null) {
                 return val;
             }
-            val = new ArtemisConsumerBenchmarks_jmhType();
-            Field f;
-            f = com.activemq.artemis.ArtemisConsumerBenchmarks.class.getDeclaredField("messageSize");
-            f.setAccessible(true);
-            f.set(val, control.getParam("messageSize"));
-            f = com.activemq.artemis.ArtemisConsumerBenchmarks.class.getDeclaredField("totalConsumedMessages");
-            f.setAccessible(true);
-            f.set(val, Integer.valueOf(control.getParam("totalConsumedMessages")));
+            val = new RabbitProducerBenchmarks_jmhType();
             val.setup();
             val.readyTrial = true;
-            f_artemisconsumerbenchmarks0_G = val;
+            f_rabbitproducerbenchmarks0_G = val;
             } catch (Throwable t) {
                 control.isFailing = true;
                 throw t;
