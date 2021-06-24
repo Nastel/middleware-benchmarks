@@ -12,13 +12,13 @@ public class Consumer {
 	private final String topic = "myTopic";
 	private final ArrayList<String> topics;
 	private final String bootstrapServer = "localhost:9092";
-	private KafkaConsumer<String, byte[]> kafkaConsumer;
+	private KafkaConsumer<Integer, byte[]> kafkaConsumer;
 	private int totalReadMessages;
 
 	private Properties consumerProps() {
 		Properties properties = new Properties();
 		properties.put("bootstrap.servers", bootstrapServer);
-		properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+		properties.put("key.deserializer", "org.apache.kafka.common.serialization.IntegerDeserializer");
 		properties.put("value.deserializer", "org.apache.kafka.common.serialization.ByteArrayDeserializer");
 		properties.put("group.id", "new-group");
 		properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
@@ -45,8 +45,8 @@ public class Consumer {
 
 		try {
 			listeningLoop: while (true) {
-				ConsumerRecords<String, byte[]> records = kafkaConsumer.poll(100);
-				for (ConsumerRecord<String, byte[]> record : records) {
+				ConsumerRecords<Integer, byte[]> records = kafkaConsumer.poll(100);
+				for (ConsumerRecord<Integer, byte[]> record : records) {
 					byte[] message = record.value();
 					totalReadMessages++;
 					if (totalReadMessages >= messagesToRead) {

@@ -13,7 +13,7 @@ public class Producer {
 	private Properties producerProps() {
 		Properties props = new Properties();
 		props.setProperty("bootstrap.servers", bootstrapServer);
-		props.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		props.setProperty("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
 		props.setProperty("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
 
 		return props;
