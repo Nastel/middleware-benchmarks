@@ -45,7 +45,6 @@ public class ActiveMQProducer {
 
 			for (int counter = 0; counter < totalMessages; counter++) {
 				producer.send(message);
-				System.out.println("Message " + counter + " sent to queue");
 			}
 		} catch (JMSException e) {
 			e.printStackTrace();

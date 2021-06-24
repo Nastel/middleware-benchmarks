@@ -39,7 +39,6 @@ public class Producer {
 		try {
 			for (int counter = 0; counter < totalMessages; counter++) {
 				kafkaProducer.send(new ProducerRecord<String, byte[]>(topic, counter + "", message));
-				System.out.println("Sending msg " + counter + " of " + totalMessages + ", size: " + messageSize);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

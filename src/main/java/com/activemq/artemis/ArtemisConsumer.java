@@ -43,7 +43,6 @@ public class ArtemisConsumer {
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
 				BytesMessage message = (BytesMessage) mConsumer.receive();
-				System.out.println("Received message " + counter + " of " + messagesToRead);
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}

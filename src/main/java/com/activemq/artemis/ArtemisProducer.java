@@ -4,6 +4,7 @@ import javax.jms.BytesMessage;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
@@ -47,7 +48,6 @@ public class ArtemisProducer {
 
 			for (int counter = 0; counter < totalMessages; counter++) {
 				mProducer.send(message);
-				System.out.println("Message " + counter + " sent to queue");
 			}
 		} catch (JMSException e) {
 			e.printStackTrace();

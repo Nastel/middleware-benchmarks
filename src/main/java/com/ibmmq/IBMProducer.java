@@ -1,6 +1,5 @@
 package com.ibmmq;
 
-import javax.jms.BytesMessage;
 import javax.jms.Destination;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
@@ -55,26 +54,15 @@ public class IBMProducer {
 
 	public void produce(int totalMessages, int msgSize) {
 		byte[] byteArrMsg = new byte[msgSize];
-		BytesMessage message = context.createBytesMessage();
-		try {
-			message.writeBytes(byteArrMsg);
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
-
+		// BytesMessage message = context.createBytesMessage();
+		// message.writeBytes(byteArrMsg);
 		for (int counter = 0; counter < totalMessages; counter++) {
-			producer.send(destination, message);
-			System.out.println("Message " + counter + " sent to queue");
+			producer.send(destination, byteArrMsg);
 		}
 	}
-	
-	public void closeConnection(){
-		context.close();	
-	}
 
-	public static void main(String[] args) {
-//		IBMProducer myProducer = new IBMProducer();
-//		myProducer.produce(1000, 1024);
+	public void closeConnection() {
+		context.close();
 	}
 
 }

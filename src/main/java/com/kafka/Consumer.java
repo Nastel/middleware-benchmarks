@@ -33,7 +33,6 @@ public class Consumer {
 	}
 
 	public void closeConsumer() {
-		System.out.println("\nClosing consumer...\n" + "Total read messages: " + totalReadMessages);
 		kafkaConsumer.close();
 	}
 
@@ -46,7 +45,6 @@ public class Consumer {
 				ConsumerRecords<String, byte[]> records = kafkaConsumer.poll(100);
 				for (ConsumerRecord<String, byte[]> record : records) {
 					String message = "Msg size: " + record.value().length;
-					System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), message);
 					totalReadMessages++;
 					if (totalReadMessages >= messagesToRead) {
 						break listeningLoop;
