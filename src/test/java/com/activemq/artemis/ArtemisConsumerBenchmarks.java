@@ -54,7 +54,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume1(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -74,7 +74,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume2(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -94,7 +94,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume3(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -114,7 +114,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume4(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -134,7 +134,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume5(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -154,7 +154,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume6(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -174,7 +174,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume7(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -194,7 +194,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume8(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -214,7 +214,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume9(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -234,7 +234,7 @@ public class ArtemisConsumerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 0, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisConsume10(Blackhole bh) {
 		myConsumer.consume(10000);
 	}

@@ -53,7 +53,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce1(Blackhole bh) {
 		myProducer.produce(100, 512);
 	}
@@ -73,7 +73,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce2(Blackhole bh) {
 		myProducer.produce(1000, 512);
 	}
@@ -93,7 +93,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce3(Blackhole bh) {
 		myProducer.produce(100, 1024);
 	}
@@ -113,7 +113,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce4(Blackhole bh) {
 		myProducer.produce(1000, 1024);
 	}
@@ -133,7 +133,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce5(Blackhole bh) {
 		myProducer.produce(100, 10240);
 	}
@@ -153,7 +153,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce6(Blackhole bh) {
 		myProducer.produce(1000, 10240);
 	}
@@ -173,7 +173,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce7(Blackhole bh) {
 		myProducer.produce(100, 32768);
 	}
@@ -193,7 +193,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce8(Blackhole bh) {
 		myProducer.produce(1000, 32768);
 	}
@@ -213,7 +213,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce9(Blackhole bh) {
 		myProducer.produce(100, 65536);
 	}
@@ -233,7 +233,7 @@ public class ProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaProduce10(Blackhole bh) {
 		myProducer.produce(1000, 65536);
 	}

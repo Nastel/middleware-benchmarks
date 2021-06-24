@@ -54,7 +54,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce1(Blackhole bh){
 		myProducer.produce(100, 512);
 	}
@@ -74,7 +74,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce2(Blackhole bh){
 		myProducer.produce(1000, 512);
 	}
@@ -94,7 +94,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce3(Blackhole bh){
 		myProducer.produce(100, 1024);
 	}
@@ -114,7 +114,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce4(Blackhole bh){
 		myProducer.produce(1000, 1024);
 	}
@@ -134,7 +134,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce5(Blackhole bh){
 		myProducer.produce(100, 10240);
 	}
@@ -154,7 +154,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce6(Blackhole bh){
 		myProducer.produce(1000, 10240);
 	}
@@ -174,7 +174,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce7(Blackhole bh){
 		myProducer.produce(100, 32768);
 	}
@@ -194,7 +194,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce8(Blackhole bh){
 		myProducer.produce(1000, 32768);
 	}
@@ -214,7 +214,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce9(Blackhole bh){
 		myProducer.produce(100, 65536);
 	}
@@ -234,7 +234,7 @@ public class ActiveMQProducerBenchmarks {
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeProduce10(Blackhole bh){
 		myProducer.produce(1000, 65536);
 	}
