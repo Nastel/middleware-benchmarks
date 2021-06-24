@@ -23,8 +23,6 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
 @BenchmarkMetaData(key = "context", value = "Consume")
 @BenchmarkMetaData(key = "domain", value = "java")
-@BenchmarkMetaData(key = "version", value = "1.0.0")
-@BenchmarkMetaData(key = "description", value = "Middleware helps to deliver and track messages between systems")
 public class ActiveMQConsumerBenchmarks {
 	private ActiveMQConsumer myConsumer;
 
