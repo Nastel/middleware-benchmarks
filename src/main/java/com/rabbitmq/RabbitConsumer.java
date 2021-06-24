@@ -5,9 +5,9 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 public class RabbitConsumer {
-	private String QUEUE_NAME;
 	private Connection myConnection;
 	private Channel myChannel;
+	private final String QUEUE_NAME = "MyQueue";
 
 	private void makeConnection() {
 		ConnectionFactory myFactory = new ConnectionFactory();
@@ -22,8 +22,7 @@ public class RabbitConsumer {
 		}
 	}
 
-	public RabbitConsumer(String msgSize) {
-		QUEUE_NAME = "Queue." + msgSize;
+	public RabbitConsumer() {
 		makeConnection();
 	}
 

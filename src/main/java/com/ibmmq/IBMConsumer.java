@@ -17,11 +17,12 @@ public class IBMConsumer {
 	private static final String QMGR = "QM1";
 	private static final String APP_USER = "app";
 	private static final String APP_PASSWORD = "passw0rd";
+	private final String QUEUE_NAME = "Dev.MyQueue";
 	JMSContext context;
 	Destination destination;
 	JMSConsumer consumer;
 
-	private void makeContext(String QUEUE_NAME) {
+	private void makeContext() {
 		try {
 			JmsFactoryFactory ff = JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
 			JmsConnectionFactory cf = ff.createConnectionFactory();
@@ -47,9 +48,8 @@ public class IBMConsumer {
 		}
 	}
 
-	public IBMConsumer(String msgSize) {
-		String QUEUE_NAME = "DEV." + msgSize;
-		makeContext(QUEUE_NAME);
+	public IBMConsumer() {
+		makeContext();
 	}
 
 	public void consume(int messagesToRead) {

@@ -34,8 +34,7 @@ public class RabbitConsumerBenchmarks {
 
 	@Setup(Level.Trial)
 	public void setup() {
-		//myConsumer = new RabbitConsumer(messageSize);
-		// have to push queue name in the actual consume method now that we aren't using params
+		myConsumer = new RabbitConsumer();
 	}
 
 	@TearDown(Level.Trial)

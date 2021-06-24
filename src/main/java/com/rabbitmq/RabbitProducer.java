@@ -5,7 +5,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
 public class RabbitProducer {
-	private static final String QUEUE_NAME = "TestQueue";
+	private final String QUEUE_NAME = "MyQueue";
 	private Connection myConnection;
 	private Channel myChannel;
 

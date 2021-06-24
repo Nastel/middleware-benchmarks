@@ -11,7 +11,7 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQProducer {
-	private final String QUEUE_NAME = ""; // set queue name
+	private final String QUEUE_NAME = "MyQueue";
 	private Connection connection;
 	private Session session;
 	private MessageProducer producer;

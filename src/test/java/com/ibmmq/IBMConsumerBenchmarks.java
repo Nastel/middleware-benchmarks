@@ -31,8 +31,7 @@ public class IBMConsumerBenchmarks {
 
 	@Setup(Level.Trial)
 	public void setup() {
-		//myConsumer = new IBMConsumer(messageSize);
-		// have to push queue name in the actual consume method now that we aren't using params
+		myConsumer = new IBMConsumer();
 	}
 	
 	@TearDown(Level.Trial)

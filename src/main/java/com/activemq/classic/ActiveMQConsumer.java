@@ -15,8 +15,9 @@ public class ActiveMQConsumer {
 	private Session session;
 	private MessageConsumer consumer;
 	private Destination destination;
+	private final String QUEUE_NAME = "MyQueue";
 
-	public void makeConnection(String QUEUE_NAME) {
+	public void makeConnection() {
 		try {
 			String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
@@ -30,9 +31,8 @@ public class ActiveMQConsumer {
 		}
 	}
 
-	public ActiveMQConsumer(String msgSize) {
-		String QUEUE_NAME = "Queue." + msgSize;
-		makeConnection(QUEUE_NAME);
+	public ActiveMQConsumer() {
+		makeConnection();
 	}
 
 	public void consume(int messagesToRead) {
