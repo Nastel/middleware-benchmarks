@@ -12,7 +12,7 @@ import org.apache.activemq.artemis.api.core.client.ServerLocator;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisProducer {
-	private final String QUEUE_NAME = "TestQueue2";
+	private final String QUEUE_NAME = "TestQueue";
 	private ClientSession mySession;
 	private ClientMessage myMessage;
 	private ClientProducer myProducer;
@@ -26,9 +26,12 @@ public class ArtemisProducer {
 			mySession = factory.createSession();
 			myMessage = mySession.createMessage(true);
 			myProducer = mySession.createProducer(QUEUE_NAME);
+			
+			// Creates queue if it does not exist
 			QueueConfiguration queueConfig = new QueueConfiguration(QUEUE_NAME);
 			queueConfig.setDurable(true);
 			mySession.createQueue(queueConfig);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,12 +54,14 @@ public class ArtemisProducer {
 		}
 	}
 
-	public void closeConnection() {
-		try {
-			mySession.close();
-		} catch (ActiveMQException e) {
-			e.printStackTrace();
-		}
-	}
+	// Unnecessary to close connection for this producer (only need to "start" a session to consume messages in this case)
+	
+//	public void closeConnection() {
+//		try {
+//			mySession.close();
+//		} catch (ActiveMQException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }
