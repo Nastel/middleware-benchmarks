@@ -5,19 +5,22 @@ import javax.jms.Destination;
 import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
+import javax.jms.Message;
+
 import com.ibm.msg.client.jms.JmsConnectionFactory;
 import com.ibm.msg.client.jms.JmsFactoryFactory;
 import com.ibm.msg.client.wmq.WMQConstants;
 
 public class IBMConsumer {
 
+	private final String QUEUE_NAME = "Dev.MyQueue";
 	private static final String HOST = "localhost";
 	private static final int PORT = 1414;
 	private static final String CHANNEL = "DEV.APP.SVRCONN";
 	private static final String QMGR = "QM1";
 	private static final String APP_USER = "app";
 	private static final String APP_PASSWORD = "passw0rd";
-	private final String QUEUE_NAME = "Dev.MyQueue";
+
 	JMSContext context;
 	Destination destination;
 	JMSConsumer consumer;
@@ -52,14 +55,25 @@ public class IBMConsumer {
 		makeContext();
 	}
 
+	public void closeConnection() {
+		context.close();
+	}
+
 	public void consume(int messagesToRead) {
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			BytesMessage message = (BytesMessage) consumer.receive();
 		}
 	}
 
-	public void closeConnection() {
-		context.close();
+	public void synchronousConsume() {
+		while (true) {
+			Message message = consumer.receive();
+			System.out.println("Message received");
+		}
 	}
 
+	public static void main(String args[]) {
+		IBMConsumer myConsumer = new IBMConsumer();
+		myConsumer.synchronousConsume();
+	}
 }

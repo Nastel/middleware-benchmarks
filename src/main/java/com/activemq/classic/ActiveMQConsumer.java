@@ -4,18 +4,22 @@ import javax.jms.BytesMessage;
 import javax.jms.Connection;
 import javax.jms.Destination;
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.artemis.api.core.client.ClientMessage;
+
+import com.activemq.artemis.ArtemisConsumer;
 
 public class ActiveMQConsumer {
+	private final String QUEUE_NAME = "MyQueue";
 	private Connection connection;
 	private Session session;
 	private MessageConsumer consumer;
 	private Destination destination;
-	private final String QUEUE_NAME = "MyQueue";
 
 	public void makeConnection() {
 		try {
@@ -35,6 +39,14 @@ public class ActiveMQConsumer {
 		makeConnection();
 	}
 
+	public void closeConnection() {
+		try {
+			connection.close();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void consume(int messagesToRead) {
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
@@ -45,15 +57,20 @@ public class ActiveMQConsumer {
 		}
 	}
 
-	public void closeConnection() {
-		try {
-			connection.close();
-		} catch (JMSException e) {
-			e.printStackTrace();
+	public void synchronousConsume() {
+		while (true) {
+			try {
+				Message message = consumer.receive();
+				System.out.println("Message received");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String args[]) {
+		ActiveMQConsumer myConsumer = new ActiveMQConsumer();
+		myConsumer.synchronousConsume();
 	}
 
 }

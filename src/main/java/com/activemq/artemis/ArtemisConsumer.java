@@ -1,5 +1,7 @@
 package com.activemq.artemis;
 
+import javax.jms.Message;
+
 import org.apache.activemq.artemis.api.core.ActiveMQException;
 import org.apache.activemq.artemis.api.core.QueueConfiguration;
 import org.apache.activemq.artemis.api.core.TransportConfiguration;
@@ -10,6 +12,8 @@ import org.apache.activemq.artemis.api.core.client.ClientSession;
 import org.apache.activemq.artemis.api.core.client.ClientSessionFactory;
 import org.apache.activemq.artemis.api.core.client.ServerLocator;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
+
+import com.ibmmq.IBMConsumer;
 
 public class ArtemisConsumer {
 	private final String QUEUE_NAME = "TestQueue";
@@ -35,16 +39,6 @@ public class ArtemisConsumer {
 		buildConnection();
 	}
 
-	public void consume(int messagesToRead) {
-		for (int counter = 0; counter < messagesToRead; counter++) {
-			try {
-				ClientMessage message =  myConsumer.receive();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public void closeConnection() {
 		try {
 			mySession.close();
@@ -53,7 +47,30 @@ public class ArtemisConsumer {
 		}
 	}
 
-	public static void main(String[] args) {
+	public void consume(int messagesToRead) {
+		for (int counter = 0; counter < messagesToRead; counter++) {
+			try {
+				ClientMessage message = myConsumer.receive();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void synchronousConsume() {
+		while (true) {
+			try {
+				ClientMessage message = myConsumer.receive();
+				System.out.println("Message received");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void main(String args[]) {
+		ArtemisConsumer myConsumer = new ArtemisConsumer();
+		myConsumer.synchronousConsume();
 	}
 
 }

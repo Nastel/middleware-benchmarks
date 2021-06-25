@@ -8,6 +8,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
+import com.rabbitmq.RabbitConsumer;
+
 public class Consumer {
 	private final String topic = "myTopic";
 	private final ArrayList<String> topics;
@@ -57,5 +59,14 @@ public class Consumer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void synchronousConsume() {
+	
+	}
+
+	public static void main(String args[]) {
+		Consumer myConsumer = new Consumer();
+		myConsumer.synchronousConsume();
 	}
 }
