@@ -10,13 +10,13 @@ import com.ibm.msg.client.wmq.WMQConstants;
 
 public class IBMProducer {
 
+	private static final String QUEUE_NAME = "DEV.MyQueue";
 	private static final String HOST = "localhost";
 	private static final int PORT = 1414;
 	private static final String CHANNEL = "DEV.APP.SVRCONN";
 	private static final String QMGR = "QM1";
 	private static final String APP_USER = "app";
 	private static final String APP_PASSWORD = "passw0rd";
-	private static final String QUEUE_NAME = "Dev.MyQueue";
 
 	JMSContext context;
 	Destination destination, destination2;

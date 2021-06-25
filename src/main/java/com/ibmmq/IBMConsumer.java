@@ -13,7 +13,7 @@ import com.ibm.msg.client.wmq.WMQConstants;
 
 public class IBMConsumer {
 
-	private final String QUEUE_NAME = "Dev.MyQueue";
+	private final String QUEUE_NAME = "DEV.MyQueue";
 	private static final String HOST = "localhost";
 	private static final int PORT = 1414;
 	private static final String CHANNEL = "DEV.APP.SVRCONN";
