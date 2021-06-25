@@ -60,9 +60,20 @@ public class Consumer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void synchronousConsume() {
-	
+		kafkaConsumer.subscribe(topics);
+
+		try {
+			while (true) {
+				ConsumerRecords<Integer, byte[]> records = kafkaConsumer.poll(100);
+				for (ConsumerRecord<Integer, byte[]> record : records) {
+					byte[] message = record.value();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String args[]) {

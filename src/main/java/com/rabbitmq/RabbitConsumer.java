@@ -28,7 +28,7 @@ public class RabbitConsumer {
 	public RabbitConsumer() {
 		makeConnection();
 	}
-	
+
 	public void closeConnection() {
 		try {
 			myChannel.close();
