@@ -4,6 +4,7 @@ import javax.jms.BytesMessage;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
@@ -39,15 +40,6 @@ public class ArtemisProducer {
 		buildConnection();
 	}
 
-
-	public void closeConnection() {
-		try {
-			mConnection.close();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void produce(int totalMessages, int msgSize) {
 		byte[] byteArrMsg = new byte[msgSize];
 		try {
@@ -62,6 +54,13 @@ public class ArtemisProducer {
 		}
 	}
 
+	public void closeConnection() {
+		try {
+			mConnection.close();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
 	}
