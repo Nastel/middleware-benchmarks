@@ -36,7 +36,7 @@ public class ArtemisProducerBenchmarks {
 	
 	@TearDown(Level.Trial)
 	public void tearDown() {
-		//myProducer.closeConnection();
+		myProducer.closeConnection();
 	}
 
 
