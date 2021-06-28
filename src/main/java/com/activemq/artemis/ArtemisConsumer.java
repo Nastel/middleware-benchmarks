@@ -57,7 +57,20 @@ public class ArtemisConsumer {
 		}
 	}
 
+	public void synchronousConsume() {
+		while (true) {
+			try {
+				BytesMessage message = (BytesMessage) mConsumer.receive();
+				System.out.println("Message received");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static void main(String[] args) {
+		ArtemisConsumer myConsumer = new ArtemisConsumer();
+		myConsumer.synchronousConsume();
 	}
 
 }

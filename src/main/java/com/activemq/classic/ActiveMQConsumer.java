@@ -53,7 +53,20 @@ public class ActiveMQConsumer {
 		}
 	}
 
-	public static void main(String[] args) {
+	public void synchronousConsume() {
+		while (true) {
+			try {
+				BytesMessage message = (BytesMessage) consumer.receive();
+				System.out.println("Message received");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void main(String args[]) {
+		ActiveMQConsumer myConsumer = new ActiveMQConsumer();
+		myConsumer.synchronousConsume();
 	}
 
 }

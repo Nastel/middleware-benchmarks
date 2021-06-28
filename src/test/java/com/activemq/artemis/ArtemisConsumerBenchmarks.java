@@ -22,14 +22,15 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-@BenchmarkMetaData(key = "context", value = "Consume")
+//@BenchmarkMetaData(key = "context", value = "SynchronousConsume")
+//@BenchmarkMetaData(key = "context", value = "Consume")
 @BenchmarkMetaData(key = "domain", value = "java")
 public class ArtemisConsumerBenchmarks {
 	private ArtemisConsumer myConsumer;
 
 	@Setup(Level.Trial)
 	public void setup() {
-		myConsumer = new ArtemisConsumer(); 
+		myConsumer = new ArtemisConsumer();
 	}
 
 	@TearDown(Level.Trial)
@@ -46,7 +47,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 512 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 1000 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -56,7 +57,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume1(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -66,7 +67,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 512 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 10000 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -76,7 +77,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume2(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -86,7 +87,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 1000 messages of size 1024 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -96,7 +97,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume3(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -106,7 +107,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 1024 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 10000 messages of size 1024 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -116,7 +117,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume4(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -126,7 +127,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 1000 messages of size 10240 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -136,7 +137,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume5(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -146,7 +147,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 10240 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 10000 messages of size 10240 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -156,7 +157,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume6(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -166,7 +167,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 1000 messages of size 32768 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -176,7 +177,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume7(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -186,7 +187,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 32768 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 10000 messages of size 32768 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -196,7 +197,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume8(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -206,7 +207,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 1000 messages of size 65536 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 1000 messages of size 65536 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -216,7 +217,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume9(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -226,7 +227,7 @@ public class ArtemisConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "consume")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Consuming Messages")
-	@BenchmarkMetaData(key="description", value="Consumed 10000 messages of size 65536 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Consumed 10000 messages of size 65536 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -236,6 +237,5 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume10(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
-
 
 }

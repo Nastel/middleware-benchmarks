@@ -62,4 +62,16 @@ public class IBMConsumer {
 		context.close();
 	}
 
+	public void synchronousConsume() {
+		while (true) {
+			BytesMessage message = (BytesMessage) consumer.receive();
+			System.out.println("Message received");
+		}
+	}
+
+	public static void main(String args[]) {
+		IBMConsumer myConsumer = new IBMConsumer();
+		myConsumer.synchronousConsume();
+	}
+
 }

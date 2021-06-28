@@ -46,4 +46,20 @@ public class RabbitConsumer {
 		}
 	}
 
+	public void synchronousConsume() {
+		while (true) {
+			try {
+				myChannel.basicGet(QUEUE_NAME, true);
+				System.out.println("Message received");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void main(String args[]) {
+		RabbitConsumer myConsumer = new RabbitConsumer();
+		myConsumer.synchronousConsume();
+	}
+
 }
