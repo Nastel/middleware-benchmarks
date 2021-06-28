@@ -3,11 +3,12 @@ package com.rabbitmq;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DeliverCallback;
 
 public class RabbitConsumer {
+	private final String QUEUE_NAME = "MyQueue";
 	private Connection myConnection;
 	private Channel myChannel;
-	private final String QUEUE_NAME = "MyQueue";
 
 	private void makeConnection() {
 		ConnectionFactory myFactory = new ConnectionFactory();
@@ -47,13 +48,13 @@ public class RabbitConsumer {
 	}
 
 	public void synchronousConsume() {
-		while (true) {
-			try {
-				myChannel.basicGet(QUEUE_NAME, true);
-				System.out.println("Message received");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+			    delivery.getBody();
+			};
+			myChannel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
