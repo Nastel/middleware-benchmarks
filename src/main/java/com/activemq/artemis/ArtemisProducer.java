@@ -39,6 +39,7 @@ public class ArtemisProducer {
 		buildConnection();
 	}
 
+
 	public void closeConnection() {
 		try {
 			mConnection.close();
@@ -60,6 +61,7 @@ public class ArtemisProducer {
 			e.printStackTrace();
 		}
 	}
+
 
 	public static void main(String[] args) {
 	}

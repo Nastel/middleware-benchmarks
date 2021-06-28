@@ -65,7 +65,6 @@ public class ArtemisConsumer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
 	}
 
 	public static void main(String[] args) {
