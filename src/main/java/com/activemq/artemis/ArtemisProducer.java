@@ -1,38 +1,36 @@
 package com.activemq.artemis;
 
-import org.apache.activemq.artemis.api.core.ActiveMQException;
-import org.apache.activemq.artemis.api.core.QueueConfiguration;
+import javax.jms.BytesMessage;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.Queue;
+import javax.jms.Session;
+
 import org.apache.activemq.artemis.api.core.TransportConfiguration;
-import org.apache.activemq.artemis.api.core.client.ActiveMQClient;
-import org.apache.activemq.artemis.api.core.client.ClientMessage;
-import org.apache.activemq.artemis.api.core.client.ClientProducer;
-import org.apache.activemq.artemis.api.core.client.ClientSession;
-import org.apache.activemq.artemis.api.core.client.ClientSessionFactory;
-import org.apache.activemq.artemis.api.core.client.ServerLocator;
+import org.apache.activemq.artemis.api.jms.ActiveMQJMSClient;
+import org.apache.activemq.artemis.api.jms.JMSFactoryType;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisProducer {
-	private final String QUEUE_NAME = "TestQueue";
-	private ClientSession mySession;
-	private ClientMessage myMessage;
-	private ClientProducer myProducer;
+	private final String QUEUE_NAME = "MyQueue";
+	private Connection mConnection;
+	private Session mSession;
+	private MessageProducer mProducer;
 
 	public void buildConnection() {
-		ServerLocator locator = ActiveMQClient
-				.createServerLocatorWithoutHA(new TransportConfiguration(NettyConnectorFactory.class.getName()));
 		try {
-
-			ClientSessionFactory factory = locator.createSessionFactory();
-			mySession = factory.createSession();
-			myMessage = mySession.createMessage(true);
-			myProducer = mySession.createProducer(QUEUE_NAME);
-			
-			// Creates queue if it does not exist
-			QueueConfiguration queueConfig = new QueueConfiguration(QUEUE_NAME);
-			queueConfig.setDurable(true);
-			mySession.createQueue(queueConfig);
-			
-		} catch (Exception e) {
+			TransportConfiguration transportConfiguration = new TransportConfiguration(
+					NettyConnectorFactory.class.getName());
+			ConnectionFactory cf = ActiveMQJMSClient.createConnectionFactoryWithoutHA(JMSFactoryType.CF,
+					transportConfiguration);
+			mConnection = cf.createConnection();
+			mSession = mConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			Queue mQueue = mSession.createQueue(QUEUE_NAME);
+			mProducer = mSession.createProducer(mQueue);
+			mConnection.start();
+		} catch (JMSException e) {
 			e.printStackTrace();
 		}
 	}
@@ -41,27 +39,28 @@ public class ArtemisProducer {
 		buildConnection();
 	}
 
-	public void produce(int totalMessages, int msgSize) {
-		byte[] byteMessage = new byte[msgSize];
-		myMessage.getBodyBuffer().writeBytes(byteMessage);
-
+	public void closeConnection() {
 		try {
-			for (int counter = 0; counter < totalMessages; counter++) {
-				myProducer.send(myMessage);
-			}
-		} catch (ActiveMQException e) {
+			mConnection.close();
+		} catch (JMSException e) {
 			e.printStackTrace();
 		}
 	}
 
-	// Unnecessary to close connection for this producer (only need to "start" a session to consume messages in this case)
-	
-//	public void closeConnection() {
-//		try {
-//			mySession.close();
-//		} catch (ActiveMQException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void produce(int totalMessages, int msgSize) {
+		byte[] byteArrMsg = new byte[msgSize];
+		try {
+			BytesMessage message = mSession.createBytesMessage();
+			message.writeBytes(byteArrMsg);
 
+			for (int counter = 0; counter < totalMessages; counter++) {
+				mProducer.send(message);
+			}
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+	}
 }

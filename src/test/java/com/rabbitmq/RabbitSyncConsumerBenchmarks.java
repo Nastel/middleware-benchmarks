@@ -23,7 +23,7 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
 @BenchmarkMetaData(key = "context", value = "SynchronousConsume")
 @BenchmarkMetaData(key = "domain", value = "java")
-public class RabbitConsumerBenchmarks {
+public class RabbitSyncConsumerBenchmarks {
 	private RabbitConsumer myConsumer;
 
 	@Setup(Level.Trial)
