@@ -39,6 +39,14 @@ public class ArtemisConsumer {
 		buildConnection();
 	}
 
+	public void closeConnection() {
+		try {
+			mConnection.close();
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void consume(int messagesToRead) {
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
@@ -49,15 +57,19 @@ public class ArtemisConsumer {
 		}
 	}
 
-	public void closeConnection() {
-		try {
-			mConnection.close();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+	public void synchronousConsume() {
+		while (true) {
+			try {
+				BytesMessage message = (BytesMessage) mConsumer.receive();
+				System.out.println("Message received");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 	public static void main(String[] args) {
+		ArtemisConsumer myConsumer = new ArtemisConsumer();
+		myConsumer.synchronousConsume();
 	}
 
 }
