@@ -8,8 +8,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
-import com.rabbitmq.RabbitConsumer;
-
 public class Consumer {
 	private final String topic = "myTopic";
 	private final ArrayList<String> topics;
@@ -59,25 +57,5 @@ public class Consumer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void synchronousConsume() {
-		kafkaConsumer.subscribe(topics);
-
-		try {
-			while (true) {
-				ConsumerRecords<Integer, byte[]> records = kafkaConsumer.poll(100);
-				for (ConsumerRecord<Integer, byte[]> record : records) {
-					byte[] message = record.value();
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void main(String args[]) {
-		Consumer myConsumer = new Consumer();
-		myConsumer.synchronousConsume();
 	}
 }
