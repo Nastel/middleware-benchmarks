@@ -51,7 +51,6 @@ public class IBMConsumer {
 			gmo = new MQGetMessageOptions();
 			gmo.options = MQConstants.MQGMO_NO_WAIT;
 		} catch (Exception e) {
-			System.out.println("error putting");
 			e.printStackTrace();
 		}
 	}

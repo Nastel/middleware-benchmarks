@@ -37,7 +37,6 @@ public class IBMProducer {
 			pmo = new MQPutMessageOptions();
 			pmo.options = MQConstants.MQPMO_ASYNC_RESPONSE;
 		} catch (Exception e) {
-			System.out.println("error putting");
 			e.printStackTrace();
 		}
 	}
