@@ -63,7 +63,7 @@ public class IBMConsumer {
 		MQMessage message = new MQMessage();
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
-				queue.get(message);
+				queue.get(message, gmo);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
