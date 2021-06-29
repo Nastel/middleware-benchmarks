@@ -19,7 +19,7 @@ import com.ibm.msg.client.wmq.WMQConstants;
 
 public class IBMConsumer {
 
-	private final String QUEUE_NAME = "DEV.testput";
+	private final String QUEUE_NAME = "DEV.myQueue";
 	private static final String HOST = "localhost";
 	private static final int PORT = 1414;
 	private static final String CHANNEL = "DEV.APP.SVRCONN";
@@ -29,8 +29,8 @@ public class IBMConsumer {
 
 	private MQQueue queue;
 	private MQQueueManager qMgr;
-	private MQGetMessageOptions gmo;
 	private MQMessage message;
+	// private MQGetMessageOptions gmo;
 
 	private JMSContext context;
 	private Destination destination;
@@ -49,8 +49,8 @@ public class IBMConsumer {
 			qMgr = new MQQueueManager(QMGR, props);
 			int openOptions = MQConstants.MQOO_INPUT_AS_Q_DEF;
 			queue = qMgr.accessQueue(QUEUE_NAME, openOptions);
-			//gmo = new MQGetMessageOptions();
-			//gmo.options = MQConstants.MQGMO_NO_WAIT;
+			// gmo = new MQGetMessageOptions();
+			// gmo.options = MQConstants.MQGMO_NO_WAIT;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

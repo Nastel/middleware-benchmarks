@@ -9,7 +9,7 @@ import com.ibm.mq.constants.MQConstants;
 
 public class IBMProducer {
 
-	private static final String QUEUE_NAME = "DEV.testput";
+	private static final String QUEUE_NAME = "DEV.myQueue";
 	private static final String HOST = "localhost";
 	private static final int PORT = 1414;
 	private static final String CHANNEL = "DEV.APP.SVRCONN";

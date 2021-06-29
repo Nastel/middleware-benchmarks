@@ -33,12 +33,11 @@ public class ArtemisProducerBenchmarks {
 	public void setup() {
 		myProducer = new ArtemisProducer();
 	}
-	
+
 	@TearDown(Level.Trial)
 	public void tearDown() {
 		myProducer.closeConnection();
 	}
-
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
@@ -49,7 +48,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 512 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 100 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -59,7 +58,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce1(Blackhole bh) {
 		myProducer.produce(100, 512);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -69,7 +68,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 512 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 1000 messages of size 512 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -79,7 +78,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce2(Blackhole bh) {
 		myProducer.produce(1000, 512);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -89,7 +88,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 1024 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 100 messages of size 1024 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -99,7 +98,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce3(Blackhole bh) {
 		myProducer.produce(100, 1024);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -109,7 +108,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 1024 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 1000 messages of size 1024 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -119,7 +118,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce4(Blackhole bh) {
 		myProducer.produce(1000, 1024);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -129,7 +128,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 10240 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 100 messages of size 10240 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -139,7 +138,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce5(Blackhole bh) {
 		myProducer.produce(100, 10240);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -149,7 +148,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 10240 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 1000 messages of size 10240 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -159,7 +158,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce6(Blackhole bh) {
 		myProducer.produce(1000, 10240);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -169,7 +168,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 32768 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 100 messages of size 32768 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -179,7 +178,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce7(Blackhole bh) {
 		myProducer.produce(100, 32768);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -189,7 +188,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 32768 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 1000 messages of size 32768 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -199,7 +198,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce8(Blackhole bh) {
 		myProducer.produce(1000, 32768);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -209,7 +208,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 100 messages of size 65536 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 100 messages of size 65536 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -219,7 +218,7 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce9(Blackhole bh) {
 		myProducer.produce(100, 65536);
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
@@ -229,7 +228,7 @@ public class ArtemisProducerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "produce")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.artemis-core-client")
 	@BenchmarkMetaData(key = "title", value = "Producing Messages")
-	@BenchmarkMetaData(key="description", value="Produced 1000 messages of size 65536 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "Produced 1000 messages of size 65536 bytes per iteration")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -239,9 +238,5 @@ public class ArtemisProducerBenchmarks {
 	public void artemisProduce10(Blackhole bh) {
 		myProducer.produce(1000, 65536);
 	}
-	
-
-
-	
 
 }

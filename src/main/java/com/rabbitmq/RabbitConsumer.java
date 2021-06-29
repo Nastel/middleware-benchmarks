@@ -50,9 +50,10 @@ public class RabbitConsumer {
 	public void synchronousConsume() {
 		try {
 			DeliverCallback deliverCallback = (consumerTag, delivery) -> {
-			    delivery.getBody();
+				delivery.getBody();
 			};
-			myChannel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
+			myChannel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
+			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

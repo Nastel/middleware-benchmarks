@@ -11,11 +11,11 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQConsumer {
+	private final String QUEUE_NAME = "MyQueue";
 	private Connection connection;
 	private Session session;
 	private MessageConsumer consumer;
 	private Destination destination;
-	private final String QUEUE_NAME = "MyQueue";
 
 	public void makeConnection() {
 		try {
