@@ -76,7 +76,7 @@ public class IBMConsumer {
 	}
 
 	public void synchronousConsume() {
-
+		System.out.println("Started consuming");
 		while (true) {
 			message = new MQMessage();
 			try {
