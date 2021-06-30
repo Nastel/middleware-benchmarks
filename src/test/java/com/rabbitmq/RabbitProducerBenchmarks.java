@@ -51,8 +51,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce1(Blackhole bh) {
 		myProducer.produce(100, 512);
 	}
@@ -71,8 +71,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce2(Blackhole bh) {
 		myProducer.produce(1000, 512);
 	}
@@ -91,8 +91,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce3(Blackhole bh) {
 		myProducer.produce(100, 1024);
 	}
@@ -111,8 +111,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce4(Blackhole bh) {
 		myProducer.produce(1000, 1024);
 	}
@@ -131,8 +131,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce5(Blackhole bh) {
 		myProducer.produce(100, 10240);
 	}
@@ -151,8 +151,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce6(Blackhole bh) {
 		myProducer.produce(1000, 10240);
 	}
@@ -171,8 +171,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce7(Blackhole bh) {
 		myProducer.produce(100, 32768);
 	}
@@ -191,8 +191,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce8(Blackhole bh) {
 		myProducer.produce(1000, 32768);
 	}
@@ -211,8 +211,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce9(Blackhole bh) {
 		myProducer.produce(100, 65536);
 	}
@@ -231,8 +231,8 @@ public class RabbitProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitProduce10(Blackhole bh) {
 		myProducer.produce(1000, 65536);
 	}

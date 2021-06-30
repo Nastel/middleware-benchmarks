@@ -51,7 +51,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume1(Blackhole bh) {
 		myConsumer.consume(1000);
@@ -71,7 +71,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume2(Blackhole bh) {
 		myConsumer.consume(10000);
@@ -91,7 +91,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume3(Blackhole bh) {
 		myConsumer.consume(1000);
@@ -111,7 +111,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume4(Blackhole bh) {
 		myConsumer.consume(10000);
@@ -131,7 +131,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume5(Blackhole bh) {
 		myConsumer.consume(1000);
@@ -151,7 +151,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume6(Blackhole bh) {
 		myConsumer.consume(10000);
@@ -171,7 +171,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume7(Blackhole bh) {
 		myConsumer.consume(1000);
@@ -191,7 +191,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume8(Blackhole bh) {
 		myConsumer.consume(10000);
@@ -211,7 +211,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume9(Blackhole bh) {
 		myConsumer.consume(1000);
@@ -231,7 +231,7 @@ public class RabbitConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume10(Blackhole bh) {
 		myConsumer.consume(10000);
