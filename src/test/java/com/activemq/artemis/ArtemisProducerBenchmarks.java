@@ -53,8 +53,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce1(Blackhole bh) {
 		myProducer.produce(100, 512);
 	}
@@ -73,8 +73,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce2(Blackhole bh) {
 		myProducer.produce(1000, 512);
 	}
@@ -93,8 +93,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce3(Blackhole bh) {
 		myProducer.produce(100, 1024);
 	}
@@ -113,8 +113,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce4(Blackhole bh) {
 		myProducer.produce(1000, 1024);
 	}
@@ -133,8 +133,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce5(Blackhole bh) {
 		myProducer.produce(100, 10240);
 	}
@@ -153,8 +153,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce6(Blackhole bh) {
 		myProducer.produce(1000, 10240);
 	}
@@ -173,8 +173,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce7(Blackhole bh) {
 		myProducer.produce(100, 32768);
 	}
@@ -193,8 +193,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce8(Blackhole bh) {
 		myProducer.produce(1000, 32768);
 	}
@@ -213,8 +213,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce9(Blackhole bh) {
 		myProducer.produce(100, 65536);
 	}
@@ -233,8 +233,8 @@ public class ArtemisProducerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 100, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 15, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void artemisProduce10(Blackhole bh) {
 		myProducer.produce(1000, 65536);
 	}

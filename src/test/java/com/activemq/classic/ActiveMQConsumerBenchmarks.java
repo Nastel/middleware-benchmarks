@@ -51,8 +51,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume1(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -71,8 +71,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume2(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -91,8 +91,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume3(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -111,8 +111,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume4(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -131,8 +131,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume5(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -151,8 +151,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume6(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -171,8 +171,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume7(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -191,8 +191,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume8(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
@@ -211,8 +211,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume9(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
@@ -231,8 +231,8 @@ public class ActiveMQConsumerBenchmarks {
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
-	@Measurement(iterations = 10, time = 100, timeUnit = TimeUnit.NANOSECONDS)
-	@Warmup(iterations = 1, time = 100, timeUnit = TimeUnit.NANOSECONDS)
+	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeConsume10(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
