@@ -21,8 +21,8 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
-//@BenchmarkMetaData(key = "context", value = "SynchronousConsume")
-//@BenchmarkMetaData(key = "context", value = "Consume")
+//@BenchmarkMetaData(key = "context", value = "ConcurrentConsume")
+//@BenchmarkMetaData(key = "context", value = "NonconcurrentConsume")
 @BenchmarkMetaData(key = "domain", value = "java")
 public class ActiveMQConsumerBenchmarks {
 	private ActiveMQConsumer myConsumer;
