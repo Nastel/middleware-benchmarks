@@ -3,6 +3,7 @@ package com.activemq.artemis;
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
@@ -29,6 +30,7 @@ public class ArtemisProducer {
 			mSession = mConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			Queue mQueue = mSession.createQueue(QUEUE_NAME);
 			mProducer = mSession.createProducer(mQueue);
+			mProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 			mConnection.start();
 		} catch (JMSException e) {
 			e.printStackTrace();
