@@ -2,20 +2,12 @@ package com.ibmmq;
 
 import java.util.Hashtable;
 
+import com.ibm.mq.MQException;
 import com.ibm.mq.MQGetMessageOptions;
 import com.ibm.mq.MQMessage;
 import com.ibm.mq.MQQueue;
 import com.ibm.mq.MQQueueManager;
 import com.ibm.mq.constants.MQConstants;
-
-import javax.jms.BytesMessage;
-import javax.jms.Destination;
-import javax.jms.JMSConsumer;
-import javax.jms.JMSContext;
-import javax.jms.JMSException;
-import com.ibm.msg.client.jms.JmsConnectionFactory;
-import com.ibm.msg.client.jms.JmsFactoryFactory;
-import com.ibm.msg.client.wmq.WMQConstants;
 
 public class IBMConsumer {
 
@@ -31,10 +23,6 @@ public class IBMConsumer {
 	private MQQueueManager qMgr;
 	private MQMessage message;
 	// private MQGetMessageOptions gmo;
-
-	private JMSContext context;
-	private Destination destination;
-	private JMSConsumer consumer;
 
 	private void buildConnection() {
 		Hashtable<String, Object> props = new Hashtable<String, Object>();
@@ -81,53 +69,32 @@ public class IBMConsumer {
 		}
 	}
 
-	// FOR SYNCRHONOUS CONSUMPTION
-
 	public static void main(String args[]) {
-		IBMConsumer myConsumer = new IBMConsumer(true);
+		IBMConsumer myConsumer = new IBMConsumer();
 		myConsumer.synchronousConsume();
-		myConsumer.closeSyncConnection();
+		myConsumer.closeConnection();
 	}
 
 	public void synchronousConsume() {
+
 		while (true) {
-			BytesMessage message = (BytesMessage) consumer.receive();
-			System.out.println("Message received");
-		}
-	}
-
-	public IBMConsumer(boolean synchronous) {
-		buildSyncConnection();
-	}
-
-	private void buildSyncConnection() {
-		try {
-			JmsFactoryFactory ff = JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
-			JmsConnectionFactory cf = ff.createConnectionFactory();
-
-			cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, HOST);
-			cf.setIntProperty(WMQConstants.WMQ_PORT, PORT);
-			cf.setStringProperty(WMQConstants.WMQ_CHANNEL, CHANNEL);
-			cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT);
-			cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, QMGR);
-			cf.setStringProperty(WMQConstants.WMQ_APPLICATIONNAME, "Message Tester (JMS)");
-			cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
-			cf.setStringProperty(WMQConstants.USERID, APP_USER);
-			cf.setStringProperty(WMQConstants.PASSWORD, APP_PASSWORD);
-			context = cf.createContext();
-			destination = context.createQueue("queue:///" + QUEUE_NAME);
-			consumer = context.createConsumer(destination);
-		} catch (JMSException e) {
-			if (e != null) {
-				if (e instanceof JMSException) {
+			message = new MQMessage();
+			try {
+				queue.get(message);
+				message.clearMessage();
+			} catch (Exception e) {
+				if (e instanceof MQException) {
+					MQException mqe = (MQException) e;
+					if (mqe.reasonCode == 2033) {
+						// System.out.println("no messages to consume");
+						// break;
+					}
+				} else {
 					e.printStackTrace();
 				}
+
 			}
 		}
-	}
-
-	public void closeSyncConnection() {
-		context.close();
 	}
 
 }
