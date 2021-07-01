@@ -58,6 +58,7 @@ public class ArtemisConsumer {
 	}
 
 	public void synchronousConsume() {
+		System.out.println("Started consuming");
 		while (true) {
 			try {
 				BytesMessage message = (BytesMessage) mConsumer.receive();
