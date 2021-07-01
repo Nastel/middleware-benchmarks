@@ -22,7 +22,7 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 @State(Scope.Benchmark)
 @BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
 //@BenchmarkMetaData(key = "context", value = "ConcurrentProduce")
-@BenchmarkMetaData(key = "context", value = "NonconcurrentProduce")
+//@BenchmarkMetaData(key = "context", value = "NonconcurrentProduce")
 @BenchmarkMetaData(key = "domain", value = "java")
 public class ProducerBenchmarks {
 	private Producer myProducer;
