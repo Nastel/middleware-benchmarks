@@ -1,6 +1,7 @@
 package com.rabbitmq;
 
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
@@ -32,7 +33,7 @@ public class RabbitProducer {
 
 			for (int counter = 0; counter < totalMessages; counter++) {
 				// use default exchange
-				myChannel.basicPublish("", QUEUE_NAME, null, byteArrMsg);
+				myChannel.basicPublish("", QUEUE_NAME, MessageProperties.TEXT_PLAIN, byteArrMsg); //change to MessageProperties.PERSISTENT_TEXT_PLAIN to enable persistence 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
