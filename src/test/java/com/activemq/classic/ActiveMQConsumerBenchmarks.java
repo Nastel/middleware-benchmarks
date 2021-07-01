@@ -46,7 +46,7 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-512b")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
 	@BenchmarkMetaData(key = "title", value = "Consuming 1000 msgs of 512 bytes")
-	@BenchmarkMetaData(key = "description", value = "Consumed 1000 messages of size 512 bytes per iteration")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
