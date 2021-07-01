@@ -61,7 +61,6 @@ public class ArtemisConsumer {
 		while (true) {
 			try {
 				BytesMessage message = (BytesMessage) mConsumer.receive();
-				System.out.println("Message received");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
