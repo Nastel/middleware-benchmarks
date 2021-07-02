@@ -54,8 +54,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume1(Blackhole bh) {
-		myConsumer.consume(1000);
+	public void ibmConsume1000msg512b(Blackhole bh) {
+		myConsumer.consume(1000, "DEV.myQueue1");
 	}
 
 	@Benchmark
@@ -75,8 +75,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume2(Blackhole bh) {
-		myConsumer.consume(10000);
+	public void ibmConsume10000msg512b(Blackhole bh) {
+		myConsumer.consume(10000, "DEV.myQueue1");
 	}
 
 	@Benchmark
@@ -96,8 +96,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume3(Blackhole bh) {
-		myConsumer.consume(1000);
+	public void ibmConsume1000msg1k(Blackhole bh) {
+		myConsumer.consume(1000, "DEV.myQueue2");
 	}
 
 	@Benchmark
@@ -117,8 +117,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume4(Blackhole bh) {
-		myConsumer.consume(10000);
+	public void ibmConsume10000msg1k(Blackhole bh) {
+		myConsumer.consume(10000, "DEV.myQueue2");
 	}
 
 	@Benchmark
@@ -138,8 +138,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume5(Blackhole bh) {
-		myConsumer.consume(1000);
+	public void ibmConsume1000msg10k(Blackhole bh) {
+		myConsumer.consume(1000, "DEV.myQueue3");
 	}
 
 	@Benchmark
@@ -159,8 +159,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume6(Blackhole bh) {
-		myConsumer.consume(10000);
+	public void ibmConsume10000msg10k(Blackhole bh) {
+		myConsumer.consume(10000, "DEV.myQueue3");
 	}
 
 	@Benchmark
@@ -180,8 +180,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume7(Blackhole bh) {
-		myConsumer.consume(1000);
+	public void ibmConsume1000msg32k(Blackhole bh) {
+		myConsumer.consume(1000, "DEV.myQueue4");
 	}
 
 	@Benchmark
@@ -201,8 +201,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume8(Blackhole bh) {
-		myConsumer.consume(10000);
+	public void ibmConsume10000msg32k(Blackhole bh) {
+		myConsumer.consume(10000, "DEV.myQueue4");
 	}
 
 	@Benchmark
@@ -222,8 +222,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume9(Blackhole bh) {
-		myConsumer.consume(1000);
+	public void ibmConsume1000msg64k(Blackhole bh) {
+		myConsumer.consume(1000, "DEV.myQueue5");
 	}
 
 	@Benchmark
@@ -243,8 +243,8 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume10(Blackhole bh) {
-		myConsumer.consume(10000);
+	public void ibmConsume10000msg64kk(Blackhole bh) {
+		myConsumer.consume(10000, "DEV.myQueue5");
 	}
 
 }
