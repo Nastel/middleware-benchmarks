@@ -9,13 +9,16 @@ import com.ibm.mq.constants.MQConstants;
 
 public class IBMProducer {
 
-	private static final String QUEUE_NAME = "DEV.myQueue";
-	private static final String HOST = "localhost";
-	private static final int PORT = 1414;
-	private static final String CHANNEL = "DEV.APP.SVRCONN";
-	private static final String QMGR = "QM1";
-	private static final String APP_USER = "app";
-	private static final String APP_PASSWORD = "passw0rd";
+	// PARAMS
+	private boolean persistence = false;
+
+	private final String QUEUE_NAME = "DEV.myQueue";
+	private final String HOST = "localhost";
+	private final int PORT = 1414;
+	private final String CHANNEL = "DEV.APP.SVRCONN";
+	private final String QMGR = "QM1";
+	private final String APP_USER = "app";
+	private final String APP_PASSWORD = "passw0rd";
 
 	private MQQueue queue;
 	private MQQueueManager qMgr;
@@ -47,6 +50,10 @@ public class IBMProducer {
 
 	public void produce(int totalMessages, int msgSize) {
 		MQMessage message = new MQMessage();
+		if (persistence) {
+			message.persistence = MQConstants.MQPER_PERSISTENT;
+		}
+
 		try {
 			message.write(msgSize);
 
