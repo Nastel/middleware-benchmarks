@@ -11,15 +11,15 @@ import com.ibm.mq.constants.MQConstants;
 
 public class IBMConsumer {
 
-	private final String QUEUE_NAME = "DEV.myQueue";
-	private static final String HOST = "localhost";
-	private static final int PORT = 1414;
-	private static final String CHANNEL = "DEV.APP.SVRCONN";
-	private static final String QMGR = "QM1";
-	private static final String APP_USER = "app";
-	private static final String APP_PASSWORD = "passw0rd";
+	private final String HOST = "localhost";
+	private final int PORT = 1414;
+	private final String CHANNEL = "DEV.APP.SVRCONN";
+	private final String QMGR = "QM1";
+	private final String APP_USER = "app";
+	private final String APP_PASSWORD = "passw0rd";
 
-	private MQQueue queue;
+	private int openOptions;
+	private MQQueue queue = null;
 	private MQQueueManager qMgr;
 	private MQMessage message;
 	// private MQGetMessageOptions gmo;
@@ -35,8 +35,7 @@ public class IBMConsumer {
 
 		try {
 			qMgr = new MQQueueManager(QMGR, props);
-			int openOptions = MQConstants.MQOO_INPUT_AS_Q_DEF;
-			queue = qMgr.accessQueue(QUEUE_NAME, openOptions);
+			openOptions = MQConstants.MQOO_INPUT_AS_Q_DEF;
 			// gmo = new MQGetMessageOptions();
 			// gmo.options = MQConstants.MQGMO_NO_WAIT;
 		} catch (Exception e) {
@@ -48,7 +47,15 @@ public class IBMConsumer {
 		buildConnection();
 	}
 
-	public void consume(int messagesToRead) {
+	public void consume(int messagesToRead, String QUEUE_NAME) {
+		try {
+			if (queue == null) {
+				queue = qMgr.accessQueue(QUEUE_NAME, openOptions);
+			}
+		} catch (MQException e) {
+			e.printStackTrace();
+		}
+
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			message = new MQMessage();
 			try {
