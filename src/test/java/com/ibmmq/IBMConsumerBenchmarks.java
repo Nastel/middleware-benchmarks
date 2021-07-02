@@ -283,7 +283,7 @@ public class IBMConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmConsume10000msg64kk(Blackhole bh) {
+	public void ibmConsume10000msg64k(Blackhole bh) {
 		myConsumer.consume(10000, "DEV.myQueue5");
 	}
 
