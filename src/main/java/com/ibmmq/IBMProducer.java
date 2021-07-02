@@ -52,6 +52,8 @@ public class IBMProducer {
 		MQMessage message = new MQMessage();
 		if (persistence) {
 			message.persistence = MQConstants.MQPER_PERSISTENT;
+		} else {
+			message.persistence = MQConstants.MQPER_NOT_PERSISTENT;
 		}
 
 		try {
