@@ -55,7 +55,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce1(Blackhole bh) {
+	public void ibmProduce100msg512b(Blackhole bh) {
 		myProducer.produce(100, 512);
 	}
 
@@ -76,7 +76,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce2(Blackhole bh) {
+	public void ibmProduce1000msg512b(Blackhole bh) {
 		myProducer.produce(1000, 512);
 	}
 
@@ -97,7 +97,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce3(Blackhole bh) {
+	public void ibmProduce100msg1k(Blackhole bh) {
 		myProducer.produce(100, 1024);
 	}
 
@@ -118,7 +118,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce4(Blackhole bh) {
+	public void ibmProduce1000msg1k(Blackhole bh) {
 		myProducer.produce(1000, 1024);
 	}
 
@@ -139,7 +139,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce5(Blackhole bh) {
+	public void ibmProduce100msg10k(Blackhole bh) {
 		myProducer.produce(100, 10240);
 	}
 
@@ -160,7 +160,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce6(Blackhole bh) {
+	public void ibmProduce1000msg10k(Blackhole bh) {
 		myProducer.produce(1000, 10240);
 	}
 
@@ -181,7 +181,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce7(Blackhole bh) {
+	public void ibmProduce100msg32k(Blackhole bh) {
 		myProducer.produce(100, 32768);
 	}
 
@@ -202,7 +202,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce8(Blackhole bh) {
+	public void ibmProduce1000msg32k(Blackhole bh) {
 		myProducer.produce(1000, 32768);
 	}
 
@@ -223,7 +223,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce9(Blackhole bh) {
+	public void ibmProduce100msg64k(Blackhole bh) {
 		myProducer.produce(100, 65536);
 	}
 
@@ -244,7 +244,7 @@ public class IBMProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void ibmProduce10(Blackhole bh) {
+	public void ibmProduce1000msg64k(Blackhole bh) {
 		myProducer.produce(1000, 65536);
 	}
 
