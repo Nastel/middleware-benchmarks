@@ -78,12 +78,18 @@ public class IBMConsumer {
 
 	public static void main(String args[]) {
 		IBMConsumer myConsumer = new IBMConsumer();
-		myConsumer.synchronousConsume();
+		myConsumer.synchronousConsume("DEV.myQueue");
 		myConsumer.closeConnection();
 	}
 
-	public void synchronousConsume() {
+	public void synchronousConsume(String QUEUE_NAME) {
 		System.out.println("Started consuming");
+		try {
+			queue = qMgr.accessQueue(QUEUE_NAME, openOptions);
+		} catch (MQException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		while (true) {
 			message = new MQMessage();
 			try {
