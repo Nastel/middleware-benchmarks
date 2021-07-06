@@ -9,7 +9,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 public class Consumer {
-	private final String topic = "myTopic";
 	private final ArrayList<String> topics;
 	private final String bootstrapServer = "localhost:9092";
 	private KafkaConsumer<Integer, byte[]> kafkaConsumer;
@@ -32,14 +31,16 @@ public class Consumer {
 	public Consumer() {
 		kafkaConsumer = new KafkaConsumer<>(consumerProps());
 		topics = new ArrayList<String>();
-		topics.add(topic);
 	}
 
 	public void closeConsumer() {
 		kafkaConsumer.close();
 	}
 
-	public void consume(int messagesToRead) {
+	public void consume(int messagesToRead, String TOPIC_NAME) {
+		if(topics.isEmpty()) {
+			topics.add(TOPIC_NAME);
+		}
 		kafkaConsumer.subscribe(topics);
 		totalReadMessages = 0;
 
