@@ -20,7 +20,7 @@ import org.openjdk.jmh.infra.Blackhole;
 import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
-@BenchmarkMetaData(key = "isLibraryBenchmark-NonP", value = "true")
+@BenchmarkMetaData(key = "isLibraryBenchmark", value = "true")
 //@BenchmarkMetaData(key = "context", value = "ConcurrentConsume")
 //@BenchmarkMetaData(key = "context", value = "NonconcurrentConsume")
 @BenchmarkMetaData(key = "domain", value = "java")
