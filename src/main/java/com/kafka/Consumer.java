@@ -61,6 +61,7 @@ public class Consumer {
 	}
 
 	public void concurrentConsume() {
+		topics.add("myTopic");
 		kafkaConsumer.subscribe(topics);
 
 		try {
