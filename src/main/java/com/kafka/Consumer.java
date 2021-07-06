@@ -59,7 +59,7 @@ public class Consumer {
 		}
 	}
 
-	public void synchronousConsume() {
+	public void concurrentConsume() {
 		kafkaConsumer.subscribe(topics);
 
 		try {
@@ -76,6 +76,6 @@ public class Consumer {
 
 	public static void main(String args[]) {
 		Consumer myConsumer = new Consumer();
-		myConsumer.synchronousConsume();
+		myConsumer.concurrentConsume();
 	}
 }

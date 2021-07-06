@@ -78,11 +78,11 @@ public class IBMConsumer {
 
 	public static void main(String args[]) {
 		IBMConsumer myConsumer = new IBMConsumer();
-		myConsumer.synchronousConsume("DEV.myQueue");
+		myConsumer.concurrentConsume("DEV.myQueue");
 		myConsumer.closeConnection();
 	}
 
-	public void synchronousConsume(String QUEUE_NAME) {
+	public void concurrentConsume(String QUEUE_NAME) {
 		System.out.println("Started consuming");
 		try {
 			queue = qMgr.accessQueue(QUEUE_NAME, openOptions);

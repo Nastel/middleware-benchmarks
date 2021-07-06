@@ -47,7 +47,7 @@ public class RabbitConsumer {
 		}
 	}
 
-	public void synchronousConsume() {
+	public void concurrentConsume() {
 		try {
 			DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 				delivery.getBody();
@@ -61,7 +61,7 @@ public class RabbitConsumer {
 
 	public static void main(String args[]) {
 		RabbitConsumer myConsumer = new RabbitConsumer();
-		myConsumer.synchronousConsume();
+		myConsumer.concurrentConsume();
 	}
 
 }

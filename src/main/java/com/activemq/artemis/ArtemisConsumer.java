@@ -57,7 +57,7 @@ public class ArtemisConsumer {
 		}
 	}
 
-	public void synchronousConsume() {
+	public void concurrentConsume() {
 		System.out.println("Started consuming");
 		while (true) {
 			try {
@@ -70,7 +70,7 @@ public class ArtemisConsumer {
 
 	public static void main(String[] args) {
 		ArtemisConsumer myConsumer = new ArtemisConsumer();
-		myConsumer.synchronousConsume();
+		myConsumer.concurrentConsume();
 	}
 
 }

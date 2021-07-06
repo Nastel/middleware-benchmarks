@@ -53,7 +53,7 @@ public class ActiveMQConsumer {
 		}
 	}
 
-	public void synchronousConsume() {
+	public void concurrentConsume() {
 		while (true) {
 			try {
 				BytesMessage message = (BytesMessage) consumer.receive();
@@ -66,7 +66,7 @@ public class ActiveMQConsumer {
 
 	public static void main(String args[]) {
 		ActiveMQConsumer myConsumer = new ActiveMQConsumer();
-		myConsumer.synchronousConsume();
+		myConsumer.concurrentConsume();
 	}
 
 }
