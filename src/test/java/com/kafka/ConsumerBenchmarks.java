@@ -51,7 +51,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume1(Blackhole bh) {
+	public void kafkaConsume1000msg512b(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
 
@@ -71,7 +71,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume2(Blackhole bh) {
+	public void kafkaConsume10000msg512b(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
 
@@ -91,7 +91,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume3(Blackhole bh) {
+	public void kafkaConsume1000msg1k(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
 
@@ -111,7 +111,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume4(Blackhole bh) {
+	public void kafkaConsume10000msg1k(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
 
@@ -131,7 +131,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume5(Blackhole bh) {
+	public void kafkaConsume1000msg10k(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
 
@@ -151,7 +151,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume6(Blackhole bh) {
+	public void kafkaConsume10000msg10k(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
 
@@ -171,7 +171,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume7(Blackhole bh) {
+	public void kafkaConsume1000msg32k(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
 
@@ -191,7 +191,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume8(Blackhole bh) {
+	public void kafkaConsume10000msg32k(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
 
@@ -211,7 +211,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume9(Blackhole bh) {
+	public void kafkaConsume1000msg64k(Blackhole bh) {
 		myConsumer.consume(1000);
 	}
 
@@ -231,7 +231,7 @@ public class ConsumerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void kafkaConsume10(Blackhole bh) {
+	public void kafkaConsume10000msg64k(Blackhole bh) {
 		myConsumer.consume(10000);
 	}
 
