@@ -63,6 +63,7 @@ public class Consumer {
 	public void concurrentConsume() {
 		topics.add("myTopic");
 		kafkaConsumer.subscribe(topics);
+		System.out.println("Started consuming");
 
 		try {
 			while (true) {
