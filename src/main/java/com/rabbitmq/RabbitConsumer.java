@@ -6,7 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
 public class RabbitConsumer {
-	private final String QUEUE_NAME = "MyQueue";
+	private String QUEUE_NAME = " ";
 	private Connection myConnection;
 	private Channel myChannel;
 
@@ -27,7 +27,7 @@ public class RabbitConsumer {
 		makeConnection();
 	}
 
-	public void consume(int messagesToRead) {
+	public void consume(int messagesToRead, String QUEUE_NAME) {
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
 				// String msg = new String(myChannel.basicGet(QUEUE_NAME, true).getBody());
