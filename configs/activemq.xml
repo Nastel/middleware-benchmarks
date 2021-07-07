@@ -91,7 +91,7 @@
           <systemUsage>
             <systemUsage>
                 <memoryUsage>
-                    <memoryUsage percentOfJvmHeap="70" />
+                    <memoryUsage percentOfJvmHeap="90" />
                 </memoryUsage>
                 <storeUsage>
                     <storeUsage limit="100 gb"/>
