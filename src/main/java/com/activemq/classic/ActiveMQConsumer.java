@@ -11,7 +11,6 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQConsumer {
-	private String QUEUE_NAME = "MyQueue";
 	private Connection connection;
 	private Session session;
 	private MessageConsumer consumer;
@@ -60,7 +59,17 @@ public class ActiveMQConsumer {
 		}
 	}
 
-	public void concurrentConsume() {
+	public void concurrentConsume(String QUEUE_NAME) {
+		try {
+			if (destination == null) {
+				destination = session.createQueue(QUEUE_NAME);
+				consumer = session.createConsumer(destination);
+				connection.start();
+			}
+		} catch (JMSException e1) {
+			e1.printStackTrace();
+		}
+
 		while (true) {
 			try {
 				BytesMessage message = (BytesMessage) consumer.receive();
@@ -73,7 +82,7 @@ public class ActiveMQConsumer {
 
 	public static void main(String args[]) {
 		ActiveMQConsumer myConsumer = new ActiveMQConsumer();
-		myConsumer.concurrentConsume();
+		myConsumer.concurrentConsume("MyQueue");
 	}
 
 }

@@ -76,12 +76,6 @@ public class IBMConsumer {
 		}
 	}
 
-	public static void main(String args[]) {
-		IBMConsumer myConsumer = new IBMConsumer();
-		myConsumer.concurrentConsume("DEV.myQueue");
-		myConsumer.closeConnection();
-	}
-
 	public void concurrentConsume(String QUEUE_NAME) {
 		System.out.println("Started consuming");
 		try {
@@ -108,6 +102,12 @@ public class IBMConsumer {
 
 			}
 		}
+	}
+
+	public static void main(String args[]) {
+		IBMConsumer myConsumer = new IBMConsumer();
+		myConsumer.concurrentConsume("DEV.myQueue");
+		myConsumer.closeConnection();
 	}
 
 }
