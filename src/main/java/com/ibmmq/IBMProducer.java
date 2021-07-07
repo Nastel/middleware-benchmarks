@@ -13,7 +13,7 @@ public class IBMProducer {
 	// PARAMS
 	private boolean persistence = false;
 
-	private String QUEUE_NAME = "DEV.myQueue";
+	private static String QUEUE_NAME = "DEV.myQueue";
 	private final String HOST = "localhost";
 	private final int PORT = 1414;
 	private final String CHANNEL = "DEV.APP.SVRCONN";
@@ -80,28 +80,28 @@ public class IBMProducer {
 
 	public static void main(String args[]) {
 		// populates topic for the consumer benchmarks
+		QUEUE_NAME = "DEV.myQueue1";
 		IBMProducer p1 = new IBMProducer();
-		p1.QUEUE_NAME = "DEV.myQueue1";
 		p1.produce(130000, 512);
 		p1.closeConnection();
 
+		QUEUE_NAME = "DEV.myQueue2";
 		IBMProducer p2 = new IBMProducer();
-		p2.QUEUE_NAME = "DEV.myQueue2";
 		p2.produce(130000, 1024);
 		p2.closeConnection();
 
+		QUEUE_NAME = "DEV.myQueue3";
 		IBMProducer p3 = new IBMProducer();
-		p3.QUEUE_NAME = "DEV.myQueue3";
 		p3.produce(130000, 10240);
 		p3.closeConnection();
 
+		QUEUE_NAME = "DEV.myQueue4";
 		IBMProducer p4 = new IBMProducer();
-		p4.QUEUE_NAME = "DEV.myQueue4";
 		p4.produce(130000, 32768);
 		p4.closeConnection();
 
+		QUEUE_NAME = "DEV.myQueue5";
 		IBMProducer p5 = new IBMProducer();
-		p5.QUEUE_NAME = "DEV.myQueue5";
 		p5.produce(130000, 65536);
 		p5.closeConnection();
 	}
