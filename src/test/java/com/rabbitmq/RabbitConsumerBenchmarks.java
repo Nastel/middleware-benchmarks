@@ -57,7 +57,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume1000msg512b(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "myQueue1");
 	}
 
 	@Benchmark
@@ -81,7 +81,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume10000msg512b(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "myQueue1");
 	}
 
 	@Benchmark
@@ -105,7 +105,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume1000msg1k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "myQueue2");
 	}
 
 	@Benchmark
@@ -129,7 +129,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume10000msg1k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "myQueue2");
 	}
 
 	@Benchmark
@@ -153,7 +153,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume1000msg10k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "myQueue3");
 	}
 
 	@Benchmark
@@ -177,7 +177,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume10000msg10k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "myQueue3");
 	}
 
 	@Benchmark
@@ -201,7 +201,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume1000msg32k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "myQueue4");
 	}
 
 	@Benchmark
@@ -225,7 +225,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume10000msg32k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "myQueue4");
 	}
 
 	@Benchmark
@@ -249,7 +249,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume1000msg64k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "myQueue5");
 	}
 
 	@Benchmark
@@ -273,7 +273,7 @@ public class RabbitConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 5, timeUnit = TimeUnit.NANOSECONDS)
 	public void rabbitConsume10000msg64k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "myQueue5");
 	}
 
 }
