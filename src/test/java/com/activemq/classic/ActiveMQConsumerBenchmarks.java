@@ -40,7 +40,7 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
@@ -57,14 +57,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg512b(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "MyQueue1");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-NonPersistentd message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-NonPersistentd message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-512b-NonP")
@@ -80,14 +80,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg512b(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "MyQueue1");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-1k-NonP")
@@ -103,14 +103,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg1k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "MyQueue2");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-1k-NonP")
@@ -126,14 +126,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg1k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "MyQueue2");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-10k-NonP")
@@ -149,14 +149,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg10k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "MyQueue3");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-10k-NonP")
@@ -172,14 +172,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg10k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "MyQueue3");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-32k-NonP")
@@ -195,14 +195,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg32k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "MyQueue4");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-32k-NonP")
@@ -217,14 +217,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg32k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "MyQueue4");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-64k-NonP")
@@ -239,14 +239,14 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg64k(Blackhole bh) {
-		myConsumer.consume(1000);
+		myConsumer.consume(1000, "MyQueue5");
 	}
 
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Classic")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
-	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
+	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQÂ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
 //	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-64k-NonP")
@@ -262,7 +262,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg64k(Blackhole bh) {
-		myConsumer.consume(10000);
+		myConsumer.consume(10000, "MyQueue5");
 	}
 
 }
