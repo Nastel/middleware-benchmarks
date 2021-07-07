@@ -38,10 +38,10 @@ public class Consumer {
 	}
 
 	public void consume(int messagesToRead, String TOPIC_NAME) {
-		if(topics.isEmpty()) {
+		if (topics.isEmpty()) {
 			topics.add(TOPIC_NAME);
+			kafkaConsumer.subscribe(topics);
 		}
-		kafkaConsumer.subscribe(topics);
 		totalReadMessages = 0;
 
 		try {
