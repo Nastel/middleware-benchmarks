@@ -6,7 +6,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class Producer {
-	private final String topic = "myTopic";
+	private String topic = "myTopic";
 	private final String bootstrapServer = "localhost:9092";
 	private KafkaProducer<Integer, byte[]> kafkaProducer;
 
@@ -37,5 +37,33 @@ public class Producer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String args[]) {
+		// populates topic for the consumer benchmarks
+		Producer p1 = new Producer();
+		p1.topic = "myTopic1";
+		p1.produce(130000, 512);
+		p1.closeProducer();
+
+		Producer p2 = new Producer();
+		p2.topic = "myTopic2";
+		p2.produce(130000, 1024);
+		p2.closeProducer();
+
+		Producer p3 = new Producer();
+		p3.topic = "myTopic3";
+		p3.produce(130000, 10240);
+		p3.closeProducer();
+
+		Producer p4 = new Producer();
+		p4.topic = "myTopic4";
+		p4.produce(130000, 32768);
+		p4.closeProducer();
+
+		Producer p5 = new Producer();
+		p5.topic = "myTopic5";
+		p5.produce(130000, 65536);
+		p5.closeProducer();
 	}
 }
