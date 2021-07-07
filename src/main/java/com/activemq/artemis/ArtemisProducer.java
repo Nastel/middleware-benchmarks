@@ -15,7 +15,10 @@ import org.apache.activemq.artemis.api.jms.JMSFactoryType;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisProducer {
-	private final String QUEUE_NAME = "MyQueue";
+	// PARAMS
+	private boolean persistence = false;
+	
+	private static String QUEUE_NAME = "MyQueue";
 	private Connection mConnection;
 	private Session mSession;
 	private MessageProducer mProducer;
@@ -30,8 +33,16 @@ public class ArtemisProducer {
 			mSession = mConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			Queue mQueue = mSession.createQueue(QUEUE_NAME);
 			mProducer = mSession.createProducer(mQueue);
-			mProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+			
+			if(persistence){
+				mProducer.setDeliveryMode(DeliveryMode.PERSISTENT);	
+			}
+			else{
+				mProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);	
+			}
+			
 			mConnection.start();
+			
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -64,5 +75,30 @@ public class ArtemisProducer {
 	}
 
 	public static void main(String[] args) {
+		// populates topic for the consumer benchmarks
+		QUEUE_NAME = "MyQueue1";
+		ArtemisProducer p1 = new ArtemisProducer();
+		p1.produce(130000, 512);
+		p1.closeConnection();
+
+		QUEUE_NAME = "MyQueue2";
+		ArtemisProducer p2 = new ArtemisProducer();
+		p2.produce(130000, 1024);
+		p2.closeConnection();
+
+		QUEUE_NAME = "MyQueue3";
+		ArtemisProducer p3 = new ArtemisProducer();
+		p3.produce(130000, 10240);
+		p3.closeConnection();
+
+		QUEUE_NAME = "MyQueue4";
+		ArtemisProducer p4 = new ArtemisProducer();
+		p4.produce(130000, 32768);
+		p4.closeConnection();
+
+		QUEUE_NAME = "MyQueue5";
+		ArtemisProducer p5 = new ArtemisProducer();
+		p5.produce(130000, 65536);
+		p5.closeConnection();
 	}
 }
