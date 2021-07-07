@@ -11,11 +11,11 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQConsumer {
-	private final String QUEUE_NAME = "MyQueue";
+	private String QUEUE_NAME = "MyQueue";
 	private Connection connection;
 	private Session session;
 	private MessageConsumer consumer;
-	private Destination destination;
+	private Destination destination = null;
 
 	public void makeConnection() {
 		try {
@@ -23,9 +23,6 @@ public class ActiveMQConsumer {
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
 			connection = connectionFactory.createConnection();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			destination = session.createQueue(QUEUE_NAME);
-			consumer = session.createConsumer(destination);
-			connection.start();
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -35,7 +32,17 @@ public class ActiveMQConsumer {
 		makeConnection();
 	}
 
-	public void consume(int messagesToRead) {
+	public void consume(int messagesToRead, String QUEUE_NAME) {
+		try {
+			if (destination == null) {
+				destination = session.createQueue(QUEUE_NAME);
+				consumer = session.createConsumer(destination);
+				connection.start();
+			}
+		} catch (JMSException e1) {
+			e1.printStackTrace();
+		}
+
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
 				BytesMessage message = (BytesMessage) consumer.receive();
