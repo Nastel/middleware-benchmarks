@@ -14,10 +14,10 @@ import org.apache.activemq.artemis.api.jms.JMSFactoryType;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisConsumer {
-	private final String QUEUE_NAME = "MyQueue";
 	private Connection mConnection;
 	private Session mSession;
 	private MessageConsumer mConsumer;
+	private Queue mQueue = null;
 
 	public void buildConnection() {
 		try {
@@ -27,9 +27,7 @@ public class ArtemisConsumer {
 					transportConfiguration);
 			mConnection = cf.createConnection();
 			mSession = mConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			Queue mQueue = mSession.createQueue(QUEUE_NAME);
-			mConsumer = mSession.createConsumer(mQueue);
-			mConnection.start();
+			
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -39,7 +37,19 @@ public class ArtemisConsumer {
 		buildConnection();
 	}
 
-	public void consume(int messagesToRead) {
+	public void consume(int messagesToRead, String QUEUE_NAME) {
+		if(mQueue == null){
+			try{
+				mQueue = mSession.createQueue(QUEUE_NAME);
+				mConsumer = mSession.createConsumer(mQueue);
+				mConnection.start();
+			}
+			catch(JMSException e){
+				e.printStackTrace();
+			}
+		}
+		
+		
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
 				BytesMessage message = (BytesMessage) mConsumer.receive();
@@ -57,8 +67,20 @@ public class ArtemisConsumer {
 		}
 	}
 
-	public void concurrentConsume() {
+	public void concurrentConsume(String QUEUE_NAME) {
 		System.out.println("Started consuming");
+		
+		if(mQueue == null){
+			try{
+				mQueue = mSession.createQueue(QUEUE_NAME);
+				mConsumer = mSession.createConsumer(mQueue);
+				mConnection.start();
+			}
+			catch(JMSException e){
+				e.printStackTrace();
+			}
+		}
+		
 		while (true) {
 			try {
 				BytesMessage message = (BytesMessage) mConsumer.receive();
