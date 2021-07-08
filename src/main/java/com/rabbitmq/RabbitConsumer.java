@@ -7,7 +7,7 @@ import com.rabbitmq.client.DeliverCallback;
 
 public class RabbitConsumer {
 	private Connection myConnection;
-	private Channel myChannel = null;
+	private Channel myChannel;
 
 	private void makeConnection() {
 		ConnectionFactory myFactory = new ConnectionFactory();
@@ -15,7 +15,8 @@ public class RabbitConsumer {
 
 		try {
 			myConnection = myFactory.newConnection();
-
+			myChannel = myConnection.createChannel();
+			// myChannel.queueDeclare(QUEUE_NAME, true, false, false, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -26,14 +27,6 @@ public class RabbitConsumer {
 	}
 
 	public void consume(int messagesToRead, String QUEUE_NAME) {
-		if (myChannel == null) {
-			try {
-				myChannel = myConnection.createChannel();
-				myChannel.queueDeclare(QUEUE_NAME, true, false, false, null);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
@@ -55,14 +48,6 @@ public class RabbitConsumer {
 	}
 
 	public void concurrentConsume(String QUEUE_NAME) {
-		if (myChannel == null) {
-			try {
-				myChannel = myConnection.createChannel();
-				myChannel.queueDeclare(QUEUE_NAME, true, false, false, null);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 
 		try {
 			DeliverCallback deliverCallback = (consumerTag, delivery) -> {
