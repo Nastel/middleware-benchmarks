@@ -4,10 +4,11 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.AMQP.BasicProperties;
+import com.activemq.classic.ActiveMQProducer;
 import com.rabbitmq.client.Channel;
 
 public class RabbitProducer {
-	private final String QUEUE_NAME = "MyQueue";
+	private static String QUEUE_NAME = "MyQueue";
 	private Connection myConnection;
 	private Channel myChannel;
 	private boolean persistence = false;
@@ -58,5 +59,34 @@ public class RabbitProducer {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void main(String[] args) {
+		// populates topic for the consumer benchmarks
+		QUEUE_NAME = "myQueue1";
+		RabbitProducer p1 = new RabbitProducer();
+		p1.produce(130000, 512);
+		p1.closeConnection();
+
+		QUEUE_NAME = "myQueue2";
+		RabbitProducer p2 = new RabbitProducer();
+		p2.produce(130000, 1024);
+		p2.closeConnection();
+
+		QUEUE_NAME = "myQueue3";
+		RabbitProducer p3 = new RabbitProducer();
+		p3.produce(130000, 10240);
+		p3.closeConnection();
+
+		QUEUE_NAME = "myQueue4";
+		RabbitProducer p4 = new RabbitProducer();
+		p4.produce(130000, 32768);
+		p4.closeConnection();
+
+		QUEUE_NAME = "myQueue5";
+		RabbitProducer p5 = new RabbitProducer();
+		p5.produce(130000, 65536);
+		p5.closeConnection();
+	}
+
 
 }
