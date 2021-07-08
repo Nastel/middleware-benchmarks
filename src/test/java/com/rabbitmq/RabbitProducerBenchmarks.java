@@ -213,7 +213,7 @@ public class RabbitProducerBenchmarks {
 	@Threads(1)
 	@Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 15, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-	public void rabbitProduce100msg10k(Blackhole bh) {
+	public void rabbitProduce1000msg10k(Blackhole bh) {
 		myProducer.produce(1000, 10240);
 	}
 
