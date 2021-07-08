@@ -4,7 +4,6 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.AMQP.BasicProperties;
-import com.activemq.classic.ActiveMQProducer;
 import com.rabbitmq.client.Channel;
 
 public class RabbitProducer {
