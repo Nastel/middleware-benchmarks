@@ -7,10 +7,12 @@ import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 
 public class RabbitProducer {
+	// PARAMS
+	private boolean persistence = false;
+
 	private static String QUEUE_NAME = "MyQueue";
 	private Connection myConnection;
 	private Channel myChannel;
-	private boolean persistence = false;
 	private BasicProperties prop;
 
 	private void makeConnection() {
@@ -58,7 +60,7 @@ public class RabbitProducer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		// populates topic for the consumer benchmarks
 		QUEUE_NAME = "myQueue1";
@@ -86,6 +88,5 @@ public class RabbitProducer {
 		p5.produce(130000, 65536);
 		p5.closeConnection();
 	}
-
 
 }
