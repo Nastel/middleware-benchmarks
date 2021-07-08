@@ -108,7 +108,7 @@ public class ArtemisConsumerBenchmarks {
 	public void artemisConsume1000msg1k(Blackhole bh) {
 		myConsumer.consume(1000, "MyQueue2");
 	}
-	
+
 	@Benchmark
 	@BenchmarkMetaData(key = "api", value = "ActiveMQ Artemis")
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")

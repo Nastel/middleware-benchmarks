@@ -17,7 +17,7 @@ import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactor
 public class ArtemisProducer {
 	// PARAMS
 	private boolean persistence = false;
-	
+
 	private static String QUEUE_NAME = "MyQueue";
 	private Connection mConnection;
 	private Session mSession;
@@ -33,16 +33,15 @@ public class ArtemisProducer {
 			mSession = mConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			Queue mQueue = mSession.createQueue(QUEUE_NAME);
 			mProducer = mSession.createProducer(mQueue);
-			
-			if(persistence){
-				mProducer.setDeliveryMode(DeliveryMode.PERSISTENT);	
+
+			if (persistence) {
+				mProducer.setDeliveryMode(DeliveryMode.PERSISTENT);
+			} else {
+				mProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 			}
-			else{
-				mProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);	
-			}
-			
+
 			mConnection.start();
-			
+
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}

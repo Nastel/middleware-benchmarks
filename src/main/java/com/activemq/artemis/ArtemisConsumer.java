@@ -27,7 +27,7 @@ public class ArtemisConsumer {
 					transportConfiguration);
 			mConnection = cf.createConnection();
 			mSession = mConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			
+
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -38,18 +38,16 @@ public class ArtemisConsumer {
 	}
 
 	public void consume(int messagesToRead, String QUEUE_NAME) {
-		if(mQueue == null){
-			try{
+		if (mQueue == null) {
+			try {
 				mQueue = mSession.createQueue(QUEUE_NAME);
 				mConsumer = mSession.createConsumer(mQueue);
 				mConnection.start();
-			}
-			catch(JMSException e){
+			} catch (JMSException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 		for (int counter = 0; counter < messagesToRead; counter++) {
 			try {
 				BytesMessage message = (BytesMessage) mConsumer.receive();
@@ -69,18 +67,17 @@ public class ArtemisConsumer {
 
 	public void concurrentConsume(String QUEUE_NAME) {
 		System.out.println("Started consuming");
-		
-		if(mQueue == null){
-			try{
+
+		if (mQueue == null) {
+			try {
 				mQueue = mSession.createQueue(QUEUE_NAME);
 				mConsumer = mSession.createConsumer(mQueue);
 				mConnection.start();
-			}
-			catch(JMSException e){
+			} catch (JMSException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		while (true) {
 			try {
 				BytesMessage message = (BytesMessage) mConsumer.receive();
@@ -92,7 +89,7 @@ public class ArtemisConsumer {
 
 	public static void main(String[] args) {
 		ArtemisConsumer myConsumer = new ArtemisConsumer();
-		myConsumer.concurrentConsume();
+		myConsumer.concurrentConsume("MyQueue");
 	}
 
 }
