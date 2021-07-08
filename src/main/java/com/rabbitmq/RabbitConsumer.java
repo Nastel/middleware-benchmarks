@@ -16,7 +16,6 @@ public class RabbitConsumer {
 		try {
 			myConnection = myFactory.newConnection();
 			myChannel = myConnection.createChannel();
-			// myChannel.queueDeclare(QUEUE_NAME, true, false, false, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,8 +47,8 @@ public class RabbitConsumer {
 	}
 
 	public void concurrentConsume(String QUEUE_NAME) {
-
 		try {
+			myChannel.queueDeclare(QUEUE_NAME, true, false, false, null);
 			DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 				delivery.getBody();
 			};
@@ -63,7 +62,6 @@ public class RabbitConsumer {
 	public static void main(String args[]) {
 		RabbitConsumer myConsumer = new RabbitConsumer();
 		myConsumer.concurrentConsume("MyQueue");
-		myConsumer.closeConnection();
 	}
 
 }
