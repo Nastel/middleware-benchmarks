@@ -252,7 +252,7 @@ public class ActiveMQConsumerBenchmarks {
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-64k-NonP")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-64k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 10000 non persistent msgs of 65536 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 32768 bytes")
+//	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 65536 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
