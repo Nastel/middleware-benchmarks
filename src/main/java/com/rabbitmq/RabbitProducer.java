@@ -8,7 +8,7 @@ import com.rabbitmq.client.Channel;
 
 public class RabbitProducer {
 	// PARAMS
-	private boolean persistence = false;
+	private final boolean PERSISTENCE = false;
 
 	private static String QUEUE_NAME = "MyQueue";
 	private Connection myConnection;
@@ -19,7 +19,7 @@ public class RabbitProducer {
 		ConnectionFactory myFactory = new ConnectionFactory();
 		myFactory.setHost("localhost");
 
-		if (persistence) {
+		if (PERSISTENCE) {
 			prop = MessageProperties.PERSISTENT_TEXT_PLAIN;
 		} else {
 			prop = MessageProperties.TEXT_PLAIN;

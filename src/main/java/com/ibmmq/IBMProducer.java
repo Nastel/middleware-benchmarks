@@ -11,7 +11,7 @@ import com.kafka.Producer;
 public class IBMProducer {
 
 	// PARAMS
-	private boolean persistence = false;
+	private final boolean PERSISTENCE = false;
 
 	private static String QUEUE_NAME = "DEV.myQueue";
 	private final String HOST = "localhost";
@@ -51,7 +51,7 @@ public class IBMProducer {
 
 	public void produce(int totalMessages, int msgSize) {
 		MQMessage message = new MQMessage();
-		if (persistence) {
+		if (PERSISTENCE) {
 			message.persistence = MQConstants.MQPER_PERSISTENT;
 		} else {
 			message.persistence = MQConstants.MQPER_NOT_PERSISTENT;

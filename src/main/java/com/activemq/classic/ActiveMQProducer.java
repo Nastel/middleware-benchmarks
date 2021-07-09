@@ -12,7 +12,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQProducer {
 	// PARAMS
-	private boolean persistence = false;
+	private final boolean PERSISTENCE = false;
 
 	private static String QUEUE_NAME = "MyQueue";
 	private Connection connection;
@@ -29,7 +29,7 @@ public class ActiveMQProducer {
 			destination = session.createQueue(QUEUE_NAME);
 			producer = session.createProducer(destination);
 
-			if (persistence) {
+			if (PERSISTENCE) {
 				producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 			} else {
 				producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
