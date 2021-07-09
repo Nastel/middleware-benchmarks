@@ -41,7 +41,7 @@
 	</build>
 
 	<dependencies>
-		<!-- JDK (benchmarks) -->
+		<!-- JDK -->
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-core</artifactId>
@@ -53,56 +53,56 @@
 			<version>1.26</version>
 			<scope>provided</scope>
 		</dependency>
+
+
 		<!-- Cybench -->
 		<dependency>
 			<groupId>com.gocypher.cybench.client</groupId>
 			<artifactId>gocypher-cybench-annotations</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+		<!-- JMS -->
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>javax.jms-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<!-- ActiveMQ Classic -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+			<version>5.16.0</version>
+		</dependency>
+
+		<!-- Artemis -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>artemis-jms-client-all</artifactId>
+			<version>2.17.0</version>
+		</dependency>
+
+		<!-- IBM MQ -->
+		<dependency>
+			<groupId>com.ibm.mq</groupId>
+			<artifactId>com.ibm.mq.allclient</artifactId>
+			<version>9.2.2.0</version>
+		</dependency>
+
 		<!-- Kafka -->
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.12</artifactId>
 			<version>1.0.1</version>
 		</dependency>
-		<!-- JMS/IBM MQ -->
-		<dependency>
-			<groupId>javax.jms</groupId>
-			<artifactId>javax.jms-api</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ibm.mq</groupId>
-			<artifactId>com.ibm.mq.allclient</artifactId>
-			<version>9.2.2.0</version>
-		</dependency>
-		<!-- ActiveMQ/Artemis -->
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-all</artifactId>
-			<version>5.16.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>artemis-jms-client-all</artifactId>
-			<version>2.17.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>artemis-core-client</artifactId>
-			<version>2.17.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>artemis-commons</artifactId>
-			<version>2.17.0</version>
-		</dependency>
+
 		<!-- RabbitMQ -->
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
 			<version>5.12.0</version>
 		</dependency>
-	</dependencies>
 
+	</dependencies>
 </project>

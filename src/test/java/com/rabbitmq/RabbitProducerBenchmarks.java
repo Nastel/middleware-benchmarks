@@ -1,4 +1,3 @@
-
 package com.rabbitmq;
 
 import java.util.concurrent.TimeUnit;
