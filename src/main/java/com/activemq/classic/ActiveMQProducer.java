@@ -69,7 +69,7 @@ public class ActiveMQProducer {
 	}
 
 	public static void main(String[] args) {
-		// populates topic for the consumer benchmarks
+		// populates queues for the consumer benchmarks
 		QUEUE_NAME = "MyQueue1";
 		ActiveMQProducer p1 = new ActiveMQProducer();
 		p1.produce(130000, 512);

@@ -3,7 +3,6 @@ package com.ibmmq;
 import java.util.Hashtable;
 
 import com.ibm.mq.MQException;
-import com.ibm.mq.MQGetMessageOptions;
 import com.ibm.mq.MQMessage;
 import com.ibm.mq.MQQueue;
 import com.ibm.mq.MQQueueManager;
@@ -11,6 +10,7 @@ import com.ibm.mq.constants.MQConstants;
 
 public class IBMConsumer {
 
+	// IBM CONFIG VARS
 	private final String HOST = "localhost";
 	private final int PORT = 1414;
 	private final String CHANNEL = "DEV.APP.SVRCONN";
@@ -18,11 +18,10 @@ public class IBMConsumer {
 	private final String APP_USER = "app";
 	private final String APP_PASSWORD = "passw0rd";
 
-	private int openOptions;
 	private MQQueue queue = null;
 	private MQQueueManager qMgr;
 	private MQMessage message;
-	// private MQGetMessageOptions gmo;
+	private int openOptions;
 
 	private void buildConnection() {
 		Hashtable<String, Object> props = new Hashtable<String, Object>();
@@ -36,8 +35,6 @@ public class IBMConsumer {
 		try {
 			qMgr = new MQQueueManager(QMGR, props);
 			openOptions = MQConstants.MQOO_INPUT_AS_Q_DEF;
-			// gmo = new MQGetMessageOptions();
-			// gmo.options = MQConstants.MQGMO_NO_WAIT;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,9 +77,8 @@ public class IBMConsumer {
 		System.out.println("Started consuming");
 		try {
 			queue = qMgr.accessQueue(QUEUE_NAME, openOptions);
-		} catch (MQException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (MQException e) {
+			e.printStackTrace();
 		}
 		while (true) {
 			message = new MQMessage();
@@ -93,8 +89,7 @@ public class IBMConsumer {
 				if (e instanceof MQException) {
 					MQException mqe = (MQException) e;
 					if (mqe.reasonCode == 2033) {
-						// System.out.println("no messages to consume");
-						// break;
+						// System.out.println("No messages to consume!");
 					}
 				} else {
 					e.printStackTrace();

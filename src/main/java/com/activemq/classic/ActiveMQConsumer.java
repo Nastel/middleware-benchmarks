@@ -11,10 +11,10 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQConsumer {
+	private Destination destination = null;
 	private Connection connection;
 	private Session session;
 	private MessageConsumer consumer;
-	private Destination destination = null;
 
 	public void makeConnection() {
 		try {
@@ -83,6 +83,7 @@ public class ActiveMQConsumer {
 	public static void main(String args[]) {
 		ActiveMQConsumer myConsumer = new ActiveMQConsumer();
 		myConsumer.concurrentConsume("MyQueue");
+		myConsumer.closeConnection();
 	}
 
 }

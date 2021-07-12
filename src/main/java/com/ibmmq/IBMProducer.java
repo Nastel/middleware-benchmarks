@@ -13,6 +13,7 @@ public class IBMProducer {
 	// PARAMS
 	private final boolean PERSISTENCE = false;
 
+	// IBM CONFIG VARS
 	private static String QUEUE_NAME = "DEV.myQueue";
 	private final String HOST = "localhost";
 	private final int PORT = 1414;
@@ -79,7 +80,7 @@ public class IBMProducer {
 	}
 
 	public static void main(String args[]) {
-		// populates topic for the consumer benchmarks
+		// populates queues for the consumer benchmarks
 		QUEUE_NAME = "DEV.myQueue1";
 		IBMProducer p1 = new IBMProducer();
 		p1.produce(130000, 512);

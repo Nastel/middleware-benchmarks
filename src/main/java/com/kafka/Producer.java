@@ -40,7 +40,7 @@ public class Producer {
 	}
 
 	public static void main(String args[]) {
-		// populates topic for the consumer benchmarks
+		// populates topics for the consumer benchmarks
 		Producer p1 = new Producer();
 		p1.topic = "myTopic1";
 		p1.produce(130000, 512);

@@ -14,10 +14,10 @@ import org.apache.activemq.artemis.api.jms.JMSFactoryType;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisConsumer {
+	private Queue mQueue = null;
 	private Connection mConnection;
 	private Session mSession;
 	private MessageConsumer mConsumer;
-	private Queue mQueue = null;
 
 	public void buildConnection() {
 		try {
@@ -90,6 +90,7 @@ public class ArtemisConsumer {
 	public static void main(String[] args) {
 		ArtemisConsumer myConsumer = new ArtemisConsumer();
 		myConsumer.concurrentConsume("MyQueue");
+		myConsumer.closeConnection();
 	}
 
 }

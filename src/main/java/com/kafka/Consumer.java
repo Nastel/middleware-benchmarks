@@ -9,7 +9,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 public class Consumer {
-	private final ArrayList<String> topics;
+	private ArrayList<String> topics;
 	private final String bootstrapServer = "localhost:9092";
 	private KafkaConsumer<Integer, byte[]> kafkaConsumer;
 	private int totalReadMessages;
@@ -80,5 +80,6 @@ public class Consumer {
 	public static void main(String args[]) {
 		Consumer myConsumer = new Consumer();
 		myConsumer.concurrentConsume();
+		myConsumer.closeConsumer();
 	}
 }

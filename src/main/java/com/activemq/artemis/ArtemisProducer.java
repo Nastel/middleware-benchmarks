@@ -74,7 +74,7 @@ public class ArtemisProducer {
 	}
 
 	public static void main(String[] args) {
-		// populates topic for the consumer benchmarks
+		// populates queues for the consumer benchmarks
 		QUEUE_NAME = "MyQueue1";
 		ArtemisProducer p1 = new ArtemisProducer();
 		p1.produce(130000, 512);
