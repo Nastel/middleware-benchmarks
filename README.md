@@ -13,26 +13,32 @@ RabbitMQ | ***3.8.17*** | ***5.12.0***
 
 ### Benchmark Details
 - Built using JMH and [Cybench™](https://cybench.io/)
-- ***PARAM*** File Size (bytes)
+- ***PARAM***  File Size (bytes)
   - 512
   - 1024 (1kb)
   - 10240 (10kb)
   - 32768 (32kb)
   - 65536 (64kb)
+- ***PARAM***  Persistence
+  - Produce with persistent messages
+  - Consume with persistent messages
 - Producer
   - All messages produced to the same respective queue per MQ
   - 10 trials
     - 15 warm-up iterations
     - 100 measurement iterations
-  - ***PARAM*** Total Messages Produced
+  - ***PARAM***  Total Messages Produced
     - 100 msgs
     - 1,000 msgs
+  - ***PARAM***  Concurrency
+    - Produce with concurrent consumer running (concurrent)
+    - Produce without concurrent consumer running (nonconcurrent)
 - Consumer
   - Pre-fill five individual queues based on message size using respective *Producer.java* class
   - 10 trials
     - 1 warm-up iteration (used for consumer connection and removing overhead)
     - 10 measruement iterations
-  - ***PARAM*** Total Messages Consumed
+  - ***PARAM***  Total Messages Consumed
     - 1,000 msgs
     - 10,000 msgs
     
