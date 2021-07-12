@@ -1,24 +1,14 @@
 # Benchmarks for Middleware Message Queue Platforms
 
-### Application Versions
-MQ | Version
--- | --
-ActiveMQ Classic | ***5.16.0***
-Artemis | ***2.17.0***
-IBM MQ | <ul><li>Machine 1 (***9.2.2.0***)</li><li>Machine 2 (***9.0.5.0***)</li></ul>
-Kafka | ***2.8.0***
-RabbitMQ | ***3.8.17***
-
-
-### API Versions (Built with Maven)
-MQ | Version
--- | --
-ActiveMQ Classic | ***5.16.0***
-Artemis | ***2.17.0***
-IBM MQ | ***9.2.2.0***
-Kafka | ***1.0.1***
-RabbitMQ | ***5.12.0***
-*JMS* | ***2.0.1***
+### Versions
+MQ | Application Version | API Version (Maven Built)
+-- | -- | --
+ActiveMQ Classic | ***5.16.0*** | ***5.16.0***
+Artemis | ***2.17.0*** | ***2.17.0***
+IBM MQ | <ul><li>Machine 1 (***9.2.2.0***)</li><li>Machine 2 (***9.0.5.0***)</li></ul> | ***9.2.2.0***
+Kafka | ***2.8.0*** | ***1.0.1***
+RabbitMQ | ***3.8.17*** | ***5.12.0***
+*JMS* | - | ***2.0.1***
 
 
 ### Benchmark Details
