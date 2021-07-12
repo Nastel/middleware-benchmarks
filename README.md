@@ -1,11 +1,8 @@
-Benchmarking Middleware Platforms
+# Benchmarks for Middleware Message Queue Platforms
 
--Apache Kafka
-
--IBM MQ
-
--ActiveMQ Artemis
-
--ActiveMQ Classic
-
--RabbitMQ
+###### Platforms observed:
+* ActiveMQ Classic
+* Artemis
+* IBM MQ
+* Kafka
+* RabbitMQ
