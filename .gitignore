@@ -10,3 +10,6 @@ target/
 
 #Cybench
 reports/
+
+#ActiveMQ
+activemq-data/
