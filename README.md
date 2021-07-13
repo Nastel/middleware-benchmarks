@@ -22,8 +22,8 @@ RabbitMQ | ***5.12.0***
   - 32768 (32kb)
   - 65536 (64kb)
 - ***PARAM***  Persistence
-  - Produce with persistent messages
-  - Consume with persistent messages
+  - Produce persistent messages
+  - Consume persistent messages
 - Producer
   - All messages produced to the same respective queue per MQ
   - 10 trials
