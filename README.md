@@ -34,9 +34,10 @@ RabbitMQ | ***5.12.0***
     - 1,000 msgs
   - ***PARAM***  Concurrency
     - Produce with concurrent consumer running (concurrent)
+      - Must run respective *Consumer.java* class' main method during benchmark
     - Produce without concurrent consumer running (nonconcurrent)
 - Consumer
-  - Pre-fill five individual queues based on message size using respective *Producer.java* class
+  - Pre-fill five individual queues based on message size using respective *Producer.java* class' main method
   - 10 trials
     - 1 warm-up iteration (used for consumer connection and removing overhead)
     - 10 measruement iterations
