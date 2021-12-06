@@ -21,6 +21,8 @@ import com.ibm.mq.MQMessage;
 import com.ibm.mq.MQPutMessageOptions;
 import com.ibm.mq.MQQueue;
 import com.ibm.mq.MQQueueManager;
+import com.ibm.mq.MQTopic;
+import com.ibm.mq.constants.CMQC;
 import com.ibm.mq.constants.MQConstants;
 
 public class IBMProducer {
@@ -30,6 +32,7 @@ public class IBMProducer {
 
 	// IBM CONFIG VARS
 	private static String QUEUE_NAME = "DEV.myQueue";
+	private static String TOPIC_NAME = "DEV.BASE.TOPIC";
 	private final String HOST = "localhost";
 	private final int PORT = 1414;
 	private final String CHANNEL = "DEV.APP.SVRCONN";
@@ -38,6 +41,7 @@ public class IBMProducer {
 	private final String APP_PASSWORD = "passw0rd";
 
 	private MQQueue queue;
+	private MQTopic topic;
 	private MQQueueManager qMgr;
 	private MQPutMessageOptions pmo;
 
@@ -54,6 +58,7 @@ public class IBMProducer {
 			qMgr = new MQQueueManager(QMGR, props);
 			int openOptions = MQConstants.MQOO_OUTPUT;
 			queue = qMgr.accessQueue(QUEUE_NAME, openOptions);
+//			topic = qMgr.accessTopic(null, TOPIC_NAME, CMQC.MQTOPIC_OPEN_AS_PUBLICATION, CMQC.MQOO_OUTPUT);
 			pmo = new MQPutMessageOptions();
 			pmo.options = MQConstants.MQPMO_ASYNC_RESPONSE;
 		} catch (Exception e) {
@@ -78,6 +83,7 @@ public class IBMProducer {
 
 			for (int counter = 0; counter < totalMessages; counter++) {
 				queue.put(message, pmo);
+//				topic.put(message, pmo);
 			}
 
 		} catch (Exception e) {
@@ -88,6 +94,7 @@ public class IBMProducer {
 	public void closeConnection() {
 		try {
 			queue.close();
+//			topic.close();
 			qMgr.disconnect();
 		} catch (Exception e) {
 			e.printStackTrace();
