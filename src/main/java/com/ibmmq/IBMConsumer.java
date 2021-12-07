@@ -22,6 +22,8 @@ import com.ibm.mq.MQException;
 import com.ibm.mq.MQMessage;
 import com.ibm.mq.MQQueue;
 import com.ibm.mq.MQQueueManager;
+import com.ibm.mq.MQTopic;
+import com.ibm.mq.constants.CMQC;
 import com.ibm.mq.constants.MQConstants;
 
 public class IBMConsumer {
@@ -35,6 +37,7 @@ public class IBMConsumer {
 	private final String APP_PASSWORD = "passw0rd";
 
 	private MQQueue queue = null;
+	private MQTopic topic = null;
 	private MQQueueManager qMgr;
 	private MQMessage message;
 	private int openOptions;
@@ -89,7 +92,7 @@ public class IBMConsumer {
 		}
 	}
 
-	public void concurrentConsume(String QUEUE_NAME) {
+	public void concurrentConsumeQueue(String QUEUE_NAME) {
 		System.out.println("Started consuming");
 		try {
 			queue = qMgr.accessQueue(QUEUE_NAME, openOptions);
@@ -115,9 +118,36 @@ public class IBMConsumer {
 		}
 	}
 
+	public void concurrentConsumeTopic(String TOPIC_NAME, String SUBSCRIPTION_NAME) {
+		System.out.println("Started consuming");
+		try {
+			topic = qMgr.accessTopic(null, TOPIC_NAME, CMQC.MQSO_CREATE + CMQC.MQSO_RESUME, null, SUBSCRIPTION_NAME);
+		} catch (MQException e) {
+			e.printStackTrace();
+		}
+		while (true) {
+			message = new MQMessage();
+			try {
+				topic.get(message);
+				message.clearMessage();
+			} catch (Exception e) {
+				if (e instanceof MQException) {
+					MQException mqe = (MQException) e;
+					if (mqe.reasonCode == 2033) {
+						// System.out.println("No messages to consume!");
+					}
+				} else {
+					e.printStackTrace();
+				}
+
+			}
+		}
+	}
+
 	public static void main(String args[]) {
 		IBMConsumer myConsumer = new IBMConsumer();
-		myConsumer.concurrentConsume("DEV.myQueue");
+		// myConsumer.concurrentConsumeQueue("DEV.myQueue");
+		myConsumer.concurrentConsumeTopic("DEV.BASE.TOPIC", "TEST.SUB");
 		myConsumer.closeConnection();
 	}
 
