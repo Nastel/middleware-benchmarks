@@ -31,15 +31,12 @@ import org.apache.activemq.artemis.api.jms.JMSFactoryType;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisProducer {
-	// PARAMS
-	private final boolean PERSISTENCE = false;
-
 	private static String QUEUE_NAME = "MyQueue";
 	private Connection mConnection;
 	private Session mSession;
 	private MessageProducer mProducer;
 
-	public void buildConnection() {
+	public void buildConnection(boolean persistent) {
 		try {
 			TransportConfiguration transportConfiguration = new TransportConfiguration(
 					NettyConnectorFactory.class.getName());
@@ -50,7 +47,7 @@ public class ArtemisProducer {
 			Queue mQueue = mSession.createQueue(QUEUE_NAME);
 			mProducer = mSession.createProducer(mQueue);
 
-			if (PERSISTENCE) {
+			if (persistent) {
 				mProducer.setDeliveryMode(DeliveryMode.PERSISTENT);
 			} else {
 				mProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
@@ -64,7 +61,11 @@ public class ArtemisProducer {
 	}
 
 	public ArtemisProducer() {
-		buildConnection();
+		this(false);
+	}
+
+	public ArtemisProducer(boolean persistent) {
+		buildConnection(persistent);
 	}
 
 	public void produce(int totalMessages, int msgSize) {
