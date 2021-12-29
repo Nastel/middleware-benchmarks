@@ -31,6 +31,9 @@ import org.apache.activemq.artemis.api.jms.JMSFactoryType;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 
 public class ArtemisProducer {
+	// PARAMS
+	public static final boolean PERSISTENCE = false;
+
 	private static String QUEUE_NAME = "MyQueue";
 	private Connection mConnection;
 	private Session mSession;
@@ -58,10 +61,6 @@ public class ArtemisProducer {
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public ArtemisProducer() {
-		this(false);
 	}
 
 	public ArtemisProducer(boolean persistent) {
@@ -93,27 +92,27 @@ public class ArtemisProducer {
 	public static void main(String[] args) {
 		// populates queues for the consumer benchmarks
 		QUEUE_NAME = "MyQueue1";
-		ArtemisProducer p1 = new ArtemisProducer();
+		ArtemisProducer p1 = new ArtemisProducer(PERSISTENCE);
 		p1.produce(130000, 512);
 		p1.closeConnection();
 
 		QUEUE_NAME = "MyQueue2";
-		ArtemisProducer p2 = new ArtemisProducer();
+		ArtemisProducer p2 = new ArtemisProducer(PERSISTENCE);
 		p2.produce(130000, 1024);
 		p2.closeConnection();
 
 		QUEUE_NAME = "MyQueue3";
-		ArtemisProducer p3 = new ArtemisProducer();
+		ArtemisProducer p3 = new ArtemisProducer(PERSISTENCE);
 		p3.produce(130000, 10240);
 		p3.closeConnection();
 
 		QUEUE_NAME = "MyQueue4";
-		ArtemisProducer p4 = new ArtemisProducer();
+		ArtemisProducer p4 = new ArtemisProducer(PERSISTENCE);
 		p4.produce(130000, 32768);
 		p4.closeConnection();
 
 		QUEUE_NAME = "MyQueue5";
-		ArtemisProducer p5 = new ArtemisProducer();
+		ArtemisProducer p5 = new ArtemisProducer(PERSISTENCE);
 		p5.produce(130000, 65536);
 		p5.closeConnection();
 	}

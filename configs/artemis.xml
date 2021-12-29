@@ -29,8 +29,6 @@ under the License.
       <name>0.0.0.0</name>
 
 
-      <persistence-enabled>true</persistence-enabled>
-
       <!-- this could be ASYNCIO, MAPPED, NIO
            ASYNCIO: Linux Libaio
            MAPPED: mmap files

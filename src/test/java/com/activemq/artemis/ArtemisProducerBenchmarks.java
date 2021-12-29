@@ -42,7 +42,8 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 @BenchmarkMetaData(key = "domain", value = "java")
 public class ArtemisProducerBenchmarks {
 
-	@Param({"true", "false"})
+	//@Param("true")
+	@Param("false")
 	public boolean persistent;
 
 	private ArtemisProducer myProducer;
