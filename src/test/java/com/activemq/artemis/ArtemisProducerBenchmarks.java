@@ -24,6 +24,7 @@ import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
@@ -40,11 +41,16 @@ import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 //@BenchmarkMetaData(key = "context", value = "NonconcurrentProduce")
 @BenchmarkMetaData(key = "domain", value = "java")
 public class ArtemisProducerBenchmarks {
+
+	//@Param("true")
+	@Param("false")
+	public boolean persistent;
+
 	private ArtemisProducer myProducer;
 
 	@Setup(Level.Trial)
 	public void setup() {
-		myProducer = new ArtemisProducer();
+		myProducer = new ArtemisProducer(persistent);
 	}
 
 	@TearDown(Level.Trial)

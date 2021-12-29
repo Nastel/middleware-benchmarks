@@ -32,14 +32,14 @@ import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactor
 
 public class ArtemisProducer {
 	// PARAMS
-	private final boolean PERSISTENCE = false;
+	public static final boolean PERSISTENCE = false;
 
 	private static String QUEUE_NAME = "MyQueue";
 	private Connection mConnection;
 	private Session mSession;
 	private MessageProducer mProducer;
 
-	public void buildConnection() {
+	public void buildConnection(boolean persistent) {
 		try {
 			TransportConfiguration transportConfiguration = new TransportConfiguration(
 					NettyConnectorFactory.class.getName());
@@ -50,7 +50,7 @@ public class ArtemisProducer {
 			Queue mQueue = mSession.createQueue(QUEUE_NAME);
 			mProducer = mSession.createProducer(mQueue);
 
-			if (PERSISTENCE) {
+			if (persistent) {
 				mProducer.setDeliveryMode(DeliveryMode.PERSISTENT);
 			} else {
 				mProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
@@ -63,8 +63,8 @@ public class ArtemisProducer {
 		}
 	}
 
-	public ArtemisProducer() {
-		buildConnection();
+	public ArtemisProducer(boolean persistent) {
+		buildConnection(persistent);
 	}
 
 	public void produce(int totalMessages, int msgSize) {
@@ -92,27 +92,27 @@ public class ArtemisProducer {
 	public static void main(String[] args) {
 		// populates queues for the consumer benchmarks
 		QUEUE_NAME = "MyQueue1";
-		ArtemisProducer p1 = new ArtemisProducer();
+		ArtemisProducer p1 = new ArtemisProducer(PERSISTENCE);
 		p1.produce(130000, 512);
 		p1.closeConnection();
 
 		QUEUE_NAME = "MyQueue2";
-		ArtemisProducer p2 = new ArtemisProducer();
+		ArtemisProducer p2 = new ArtemisProducer(PERSISTENCE);
 		p2.produce(130000, 1024);
 		p2.closeConnection();
 
 		QUEUE_NAME = "MyQueue3";
-		ArtemisProducer p3 = new ArtemisProducer();
+		ArtemisProducer p3 = new ArtemisProducer(PERSISTENCE);
 		p3.produce(130000, 10240);
 		p3.closeConnection();
 
 		QUEUE_NAME = "MyQueue4";
-		ArtemisProducer p4 = new ArtemisProducer();
+		ArtemisProducer p4 = new ArtemisProducer(PERSISTENCE);
 		p4.produce(130000, 32768);
 		p4.closeConnection();
 
 		QUEUE_NAME = "MyQueue5";
-		ArtemisProducer p5 = new ArtemisProducer();
+		ArtemisProducer p5 = new ArtemisProducer(PERSISTENCE);
 		p5.produce(130000, 65536);
 		p5.closeConnection();
 	}
