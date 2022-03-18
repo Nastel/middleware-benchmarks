@@ -30,6 +30,7 @@ import org.openjdk.jmh.annotations.TearDown;
 import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
+
 import com.gocypher.cybench.core.annotation.BenchmarkMetaData;
 
 @State(Scope.Benchmark)
@@ -54,11 +55,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-512b-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 512 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -66,7 +67,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume1000msg512b(Blackhole bh) {
-		myConsumer.consume(1000, "myTopic1");
+		myConsumer.consume(1000, "testTopic1");
 	}
 
 	@Benchmark
@@ -74,11 +75,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-512b-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 512 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -86,7 +87,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume10000msg512b(Blackhole bh) {
-		myConsumer.consume(10000, "myTopic1");
+		myConsumer.consume(10000, "testTopic1");
 	}
 
 	@Benchmark
@@ -94,11 +95,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-1k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 1024 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -106,7 +107,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume1000msg1k(Blackhole bh) {
-		myConsumer.consume(1000, "myTopic2");
+		myConsumer.consume(1000, "testTopic2");
 	}
 
 	@Benchmark
@@ -114,11 +115,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-1k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 1024 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -126,7 +127,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume10000msg1k(Blackhole bh) {
-		myConsumer.consume(10000, "myTopic2");
+		myConsumer.consume(10000, "testTopic2");
 	}
 
 	@Benchmark
@@ -134,11 +135,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-10k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 10240 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -146,7 +147,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume1000msg10k(Blackhole bh) {
-		myConsumer.consume(1000, "myTopic3");
+		myConsumer.consume(1000, "testTopic3");
 	}
 
 	@Benchmark
@@ -154,11 +155,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-10k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 10240 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -166,7 +167,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume10000msg10k(Blackhole bh) {
-		myConsumer.consume(10000, "myTopic3");
+		myConsumer.consume(10000, "testTopic3");
 	}
 
 	@Benchmark
@@ -174,11 +175,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-32k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 32768 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -186,7 +187,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume1000msg32k(Blackhole bh) {
-		myConsumer.consume(1000, "myTopic4");
+		myConsumer.consume(1000, "testTopic4");
 	}
 
 	@Benchmark
@@ -194,11 +195,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-32k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 32768 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -206,7 +207,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume10000msg32k(Blackhole bh) {
-		myConsumer.consume(10000, "myTopic4");
+		myConsumer.consume(10000, "testTopic4");
 	}
 
 	@Benchmark
@@ -214,11 +215,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-64k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 65536 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -226,7 +227,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume1000msg64k(Blackhole bh) {
-		myConsumer.consume(1000, "myTopic5");
+		myConsumer.consume(1000, "testTopic5");
 	}
 
 	@Benchmark
@@ -234,11 +235,11 @@ public class ConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://kafka.apache.org/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.12")
-	@BenchmarkMetaData(key = "libVersion", value = "2.8.0 Persistent")
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.kafka.kafka_2.13")
+	@BenchmarkMetaData(key = "libVersion", value = "3.1.0 Persistent")
 	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-64k-P")
 	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 65536 bytes")
-	@BenchmarkMetaData(key = "description", value = "Kafka API Producer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
+	@BenchmarkMetaData(key = "description", value = "Kafka API Consumer, 1 partition, 1 replication factor, 1 broker, 1 zookeeper, default msg retention (persistent)")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -246,7 +247,7 @@ public class ConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void kafkaConsume10000msg64k(Blackhole bh) {
-		myConsumer.consume(10000, "myTopic5");
+		myConsumer.consume(10000, "testTopic5");
 	}
 
 }

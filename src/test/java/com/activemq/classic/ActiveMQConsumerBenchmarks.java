@@ -55,15 +55,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-512b-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-512b-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-512b-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 1000 non persistent msgs of 512 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 512 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 512 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -71,7 +71,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg512b(Blackhole bh) {
-		myConsumer.consume(1000, "MyQueue1");
+		myConsumer.consume(1000, "MyTestPerQueue1");
 	}
 
 	@Benchmark
@@ -79,15 +79,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-NonPersistentd message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-512b-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-512b-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-512b-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 10000 non persistent msgs of 512 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 512 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 512 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -95,7 +95,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg512b(Blackhole bh) {
-		myConsumer.consume(10000, "MyQueue1");
+		myConsumer.consume(10000, "MyTestPerQueue1");
 	}
 
 	@Benchmark
@@ -103,15 +103,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-1k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-1k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-1k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 1000 non persistent msgs of 1024 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 1024 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 1024 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -119,7 +119,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg1k(Blackhole bh) {
-		myConsumer.consume(1000, "MyQueue2");
+		myConsumer.consume(1000, "MyTestPerQueue2");
 	}
 
 	@Benchmark
@@ -127,15 +127,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-1k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-1k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-1k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 10000 non persistent msgs of 1024 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 1024 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 1024 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -143,7 +143,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg1k(Blackhole bh) {
-		myConsumer.consume(10000, "MyQueue2");
+		myConsumer.consume(10000, "MyTestPerQueue2");
 	}
 
 	@Benchmark
@@ -151,15 +151,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-10k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-10k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-10k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 1000 non persistent msgs of 10240 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 10240 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 10240 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -167,7 +167,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg10k(Blackhole bh) {
-		myConsumer.consume(1000, "MyQueue3");
+		myConsumer.consume(1000, "MyTestPerQueue3");
 	}
 
 	@Benchmark
@@ -175,15 +175,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-10k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-10k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-10k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 10000 non persistent msgs of 10240 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 10240 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 10240 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -191,7 +191,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg10k(Blackhole bh) {
-		myConsumer.consume(10000, "MyQueue3");
+		myConsumer.consume(10000, "MyTestPerQueue3");
 	}
 
 	@Benchmark
@@ -199,15 +199,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-32k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-32k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-32k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 1000 non persistent msgs of 32768 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 32768 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 32768 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -215,7 +215,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg32k(Blackhole bh) {
-		myConsumer.consume(1000, "MyQueue4");
+		myConsumer.consume(1000, "MyTestPerQueue4");
 	}
 
 	@Benchmark
@@ -223,22 +223,22 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-32k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-32k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-32k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 10000 non persistent msgs of 32768 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 32768 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 32768 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg32k(Blackhole bh) {
-		myConsumer.consume(10000, "MyQueue4");
+		myConsumer.consume(10000, "MyTestPerQueue4");
 	}
 
 	@Benchmark
@@ -246,22 +246,22 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-64k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-64k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-1000-64k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 1000 non persistent msgs of 65536 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 65536 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 1000 persistent msgs of 65536 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
 	@Threads(1)
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume1000msg64k(Blackhole bh) {
-		myConsumer.consume(1000, "MyQueue5");
+		myConsumer.consume(1000, "MyTestPerQueue5");
 	}
 
 	@Benchmark
@@ -269,15 +269,15 @@ public class ActiveMQConsumerBenchmarks {
 	@BenchmarkMetaData(key = "libVendor", value = "Apache")
 	@BenchmarkMetaData(key = "libUrl", value = "https://activemq.apache.org/components/classic/")
 	@BenchmarkMetaData(key = "libDescription", value = "Apache ActiveMQ® is the most popular open source, multi-protocol, Java-based message broker. It supports industry standard protocols so users get the benefits of client choices across a broad range of languages and platforms. Connect from clients written in JavaScript, C, C++, Python, .Net, and more. Integrate your multi-platform applications using the ubiquitous AMQP protocol. Exchange messages between your web applications using STOMP over websockets. Manage your IoT devices using MQTT. Support your existing JMS infrastructure and beyond. ActiveMQ offers the power and flexibility to support any messaging use-case.")
-	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-all")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 NonPersistent")
-//	@BenchmarkMetaData(key = "libVersion", value = "5.16.0 Persistent")	
+	@BenchmarkMetaData(key = "libSymbolicName", value = "org.apache.activemq.activemq-client")
+//	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 NonPersistent")
+	@BenchmarkMetaData(key = "libVersion", value = "5.16.4 Persistent")
 //	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-64k-NonP")
-//	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-64k-P")
+	@BenchmarkMetaData(key = "actionName", value = "Receive-10000-64k-P")
 //	@BenchmarkMetaData(key = "title", value = "Consuming 10000 non persistent msgs of 65536 bytes")
-//	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 65536 bytes")
+	@BenchmarkMetaData(key = "title", value = "Consuming 10000 persistent msgs of 65536 bytes")
 //	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, no msg persistence, auto msg acknowledge")
-//	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
+	@BenchmarkMetaData(key = "description", value = "JMS Consumer, ActiveMQ Connection, msg persistence, auto msg acknowledge")
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.SECONDS)
 	@Fork(1)
@@ -285,7 +285,7 @@ public class ActiveMQConsumerBenchmarks {
 	@Measurement(iterations = 10, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	@Warmup(iterations = 1, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 	public void activeClassicConsume10000msg64k(Blackhole bh) {
-		myConsumer.consume(10000, "MyQueue5");
+		myConsumer.consume(10000, "MyTestPerQueue5");
 	}
 
 }
