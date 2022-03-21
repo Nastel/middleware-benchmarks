@@ -16,14 +16,21 @@
 
 package com.rabbitmq;
 
+import java.io.IOException;
+
+import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.DeliverCallback;
+import com.rabbitmq.client.Envelope;
 
 public class RabbitConsumer {
 	private Connection myConnection;
 	private Channel myChannel;
+	public static int msgsRead;
+	public static String curConsumerTag;
 
 	private void makeConnection() {
 		ConnectionFactory myFactory = new ConnectionFactory();
@@ -31,7 +38,8 @@ public class RabbitConsumer {
 
 		try {
 			myConnection = myFactory.newConnection();
-			myChannel = myConnection.createChannel();
+			myChannel = myConnection.createChannel(1);
+			myChannel.basicQos(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -42,20 +50,37 @@ public class RabbitConsumer {
 	}
 
 	public void consume(int messagesToRead, String QUEUE_NAME) {
+		try {
+			msgsRead = 0;
+			myChannel.basicConsume(QUEUE_NAME, false, new DefaultConsumer(myChannel) {
+				public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties props,
+						byte[] body) throws IOException {
+					myChannel.basicQos(1);
 
-		for (int counter = 0; counter < messagesToRead; counter++) {
-			try {
-				// String msg = new String(myChannel.basicGet(QUEUE_NAME, true).getBody());
-				myChannel.basicGet(QUEUE_NAME, true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+					DeliverCallback deliverCallback = (tmpConsumerTag, delivery) -> {
+						long deliveryTag = envelope.getDeliveryTag();
+
+						myChannel.basicAck(deliveryTag, false);
+						msgsRead++;
+
+						if (msgsRead >= (messagesToRead)) {
+							myChannel.abort();
+						}
+
+					};
+				}
+			});
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	public void closeConnection() {
 		try {
 			myChannel.close();
+			myChannel.abort();
+			myConnection.abort();
 			myConnection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,10 +99,4 @@ public class RabbitConsumer {
 			e.printStackTrace();
 		}
 	}
-
-	public static void main(String args[]) {
-		RabbitConsumer myConsumer = new RabbitConsumer();
-		myConsumer.concurrentConsume("MyQueue");
-	}
-
 }
